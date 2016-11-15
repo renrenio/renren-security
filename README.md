@@ -1,1 +1,1 @@
-#renren-security
+renren-security是一个轻量级权限管理系统，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。

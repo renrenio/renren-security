@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>管理员列表</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="../statics/css/bootstrap.min.css">
+<link rel="stylesheet" href="../statics/css/font-awesome.min.css">
+<link rel="stylesheet" href="../statics/plugins/jqgrid/ui.jqgrid-bootstrap.css">
+<link rel="stylesheet" href="../statics/css/main.css">
+<script src="../statics/libs/jquery.min.js"></script>
+<script src="../statics/plugins/layer/layer.js"></script>
+<script src="../statics/libs/bootstrap.min.js"></script>
+<script src="../statics/libs/vue.min.js"></script>
+<script src="../statics/libs/vue-resource.min.js"></script>
+<script src="../statics/plugins/jqgrid/grid.locale-cn.js"></script>
+<script src="../statics/plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="../js/common.js"></script>
+</head>
+<body>
+<div id="rrapp">
+	<div class="grid-btn">
+		<a class="btn btn-default" href="user_add.html">新增</a>
+		<button type="button"  class="btn btn-default" @click="update">修改</button>
+		<button type="button" class="btn btn-default" @click="del">删除</button>
+	</div>
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
+
+<script src="../js/sys/user.js"></script>
+</body>
+</html>
