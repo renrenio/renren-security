@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,6 +128,12 @@ public class SysMenuController extends AbstractController {
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:menu:delete")
 	public R delete(@RequestBody Long[] menuIds){
+		Long[] sysMenuIds = {1L, 2L, 3L, 4L};
+		for(Long menuId : menuIds){
+			if(ArrayUtils.contains(sysMenuIds, menuId)){
+				return R.error("系统菜单，不能删除");
+			}
+		}
 		sysMenuService.deleteBatch(menuIds);
 		
 		return R.ok();

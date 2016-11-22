@@ -102,8 +102,4 @@ public class SysUserServiceImpl implements SysUserService {
 		map.put("newPassword", newPassword);
 		return sysUserDao.updatePassword(map);
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(new Sha256Hash("admin").toHex());
-	}
 }
