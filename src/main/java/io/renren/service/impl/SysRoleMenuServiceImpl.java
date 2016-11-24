@@ -28,6 +28,9 @@ public class SysRoleMenuServiceImpl implements SysRoleMenuService {
 	@Override
 	@Transactional
 	public void saveOrUpdate(Long roleId, List<Long> menuIdList) {
+		if(menuIdList.size() == 0){
+			return ;
+		}
 		//先删除角色与菜单关系
 		sysRoleMenuDao.delete(roleId);
 		

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,11 +30,12 @@ public class RRExceptionHandler implements HandlerExceptionResolver {
 		try {
 			response.setContentType("application/json;charset=utf-8");
 			response.setCharacterEncoding("utf-8");
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			
 			if (ex instanceof RRException) {
 				r.put("code", ((RRException) ex).getCode());
 				r.put("msg", ((RRException) ex).getMessage());
+			}else if(ex instanceof DuplicateKeyException){
+				r = R.error("数据库中已存在该记录");
 			}else{
 				r = R.error();
 			}

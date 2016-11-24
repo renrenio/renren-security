@@ -25,7 +25,7 @@ var vm = new Vue({
 	data:{
 		user:{},
 		menuList:{},
-		main:"main.html",
+		main:"sys/main.html",
 		password:'',
 		newPassword:'',
         navTitle:"控制台"
@@ -89,7 +89,7 @@ function routerList(router, menuList){
 		if(menu.type == 0){
 			routerList(router, menu.list);
 		}else if(menu.type == 1){
-			router.add('#'+menu.url+'', function() {
+			router.add('#'+menu.url, function() {
 				var url = window.location.hash;
 				
 				//替换iframe的url
@@ -104,6 +104,3 @@ function routerList(router, menuList){
 		}
 	}
 }
-
-
-

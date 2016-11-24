@@ -70,17 +70,19 @@ var vm = new Vue({
 				return ;
 			}
 			
-			this.$http.post('../sys/menu/delete', menuIds).then((r) => {
-				if(r.body.code === 0){
-					layer.alert('操作成功', {offset: '150px'}, function(index){
-						location.reload();
-					});
-				}else{
-					layer.alert(r.body.msg, {offset: '150px'});
-				}
-			}, (r) => {//响应错误回调
-				layer.alert(r.body.msg, {offset: '150px'});
+			confirm('确定要删除选中的记录？', function(){
+				vm.$http.post('../sys/menu/delete', menuIds).then((r) => {
+					if(r.body.code === 0){
+						alert('操作成功', function(index){
+							$("#jqGrid").trigger("reloadGrid");
+						});
+					}else{
+						alert(r.body.msg);
+					}
+				});
 			});
+			
+			
 		}
 	}
 });

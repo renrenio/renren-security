@@ -20,7 +20,7 @@
 	<tx:annotation-driven />
 	<mvc:default-servlet-handler />
 	
-	<context:property-placeholder location="classpath:dataSource.properties,classpath:config.properties" />
+	<context:property-placeholder location="classpath:db.properties,classpath:config.properties" />
 	
 	<import resource="classpath:spring-shiro.xml"/>
 	
@@ -43,16 +43,18 @@
             </bean>
         </mvc:message-converters>
 	</mvc:annotation-driven>
-		
+	
+	<!-- Velocity视图解析器    默认视图  -->
 	<bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="viewNames" value="*.html" />
         <property name="suffix" value=""/>
         <property name="dateToolAttribute" value="dateTool" />
         <property name="numberToolAttribute" value="numberTool" /> 
+        <property name="order" value="0"/>
 	</bean>
-	
 	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath" value="/WEB-INF/" />
+        <property name="resourceLoaderPath" value="/WEB-INF/page/" />
         <property name="velocityProperties">
           <props>
             <prop key="input.encoding">UTF-8</prop>
@@ -61,6 +63,29 @@
           </props>
         </property>
 	</bean>
+	
+	<!-- JSP视图解析器  -->
+    <bean id="viewResolverJsp" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/page/"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="viewNames" value="*.jsp" />
+        <property name="suffix" value=""/>
+        <property name="order" value="1"/>
+    </bean>
+    
+    <!-- FreeMarker视图解析器 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+	    <property name="contentType" value="text/html; charset=utf-8"/>
+	    <property name="cache" value="false"/>
+	    <property name="viewNames" value="*.ftl" />
+        <property name="suffix" value=""/>
+        <property name="order" value="2"/>
+	</bean>
+	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	    <property name="templateLoaderPath" value="/WEB-INF/page/"/>
+	</bean>
+	
 		
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

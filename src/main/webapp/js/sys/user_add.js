@@ -33,14 +33,13 @@ var vm = new Vue({
 			var url = vm.user.userId == null ? "../sys/user/save" : "../sys/user/update";
 			this.$http.post(url, vm.user).then((r) => {
 				if(r.body.code === 0){
-					layer.alert('操作成功', {icon: 1, offset: '150px'}, function(index){
-						location.href = "user.html";
+					alert('操作成功', function(index){
+						vm.back();
 					});
+					
 				}else{
-					layer.alert(r.body.msg, {offset: '150px'});
+					alert(r.body.msg);
 				}
-			}, (r) => {//响应错误回调
-				layer.alert(r.body.msg, {offset: '150px'});
 			});
 		},
 		back: function (event) {

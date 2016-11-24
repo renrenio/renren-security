@@ -18,19 +18,46 @@ var url = function(name) {
 T.p = url;
 
 
+/**
+ * 重写alert
+ * msg:消息
+ * callback:回调
+ */
+window.alert = function(msg, callback){
+	parent.layer.alert(msg, function(index){
+		parent.layer.close(index);
+		if(typeof(callback) === "function"){
+			callback("ok");
+		}
+	});
+}
+
+/**
+ * 重写confirm式样框
+ * msg:消息
+ * callback:回调
+ */
+window.confirm = function(msg, callback){
+	parent.layer.confirm(msg, {btn: ['确定','取消']},
+	function(){//确定事件
+		if(typeof(callback) === "function"){
+			callback("ok");
+		}
+	});
+}
 
 //选择一条记录
 function getSelectedRow() {
     var grid = $("#jqGrid");
     var rowKey = grid.getGridParam("selrow");
     if(!rowKey){
-    	layer.alert("请选择一条记录", {offset: '150px'});
+    	alert("请选择一条记录");
     	return ;
     }
     
     var selectedIDs = grid.getGridParam("selarrrow");
     if(selectedIDs.length > 1){
-    	layer.alert("只能选择一条记录", {offset: '150px'});
+    	alert("只能选择一条记录");
     	return ;
     }
     
@@ -42,15 +69,9 @@ function getSelectedRows() {
     var grid = $("#jqGrid");
     var rowKey = grid.getGridParam("selrow");
     if(!rowKey){
-    	layer.alert("请选择一条记录", {offset: '150px'});
+    	alert("请选择一条记录");
     	return ;
     }
     
-    var result = "";
-    var selectedIDs = grid.getGridParam("selarrrow");
-//    for (var i = 0; i < selectedIDs.length; i++) {
-//        result += "," + selectedIDs[i];
-//    }
-    
-    return selectedIDs;
+    return grid.getGridParam("selarrrow");
 }

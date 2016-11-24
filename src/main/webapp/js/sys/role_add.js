@@ -63,14 +63,12 @@ var vm = new Vue({
 			var url = vm.role.roleId == null ? "../sys/role/save" : "../sys/role/update";
 			this.$http.post(url, vm.role).then((r) => {
 				if(r.body.code === 0){
-					layer.alert('操作成功', {icon: 1, offset: '150px'}, function(index){
-						location.href = "role.html";
+					alert('操作成功', function(index){
+						vm.back();
 					});
 				}else{
-					layer.alert(r.body.msg, {offset: '150px'});
+					alert(r.body.msg);
 				}
-			}, (r) => {//响应错误回调
-				layer.alert(r.body.msg, {offset: '150px'});
 			});
 		},
 		back: function (event) {

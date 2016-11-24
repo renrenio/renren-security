@@ -20,7 +20,8 @@ CREATE TABLE `sys_user` (
   `mobile` varchar(100) COMMENT '手机号',
   `status` tinyint COMMENT '状态  0：禁用   1：正常',
   `create_time` datetime COMMENT '创建时间',
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统用户';
 
 -- 角色
@@ -54,5 +55,7 @@ INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, 
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('2', '1', '管理员列表', 'sys/user.html', 'sys:user:list,sys:user:info,sys:user:save,sys:user:update,sys:user:delete,sys:role:select', '1', 'fa fa-user', '1');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('3', '1', '角色管理', 'sys/role.html', 'sys:role:list,sys:role:info,sys:role:save,sys:role:update,sys:role:delete,sys:menu:perms', '1', 'fa fa-user-secret', '2');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('4', '1', '菜单管理', 'sys/menu.html', 'sys:menu:list,sys:menu:select,sys:menu:info,sys:menu:save,sys:menu:update,sys:menu:delete', '1', 'fa fa-th-list', '3');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('5', '1', 'SQL监控', 'druid/sql.html', NULL, '1', 'fa fa-bug', '4');
+
 
 

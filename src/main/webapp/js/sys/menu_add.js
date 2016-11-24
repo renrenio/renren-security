@@ -51,14 +51,12 @@ var vm = new Vue({
 			var url = vm.menu.menuId == null ? "../sys/menu/save" : "../sys/menu/update";
 			this.$http.post(url, vm.menu).then((r) => {
 				if(r.body.code === 0){
-					layer.alert('操作成功', {icon: 1, offset: '150px'}, function(index){
-						location.href = "menu.html";
+					alert('操作成功', function(index){
+						vm.back();
 					});
 				}else{
-					layer.alert(r.body.msg, {offset: '150px'});
+					alert(r.body.msg);
 				}
-			}, (r) => {//响应错误回调
-				layer.alert(r.body.msg, {offset: '150px'});
 			});
 		},
 		menuTree: function(){
@@ -68,6 +66,7 @@ var vm = new Vue({
 				skin: 'layui-layer-molv',
 				title: "选择菜单",
 				area: ['300px', '450px'],
+				shade: 0,
 				shadeClose: false,
 				content: jQuery("#menuLayer"),
 				btn: ['确定', '取消'],

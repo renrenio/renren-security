@@ -83,18 +83,9 @@
     
     <servlet-mapping>
       <servlet-name>DruidStatView</servlet-name>
-      <url-pattern>/admin/druid/*</url-pattern>
+      <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
     
-    <!--  验证码 -->
-    <servlet>
-        <servlet-name>jcaptcha</servlet-name>
-        <servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>jcaptcha</servlet-name>
-        <url-pattern>/jcaptcha.jpg</url-pattern>
-    </servlet-mapping>
     
     <error-page>
 		<error-code>404</error-code>

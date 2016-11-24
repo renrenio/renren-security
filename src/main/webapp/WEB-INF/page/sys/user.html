@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>管理员列表</title>
+#include("sys/header.html")
+</head>
+<body>
+<div id="rrapp">
+	<div class="grid-btn">
+		<a class="btn btn-default" href="user_add.html">新增</a>
+		<button type="button"  class="btn btn-default" @click="update">修改</button>
+		<button type="button" class="btn btn-default" @click="del">删除</button>
+	</div>
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
+
+<script src="../js/sys/user.js"></script>
+</body>
+</html>
