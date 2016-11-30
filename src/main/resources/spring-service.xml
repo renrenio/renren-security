@@ -23,6 +23,7 @@
 	<context:property-placeholder location="classpath:db.properties,classpath:config.properties" />
 	
 	<import resource="classpath:spring-shiro.xml"/>
+	<import resource="classpath:spring-scheduler.xml"/>
 	
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
@@ -51,6 +52,7 @@
         <property name="suffix" value=""/>
         <property name="dateToolAttribute" value="dateTool" />
         <property name="numberToolAttribute" value="numberTool" /> 
+        <property name="requestContextAttribute" value="rc"/>
         <property name="order" value="0"/>
 	</bean>
 	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">

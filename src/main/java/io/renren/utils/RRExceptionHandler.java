@@ -3,6 +3,7 @@ package io.renren.utils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
@@ -36,6 +37,8 @@ public class RRExceptionHandler implements HandlerExceptionResolver {
 				r.put("msg", ((RRException) ex).getMessage());
 			}else if(ex instanceof DuplicateKeyException){
 				r = R.error("数据库中已存在该记录");
+			}else if(ex instanceof AuthorizationException){
+				r = R.error("没有权限，请联系管理员授权");
 			}else{
 				r = R.error();
 			}

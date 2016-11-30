@@ -2,7 +2,7 @@ package io.renren.controller;
 
 import io.renren.entity.SysMenuEntity;
 import io.renren.service.SysMenuService;
-import io.renren.utils.Constant;
+import io.renren.utils.Constant.MenuType;
 import io.renren.utils.PageUtils;
 import io.renren.utils.R;
 import io.renren.utils.RRException;
@@ -162,10 +162,34 @@ public class SysMenuController extends AbstractController {
 		}
 		
 		//菜单
-		if(menu.getType() == Constant.MenuType.MENU.getValue()){
+		if(menu.getType() == MenuType.MENU.getValue()){
 			if(StringUtils.isBlank(menu.getUrl())){
 				throw new RRException("菜单URL不能为空");
 			}
+		}
+		
+		//上级菜单类型
+		int parentType = MenuType.CATALOG.getValue();
+		if(menu.getParentId() != 0){
+			SysMenuEntity parentMenu = sysMenuService.queryObject(menu.getParentId());
+			parentType = parentMenu.getType();
+		}
+		
+		//目录、菜单
+		if(menu.getType() == MenuType.CATALOG.getValue() ||
+				menu.getType() == MenuType.MENU.getValue()){
+			if(parentType != MenuType.CATALOG.getValue()){
+				throw new RRException("上级菜单只能为目录类型");
+			}
+			return ;
+		}
+		
+		//按钮
+		if(menu.getType() == MenuType.BUTTON.getValue()){
+			if(parentType != MenuType.MENU.getValue()){
+				throw new RRException("上级菜单只能为菜单类型");
+			}
+			return ;
 		}
 	}
 }

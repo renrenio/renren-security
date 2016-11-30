@@ -31,6 +31,7 @@ html { overflow-x:hidden; }
 .grid-btn .btn{
 	margin-right:10px;
 }
+.pointer{cursor: pointer;}
 
 .ml-10 { margin-left:0 !important; }
 	@media (min-width: 768px) {

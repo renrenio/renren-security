@@ -83,6 +83,11 @@ var vm = new Vue({
 		errorMsg: '',
 		src: 'captcha.jpg'
 	},
+	beforeCreate: function(){
+		if(self != top){
+			top.location.href = self.location.href;
+		}
+	},
 	methods: {
 		refreshCode: function(){
 			this.src = "captcha.jpg?t=" + $.now();
@@ -96,7 +101,7 @@ var vm = new Vue({
 			    dataType: "json",
 			    success: function(result){
 					if(result.code == 0){//登录成功
-						location.href ='index.html';
+						parent.location.href ='index.html';
 					}else{
 						vm.error = true;
 						vm.errorMsg = result.msg;

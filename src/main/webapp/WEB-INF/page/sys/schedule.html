@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>定时任务</title>
+#parse("sys/header.html")
+</head>
+<body>
+<div id="rrapp">
+	<div class="grid-btn">
+		<a class="btn btn-default" href="schedule_add.html">新增</a>
+		<button type="button"  class="btn btn-default" @click="update">修改</button>
+		<button type="button" class="btn btn-default" @click="del">删除</button>
+		<button type="button" class="btn btn-default" @click="pause">暂停</button>
+		<button type="button"  class="btn btn-default" @click="resume">恢复</button>
+		<button type="button"  class="btn btn-default" @click="runOnce">立即执行</button>
+		<a class="btn btn-danger" style="float:right;" href="schedule_log.html">日志列表</a>
+	</div>
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
+
+<script src="${rc.contextPath}/js/sys/schedule.js"></script>
+</body>
+</html>

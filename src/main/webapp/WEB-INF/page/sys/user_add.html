@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>编辑管理员</title>
-#include("sys/header.html")
+#parse("sys/header.html")
 </head>
 <body>
 <div class="panel panel-default" id="rrapp" v-cloak>
@@ -34,10 +34,11 @@
 		</div>
 		<div class="form-group">
 		   	<div class="col-sm-2 control-label">角色</div>
-		   	<label v-for="role in roleList" class="checkbox-inline">
-			  <input type="checkbox" :value="role.roleId" v-model="user.roleIdList">{{role.roleName}}
-			  &nbsp;&nbsp;&nbsp;&nbsp;
-			</label>
+		   	<div class="col-sm-10">
+			   	<label v-for="role in roleList" class="checkbox-inline">
+				  <input type="checkbox" :value="role.roleId" v-model="user.roleIdList">{{role.roleName}}
+				</label>
+			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-2 control-label">状态</div> 
@@ -56,6 +57,6 @@
 	</form>
 </div>
 
-<script src="../js/sys/user_add.js"></script>
+<script src="${rc.contextPath}/js/sys/user_add.js"></script>
 </body>
 </html>
