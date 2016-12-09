@@ -61,13 +61,18 @@ var vm = new Vue({
 			}
 			
 			confirm('确定要删除选中的记录？', function(){
-				vm.$http.post('../sys/user/delete', userIds).then((r) => {
-					if(r.body.code === 0){
-						alert('操作成功', function(index){
-							$("#jqGrid").trigger("reloadGrid");
-						});
-					}else{
-						alert(r.body.msg);
+				$.ajax({
+					type: "POST",
+				    url: "../sys/user/delete",
+				    data: JSON.stringify(userIds),
+				    success: function(r){
+						if(r.code == 0){
+							alert('操作成功', function(index){
+								$("#jqGrid").trigger("reloadGrid");
+							});
+						}else{
+							alert(r.msg);
+						}
 					}
 				});
 			});

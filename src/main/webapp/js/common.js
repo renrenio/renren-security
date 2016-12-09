@@ -17,6 +17,11 @@ var url = function(name) {
 };
 T.p = url;
 
+//全局配置
+$.ajaxSetup({
+	dataType: "json",
+	contentType: "application/json"
+});
 
 /**
  * 重写alert

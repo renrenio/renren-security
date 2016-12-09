@@ -25,7 +25,7 @@
                 <prop key="org.quartz.jobStore.class">org.quartz.impl.jdbcjobstore.JobStoreTX</prop>
                 <!-- 集群配置 -->
                 <prop key="org.quartz.jobStore.isClustered">true</prop>
-                <prop key="org.quartz.jobStore.clusterCheckinInterval">6000</prop>
+                <prop key="org.quartz.jobStore.clusterCheckinInterval">15000</prop>
                 <prop key="org.quartz.jobStore.maxMisfiresToHandleAtATime">1</prop>
                 
                 <prop key="org.quartz.jobStore.misfireThreshold">12000</prop>

@@ -43,7 +43,6 @@ public class SysUserController extends AbstractController {
 	@RequiresPermissions("sys:user:list")
 	public R list(Integer page, Integer limit){
 		Map<String, Object> map = new HashMap<>();
-		map.put("userId", null);
 		map.put("offset", (page - 1) * limit);
 		map.put("limit", limit);
 		

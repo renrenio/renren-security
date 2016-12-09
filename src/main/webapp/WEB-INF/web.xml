@@ -7,7 +7,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:spring-service.xml
+			classpath:spring-renren.xml
 		</param-value>
 	</context-param>
 	

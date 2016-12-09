@@ -1,29 +1,28 @@
-//任务ID
-var jobId = T.p("jobId");
+var id = T.p("id");
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
-		title:"新增定时任务",
-		schedule:{}
+		title:"新增参数",
+		config:{}
 	},
 	created: function() {
-		if(jobId != null){
-			this.title = "修改定时任务";
-			this.getScheduleJob(jobId)
+		if(id != null){
+			this.title = "修改参数";
+			this.getInfo(id)
 		}
     },
 	methods: {
-		getScheduleJob: function(jobId){
-			$.get("../sys/schedule/info/"+jobId, function(r){
-				vm.schedule = r.schedule;
-			});
+		getInfo: function(id){
+			$.get("../sys/config/info/"+id, function(r){
+                vm.config = r.config;
+            });
 		},
 		saveOrUpdate: function (event) {
-			var url = vm.schedule.jobId == null ? "../sys/schedule/save" : "../sys/schedule/update";
+			var url = vm.config.id == null ? "../sys/config/save" : "../sys/config/update";
 			$.ajax({
 				type: "POST",
 			    url: url,
-			    data: JSON.stringify(vm.schedule),
+			    data: JSON.stringify(vm.config),
 			    success: function(r){
 			    	if(r.code === 0){
 						alert('操作成功', function(index){

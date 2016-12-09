@@ -11,10 +11,10 @@ $(function () {
 			{ label: '状态', name: 'status', width: 50, formatter: function(value, options, row){
 				return value === 0 ? 
 					'<span class="label label-success">成功</span>' :
-					'<span class="label label-danger pointer" onclick="showError(\''+row.error+'\')">失败</span>';
+					'<span class="label label-danger pointer" onclick="vm.showError('+row.logId+')">失败</span>';
 			}},
 			{ label: '耗时(单位：毫秒)', name: 'times', width: 70 },
-			{ label: '执行时间', name: 'createTime', width: 80} 
+			{ label: '执行时间', name: 'createTime', width: 80 }
         ],
 		viewrecords: true,
         height: 400,
@@ -54,17 +54,18 @@ var vm = new Vue({
                 page:1 
             }).trigger("reloadGrid");
 		},
+		showError: function(logId) {
+			$.get("../sys/scheduleLog/info/"+logId, function(r){
+				parent.layer.open({
+				  title:'失败信息',
+				  closeBtn:0,
+				  content: r.log.error
+				});
+			});
+		},
 		back: function (event) {
 			history.go(-1);
 		}
 	}
 });
-
-function showError(error){
-	parent.layer.open({
-	  title:'失败信息',
-	  closeBtn:0,
-	  content: error
-	});
-}
 

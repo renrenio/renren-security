@@ -4,6 +4,11 @@
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
-
-
+	
+	<import resource="classpath:spring-mvc.xml"/>
+	<import resource="classpath:spring-jdbc.xml"/>
+	<import resource="classpath:spring-shiro.xml"/>
+	<import resource="classpath:spring-scheduler.xml"/>
+	
+	<!-- <import resource="classpath:spring-redis.xml"/> -->
 </beans>

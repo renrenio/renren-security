@@ -27,29 +27,29 @@ var vm = new Vue({
 	},
 	created: function() {
 		//加载菜单树
-		this.$http.get("../sys/menu/perms").then((r) => {  
-			ztree = $.fn.zTree.init($("#menuTree"), setting, r.body.menuList);
+		$.get("../sys/menu/perms", function(r){
+			ztree = $.fn.zTree.init($("#menuTree"), setting, r.menuList);
 			//展开所有节点
 			ztree.expandAll(true);
+			
+			if(roleId != null){
+				vm.title = "修改角色";
+				vm.getRole(roleId);
+			}
 		});
-		
-		if(roleId != null){
-			this.title = "修改角色";
-			this.getRole(roleId);
-		}
     },
 	methods: {
 		getRole: function(roleId){
-			this.$http.get("../sys/role/info/"+roleId).then((r) => {
-                this.role = r.body.role;
+            $.get("../sys/role/info/"+roleId, function(r){
+            	vm.role = r.role;
                 
                 //勾选角色所拥有的菜单
-    			var menuIds = this.role.menuIdList;
+    			var menuIds = vm.role.menuIdList;
     			for(var i=0; i<menuIds.length; i++) {
     				var node = ztree.getNodeByParam("menuId", menuIds[i]);
     				ztree.checkNode(node, true, false);
     			}
-            })
+    		});
 		},
 		saveOrUpdate: function (event) {
 			//获取选择的菜单
@@ -61,13 +61,18 @@ var vm = new Vue({
 			vm.role.menuIdList = menuIdList;
 			
 			var url = vm.role.roleId == null ? "../sys/role/save" : "../sys/role/update";
-			this.$http.post(url, vm.role).then((r) => {
-				if(r.body.code === 0){
-					alert('操作成功', function(index){
-						vm.back();
-					});
-				}else{
-					alert(r.body.msg);
+			$.ajax({
+				type: "POST",
+			    url: url,
+			    data: JSON.stringify(vm.role),
+			    success: function(r){
+			    	if(r.code === 0){
+						alert('操作成功', function(index){
+							vm.back();
+						});
+					}else{
+						alert(r.msg);
+					}
 				}
 			});
 		},

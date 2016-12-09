@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,4 +48,13 @@ public class ScheduleJobLogController {
 		return R.ok().put("page", pageUtil);
 	}
 	
+	/**
+	 * 定时任务日志信息
+	 */
+	@RequestMapping("/info/{logId}")
+	public R info(@PathVariable("logId") Long logId){
+		ScheduleJobLogEntity log = scheduleJobLogService.queryObject(logId);
+		
+		return R.ok().put("log", log);
+	}
 }

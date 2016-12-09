@@ -33,8 +33,8 @@ var vm = new Vue({
 		}
 		
 		//加载菜单树
-		this.$http.get("../sys/menu/select").then((r) => {  
-			ztree = $.fn.zTree.init($("#menuTree"), setting, r.body.menuList);
+		$.get("../sys/menu/select", function(r){
+			ztree = $.fn.zTree.init($("#menuTree"), setting, r.menuList);
 			var node = ztree.getNodeByParam("menuId", vm.menu.parentId);
 			ztree.selectNode(node);
 			
@@ -43,19 +43,24 @@ var vm = new Vue({
     },
 	methods: {
 		getMenu: function(menuId){
-			this.$http.get("../sys/menu/info/"+menuId).then((r) => {
-                this.menu = r.body.menu;
+			$.get("../sys/menu/info/"+menuId, function(r){
+                vm.menu = r.menu;
             });
 		},
 		saveOrUpdate: function (event) {
 			var url = vm.menu.menuId == null ? "../sys/menu/save" : "../sys/menu/update";
-			this.$http.post(url, vm.menu).then((r) => {
-				if(r.body.code === 0){
-					alert('操作成功', function(index){
-						vm.back();
-					});
-				}else{
-					alert(r.body.msg);
+			$.ajax({
+				type: "POST",
+			    url: url,
+			    data: JSON.stringify(vm.menu),
+			    success: function(r){
+			    	if(r.code === 0){
+						alert('操作成功', function(index){
+							vm.back();
+						});
+					}else{
+						alert(r.msg);
+					}
 				}
 			});
 		},

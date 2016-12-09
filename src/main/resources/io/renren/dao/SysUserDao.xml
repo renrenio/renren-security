@@ -37,7 +37,7 @@
 		select * from sys_user where username = #{username}
 	</select>
 	
-	<insert id="save" parameterType="io.renren.entity.SysUserEntity">
+	<insert id="save" parameterType="io.renren.entity.SysUserEntity" useGeneratedKeys="true" keyProperty="userId">
 		insert into sys_user
 		(
 			`user_id`, 

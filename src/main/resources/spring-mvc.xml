@@ -17,14 +17,7 @@
 
 	<context:component-scan base-package="io.renren" />
 	<context:annotation-config />
-	<tx:annotation-driven />
 	<mvc:default-servlet-handler />
-	
-	<context:property-placeholder location="classpath:db.properties,classpath:config.properties" />
-	
-	<import resource="classpath:spring-shiro.xml"/>
-	<import resource="classpath:spring-scheduler.xml"/>
-	
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
@@ -52,9 +45,11 @@
         <property name="suffix" value=""/>
         <property name="dateToolAttribute" value="dateTool" />
         <property name="numberToolAttribute" value="numberTool" /> 
+        <property name="toolboxConfigLocation" value="/WEB-INF/velocity-toolbox.xml" />
         <property name="requestContextAttribute" value="rc"/>
         <property name="order" value="0"/>
 	</bean>
+	
 	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/page/" />
         <property name="velocityProperties">
@@ -84,59 +79,29 @@
         <property name="suffix" value=""/>
         <property name="order" value="2"/>
 	</bean>
+	
 	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 	    <property name="templateLoaderPath" value="/WEB-INF/page/"/>
 	</bean>
 	
-		
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="1000000000" />
 	</bean>
-
-	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
-		<property name="slowSqlMillis" value="1000" />
-		<property name="logSlowSql" value="true" />
-		<property name="mergeSql" value="true" />
+	
+	<!-- Kaptcha验证码生成器 -->
+	<bean name="producer" class="com.google.code.kaptcha.impl.DefaultKaptcha" scope="singleton">
+	    <property name="config">
+	        <bean class="com.google.code.kaptcha.util.Config">
+	            <constructor-arg>
+	                <props>
+	                    <prop key="kaptcha.border">no</prop>
+	                    <prop key="kaptcha.textproducer.font.color">black</prop>
+	                    <prop key="kaptcha.textproducer.char.space">5</prop>
+	                </props>
+	            </constructor-arg>
+	        </bean>
+	    </property>
 	</bean>
 	
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-		init-method="init" destroy-method="close">
-		<property name="url">
-			<value>${jdbc.url}</value>
-		</property>
-		<property name="username">
-			<value>${jdbc.username}</value>
-		</property>
-		<property name="password">
-			<value>${jdbc.password}</value>
-		</property>
-		<property name="initialSize">
-			<value>${jdbc.initialSize}</value>
-		</property>
-		<property name="maxActive">
-			<value>${jdbc.maxActive}</value>
-		</property>
-		<property name="proxyFilters">
-			<list>
-				<ref bean="stat-filter" />
-			</list>
-		</property>
-	</bean>
-
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource">
-			<ref bean="dataSource" />
-		</property>
-	</bean>
-
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:mybatis.xml" />
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="io.renren.dao" />
-	</bean>
 </beans>

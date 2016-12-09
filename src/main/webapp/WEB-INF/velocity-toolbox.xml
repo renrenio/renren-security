@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<toolbox>
+	<!-- velocity 自定义标签 -->
+	<tool>
+	    <key>shiro</key>
+	    <scope>application</scope>
+	    <class>io.renren.shiro.VelocityShiro</class>
+	</tool>
+</toolbox>

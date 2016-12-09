@@ -6,14 +6,28 @@
 </head>
 <body>
 <div id="rrapp">
-	<div class="grid-btn">
+	<div class="grid-btn" style="height:34px;">
+		#if($shiro.hasPermission("sys:schedule:save"))
 		<a class="btn btn-default" href="schedule_add.html">新增</a>
+		#end
+		#if($shiro.hasPermission("sys:schedule:update"))
 		<button type="button"  class="btn btn-default" @click="update">修改</button>
+		#end
+		#if($shiro.hasPermission("sys:schedule:delete"))
 		<button type="button" class="btn btn-default" @click="del">删除</button>
+		#end
+		#if($shiro.hasPermission("sys:schedule:pause"))
 		<button type="button" class="btn btn-default" @click="pause">暂停</button>
+		#end
+		#if($shiro.hasPermission("sys:schedule:resume"))
 		<button type="button"  class="btn btn-default" @click="resume">恢复</button>
+		#end
+		#if($shiro.hasPermission("sys:schedule:run"))
 		<button type="button"  class="btn btn-default" @click="runOnce">立即执行</button>
+		#end
+		#if($shiro.hasPermission("sys:schedule:log"))
 		<a class="btn btn-danger" style="float:right;" href="schedule_log.html">日志列表</a>
+		#end
 	</div>
     <table id="jqGrid"></table>
     <div id="jqGridPager"></div>
