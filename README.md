@@ -1,11 +1,16 @@
 renren-security是一个轻量级权限管理系统，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。
 
+使用renren-security搭建项目，只需编写30%左右代码，其余的代码交给系统自动生成。
+一个月的工作量，一周就能完成，剩余的时间可以陪家人、朋友、撩妹、钓凯子等，从此踏入高富帅、白富美行业。
+
+
 **具有如下特点** 
 - 轻量级的权限系统，只涉及Spring、Shiro、Mybatis后端框架，降低学习使用成本
 - 友好的代码结构及注释，便于阅读及二次开发
 - 支持HTML、JSP、Velocity、Freemarker等视图，零技术门槛
 - 灵活的权限控制，可控制到页面或按钮，满足绝大部分的权限需求(如需控制到按钮级别，需使用Shiro标签，控制按钮的显示或隐藏)
 - 页面交互使用Vue2.0，极大的提高了开发效率
+- 完善的代码生成机制，可在线生成entity、xml、dao、service、page、js代码，减少70%以上的开发任务
 - 引入quartz定时任务，可动态完成任务的添加、修改、删除、暂停、恢复及日志查看等功能
 - 引入路由机制，刷新页面会停留在当前页
 
@@ -18,11 +23,12 @@ renren-security是一个轻量级权限管理系统，其核心设计目标是�
 
 
 ![输入图片说明](http://git.oschina.net/uploads/images/2016/1115/164909_ec3e9d0e_63154.png "在这里输入图片标题")
-![输入图片说明](http://git.oschina.net/uploads/images/2016/1209/225941_5eaaf89a_63154.png "在这里输入图片标题")
-![输入图片说明](http://git.oschina.net/uploads/images/2016/1209/225954_fb6135ee_63154.png "在这里输入图片标题")
-![输入图片说明](http://git.oschina.net/uploads/images/2016/1209/230008_0a4e5f78_63154.png "在这里输入图片标题")
-![输入图片说明](http://git.oschina.net/uploads/images/2016/1209/230021_71c10c8f_63154.png "在这里输入图片标题")
-![输入图片说明](http://git.oschina.net/uploads/images/2016/1209/230029_480a1197_63154.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2016/1223/111503_3df60329_63154.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2016/1223/111510_b8c4a829_63154.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2016/1223/111519_f1c44f98_63154.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2016/1223/111540_44d29816_63154.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2016/1223/111549_fb589d10_63154.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2016/1223/111558_6e65a0f2_63154.png "在这里输入图片标题")
 
 
  **技术选型：** 

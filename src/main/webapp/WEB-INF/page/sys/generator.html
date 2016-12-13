@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>定时任务日志</title>
+<title>代码生成器</title>
 #parse("sys/header.html")
 </head>
 <body>
 <div id="rrapp">
 	<div class="grid-btn">
 		<div class="form-group col-sm-2">
-			<input type="text" class="form-control" v-model="jobId" @keyup.enter="query" placeholder="任务ID">
+			<input type="text" class="form-control" v-model="tableName" @keyup.enter="query" placeholder="表名">
 		</div>
 		<button type="button" class="btn btn-default" @click="query">查询</button>
-		&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="back" value="返回"/>
+		<button type="button"  class="btn btn-default" @click="generator">生成代码</button>
 	</div>
     <table id="jqGrid"></table>
     <div id="jqGridPager"></div>
 </div>
 
-<script src="${rc.contextPath}/js/sys/schedule_log.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/js/sys/generator.js?_${date.systemTime}"></script>
 </body>
 </html>

@@ -1,12 +1,16 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: '../sys/config/list',
+        url: '../${pathName}/list',
         datatype: "json",
         colModel: [			
-			{ label: 'ID', name: 'id', width: 30, key: true },
-			{ label: '参数名', name: 'key', width: 60 },
-			{ label: '参数值', name: 'value', width: 100 },
-			{ label: '备注', name: 'remark', width: 80 }
+#foreach($column in $columns)
+#if($column.columnName == $pk.columnName)
+			{ label: '${column.attrname}', name: '${column.attrname}', width: 50, key: true },
+#else
+			{ label: '${column.comments}', name: '${column.attrname}', width: 80 }#if($velocityCount != $columns.size()), #end
+			
+#end			
+#end
         ],
 		viewrecords: true,
         height: 400,
@@ -42,24 +46,24 @@ var vm = new Vue({
 	},
 	methods: {
 		update: function (event) {
-			var id = getSelectedRow();
-			if(id == null){
+			var $pk.attrname = getSelectedRow();
+			if($pk.attrname == null){
 				return ;
 			}
 			
-			location.href = "config_add.html?id="+id;
+			location.href = "${pathName}_add.html?$pk.attrname="+$pk.attrname;
 		},
 		del: function (event) {
-			var ids = getSelectedRows();
-			if(ids == null){
+			var ${pk.attrname}s = getSelectedRows();
+			if(${pk.attrname}s == null){
 				return ;
 			}
 			
 			confirm('确定要删除选中的记录？', function(){
 				$.ajax({
 					type: "POST",
-				    url: "../sys/config/delete",
-				    data: JSON.stringify(ids),
+				    url: "../${pathName}/delete",
+				    data: JSON.stringify(${pk.attrname}s),
 				    success: function(r){
 						if(r.code == 0){
 							alert('操作成功', function(index){

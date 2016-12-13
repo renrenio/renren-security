@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${comments}</title>
+#set($header='#parse("sys/header.html")')
+$header
+</head>
+<body>
+<div class="panel panel-default" id="rrapp" v-cloak>
+	<div class="panel-heading">{{title}}</div>
+	<form class="form-horizontal">
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName)
+		<div class="form-group">
+		   	<div class="col-sm-2 control-label">${column.comments}</div>
+		   	<div class="col-sm-10">
+		      <input type="text" class="form-control" v-model="${classname}.${column.attrname}" placeholder="${column.comments}"/>
+		    </div>
+		</div>
+#end
+#end
+		<div class="form-group">
+			<div class="col-sm-2 control-label"></div> 
+			<input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+			&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="back" value="返回"/>
+		</div>
+	</form>
+</div>
+
+<script src="${rc.contextPath}/js/${pathName}/${pathName}_add.js?_${date.systemTime}"></script>
+</body>
+</html>

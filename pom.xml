@@ -18,11 +18,12 @@
 		<commons-lang-version>2.6</commons-lang-version>
 		<commons-fileupload-version>1.3.1</commons-fileupload-version>
 		<commons-io-version>2.5</commons-io-version>
+		<commons-codec-version>1.10</commons-codec-version>
+		<commons-configuration-version>1.10</commons-configuration-version>
+		<commons-logging-version>1.2</commons-logging-version>
 		<slf4j-version>1.7.19</slf4j-version>
 		<log4j-version>1.2.17</log4j-version>
-		<commons-logging-version>1.2</commons-logging-version>
 		<fastjson-version>1.2.21</fastjson-version>
-		<commons-codec-version>1.10</commons-codec-version>
 		<shiro-version>1.3.2</shiro-version>
 		<quartz-version>2.2.3</quartz-version>
 		<kaptcha-version>0.0.9</kaptcha-version>
@@ -32,6 +33,31 @@
 		<taglibs-version>1.1.2</taglibs-version>
 		<freemarker-version>2.3.23</freemarker-version>
 	</properties>
+	
+	<!-- 阿里云maven仓库 -->
+	<repositories>
+		<repository>
+			<id>public</id>
+			<name>aliyun nexus</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>public</id>
+			<name>aliyun nexus</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<dependencies>
 		<dependency>
@@ -136,6 +162,11 @@
 		    <groupId>commons-codec</groupId>
 		    <artifactId>commons-codec</artifactId>
 		    <version>${commons-codec-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>${commons-configuration-version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.shiro</groupId>

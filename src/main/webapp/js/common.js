@@ -20,14 +20,11 @@ T.p = url;
 //全局配置
 $.ajaxSetup({
 	dataType: "json",
-	contentType: "application/json"
+	contentType: "application/json",
+	cache: false
 });
 
-/**
- * 重写alert
- * msg:消息
- * callback:回调
- */
+//重写alert
 window.alert = function(msg, callback){
 	parent.layer.alert(msg, function(index){
 		parent.layer.close(index);
@@ -37,11 +34,7 @@ window.alert = function(msg, callback){
 	});
 }
 
-/**
- * 重写confirm式样框
- * msg:消息
- * callback:回调
- */
+//重写confirm式样框
 window.confirm = function(msg, callback){
 	parent.layer.confirm(msg, {btn: ['确定','取消']},
 	function(){//确定事件

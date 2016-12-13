@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${comments}</title>
+#set($header='#parse("sys/header.html")')
+$header
+</head>
+<body>
+<div id="rrapp">
+	<div class="grid-btn">
+		<a class="btn btn-default" href="${pathName}_add.html">新增</a>
+		<button type="button"  class="btn btn-default" @click="update">修改</button>
+		<button type="button" class="btn btn-default" @click="del">删除</button>
+	</div>
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
+
+<script src="${rc.contextPath}/js/${pathName}/${pathName}.js?_${date.systemTime}"></script>
+</body>
+</html>

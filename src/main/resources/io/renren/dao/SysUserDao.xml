@@ -75,7 +75,7 @@
 	<update id="updatePassword" parameterType="map">
 		update sys_user set `password` = #{newPassword} 
 			where user_id = #{userId} and password = #{password}
-	</update> 
+	</update>
 	
 	<delete id="deleteBatch">
 		delete from sys_user where user_id in 

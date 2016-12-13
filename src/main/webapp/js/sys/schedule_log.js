@@ -22,6 +22,7 @@ $(function () {
 		rowList : [10,30,50,100,200],
         rownumbers: true, 
         rownumWidth: 25, 
+        autowidth:true,
         multiselect: false,
         pager: "#jqGridPager",
         jsonReader : {
