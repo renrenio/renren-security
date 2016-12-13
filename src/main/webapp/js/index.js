@@ -31,7 +31,7 @@ var vm = new Vue({
         navTitle:"控制台"
 	},
 	methods: {
-		menuList: function (event) {
+		getMenuList: function (event) {
 			$.getJSON("sys/menu/user", function(r){
 				vm.menuList = r.menuList;
 			});
@@ -72,6 +72,10 @@ var vm = new Vue({
 			});
 		}
 	},
+	created: function(){
+		this.getMenuList();
+		this.getUser();
+	},
 	updated: function(){
 		//路由
 		var router = new Router();
@@ -80,8 +84,7 @@ var vm = new Vue({
 	}
 });
 
-vm.menuList();
-vm.getUser();
+
 
 function routerList(router, menuList){
 	for(var key in menuList){
