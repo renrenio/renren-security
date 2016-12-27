@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Controller;
 
 import ${package}.entity.${className}Entity;
 import ${package}.service.${className}Service;
@@ -24,17 +25,28 @@ import io.renren.utils.R;
  * @email ${email}
  * @date ${datetime}
  */
-@RestController
+@Controller
 @RequestMapping("${pathName}")
 public class ${className}Controller {
 	@Autowired
 	private ${className}Service ${classname}Service;
 	
+	@RequestMapping("/${pathName}.html")
+	public String list(){
+		return "${pathName}/${pathName}.html";
+	}
+	
+	@RequestMapping("/${pathName}_add.html")
+	public String add(){
+		return "${pathName}/${pathName}_add.html";
+	}
+	
 	/**
 	 * 列表
 	 */
+	@ResponseBody
 	@RequestMapping("/list")
-	//@RequiresPermissions("${pathName}:list")
+	@RequiresPermissions("${pathName}:list")
 	public R list(Integer page, Integer limit){
 		Map<String, Object> map = new HashMap<>();
 		map.put("offset", (page - 1) * limit);
@@ -53,8 +65,9 @@ public class ${className}Controller {
 	/**
 	 * 信息
 	 */
+	@ResponseBody
 	@RequestMapping("/info/{${pk.attrname}}")
-	//@RequiresPermissions("${pathName}:info")
+	@RequiresPermissions("${pathName}:info")
 	public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
 		${className}Entity ${classname} = ${classname}Service.queryObject(${pk.attrname});
 		
@@ -65,7 +78,7 @@ public class ${className}Controller {
 	 * 保存
 	 */
 	@RequestMapping("/save")
-	//@RequiresPermissions("${pathName}:save")
+	@RequiresPermissions("${pathName}:save")
 	public R save(@RequestBody ${className}Entity ${classname}){
 		${classname}Service.save(${classname});
 		
@@ -75,8 +88,9 @@ public class ${className}Controller {
 	/**
 	 * 修改
 	 */
+	@ResponseBody
 	@RequestMapping("/update")
-	//@RequiresPermissions("${pathName}:update")
+	@RequiresPermissions("${pathName}:update")
 	public R update(@RequestBody ${className}Entity ${classname}){
 		${classname}Service.update(${classname});
 		
@@ -86,8 +100,9 @@ public class ${className}Controller {
 	/**
 	 * 删除
 	 */
+	@ResponseBody
 	@RequestMapping("/delete")
-	//@RequiresPermissions("${pathName}:delete")
+	@RequiresPermissions("${pathName}:delete")
 	public R delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s){
 		${classname}Service.deleteBatch(${pk.attrname}s);
 		
