@@ -73,6 +73,7 @@ public class GenUtils {
 			columnEntity.setColumnName(column.get("columnName"));
 			columnEntity.setDataType(column.get("dataType"));
 			columnEntity.setComments(column.get("columnComment"));
+			columnEntity.setExtra(column.get("extra"));
 			
 			//列名转换成Java属性名
 			String attrName = columnToJava(columnEntity.getColumnName());

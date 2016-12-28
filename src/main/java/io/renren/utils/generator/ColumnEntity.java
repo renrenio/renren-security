@@ -21,6 +21,8 @@ public class ColumnEntity {
     private String attrname;
     //属性类型
     private String attrType;
+    //auto_increment
+    private String extra;
     
 	public String getColumnName() {
 		return columnName;
@@ -58,5 +60,10 @@ public class ColumnEntity {
 	public void setAttrType(String attrType) {
 		this.attrType = attrType;
 	}
-    
+	public String getExtra() {
+		return extra;
+	}
+	public void setExtra(String extra) {
+		this.extra = extra;
+	}
 }

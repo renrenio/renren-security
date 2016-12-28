@@ -18,11 +18,11 @@
 		select count(*) from ${tableName} 
 	</select>
 	 
-	<insert id="save" parameterType="${package}.entity.${className}Entity" useGeneratedKeys="true" keyProperty="$pk.attrname">
+	<insert id="save" parameterType="${package}.entity.${className}Entity"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
 		insert into ${tableName}
 		(
 #foreach($column in $columns)
-#if($column.columnName != $pk.columnName)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
 			`$column.columnName`#if($velocityCount != $columns.size()), #end
 
 #end			
@@ -31,7 +31,7 @@
 		values
 		(
 #foreach($column in $columns)
-#if($column.columnName != $pk.columnName)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
 			#{$column.attrname}#if($velocityCount != $columns.size()), #end
 
 #end			
