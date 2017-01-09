@@ -17,7 +17,7 @@ $(function () {
 			{ label: '执行时间', name: 'createTime', width: 80 }
         ],
 		viewrecords: true,
-        height: 400,
+        height: 385,
         rowNum: 10,
 		rowList : [10,30,50,100,200],
         rownumbers: true, 
@@ -46,12 +46,14 @@ $(function () {
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
-		jobId: null
+		q:{
+			jobId: null
+		}
 	},
 	methods: {
 		query: function () {
 			$("#jqGrid").jqGrid('setGridParam',{ 
-                postData:{'jobId': vm.jobId},
+                postData:{'jobId': vm.q.jobId},
                 page:1 
             }).trigger("reloadGrid");
 		},

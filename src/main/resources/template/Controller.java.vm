@@ -36,11 +36,6 @@ public class ${className}Controller {
 		return "${pathName}/${pathName}.html";
 	}
 	
-	@RequestMapping("/${pathName}_add.html")
-	public String add(){
-		return "${pathName}/${pathName}_add.html";
-	}
-	
 	/**
 	 * 列表
 	 */

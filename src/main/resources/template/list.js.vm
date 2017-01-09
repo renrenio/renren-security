@@ -13,7 +13,7 @@ $(function () {
 #end
         ],
 		viewrecords: true,
-        height: 400,
+        height: 385,
         rowNum: 10,
 		rowList : [10,30,50],
         rownumbers: true, 
@@ -42,16 +42,45 @@ $(function () {
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
-		
+		showList: true,
+		title: null,
+		${classname}: {}
 	},
 	methods: {
+		query: function () {
+			vm.reload();
+		},
+		add: function(){
+			vm.showList = false;
+			vm.title = "新增";
+			vm.${classname} = {};
+		},
 		update: function (event) {
 			var $pk.attrname = getSelectedRow();
 			if($pk.attrname == null){
 				return ;
 			}
-			
-			location.href = "${pathName}_add.html?$pk.attrname="+$pk.attrname;
+			vm.showList = false;
+            vm.title = "修改";
+            
+            vm.getInfo(${pk.attrname})
+		},
+		saveOrUpdate: function (event) {
+			var url = vm.${classname}.${pk.attrname} == null ? "../${pathName}/save" : "../${pathName}/update";
+			$.ajax({
+				type: "POST",
+			    url: url,
+			    data: JSON.stringify(vm.${classname}),
+			    success: function(r){
+			    	if(r.code === 0){
+						alert('操作成功', function(index){
+							vm.reload();
+						});
+					}else{
+						alert(r.msg);
+					}
+				}
+			});
 		},
 		del: function (event) {
 			var ${pk.attrname}s = getSelectedRows();
@@ -75,6 +104,18 @@ var vm = new Vue({
 					}
 				});
 			});
+		},
+		getInfo: function(${pk.attrname}){
+			$.get("../${pathName}/info/"+${pk.attrname}, function(r){
+                vm.${classname} = r.${classname};
+            });
+		},
+		reload: function (event) {
+			vm.showList = true;
+			var page = $("#jqGrid").jqGrid('getGridParam','page');
+			$("#jqGrid").jqGrid('setGridParam',{ 
+                page:page
+            }).trigger("reloadGrid");
 		}
 	}
 });

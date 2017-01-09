@@ -36,8 +36,9 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:schedule:list")
-	public R list(Integer page, Integer limit){
+	public R list(String beanName, Integer page, Integer limit){
 		Map<String, Object> map = new HashMap<>();
+		map.put("beanName", beanName);
 		map.put("offset", (page - 1) * limit);
 		map.put("limit", limit);
 		

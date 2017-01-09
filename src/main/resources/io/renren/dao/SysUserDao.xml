@@ -7,7 +7,13 @@
 	</select>
 	
 	<select id="queryList" resultType="io.renren.entity.SysUserEntity">
-		select * from sys_user order by user_id desc
+		select * from sys_user 
+		<where>
+			<if test="username != null and username.trim() != ''">
+				and `username` like concat('%',#{username},'%') 
+			</if>
+		</where>
+		order by user_id desc
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
@@ -15,6 +21,11 @@
 	
 	<select id="queryTotal" resultType="int">
 		select count(*) from sys_user
+		<where>
+			<if test="username != null and username.trim() != ''">
+				and `username` like concat('%',#{username},'%') 
+			</if>
+		</where>
 	</select>
 	
 	<!-- 查询用户的所有权限 -->

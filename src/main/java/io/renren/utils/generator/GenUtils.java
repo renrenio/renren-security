@@ -44,8 +44,6 @@ public class GenUtils {
 		templates.add("template/Controller.java.vm");
 		templates.add("template/list.html.vm");
 		templates.add("template/list.js.vm");
-		templates.add("template/add.html.vm");
-		templates.add("template/add.js.vm");
 		return templates;
 	}
 	
@@ -206,14 +204,6 @@ public class GenUtils {
 		
 		if(template.contains("list.js.vm")){
 			return "js" + File.separator + className.toLowerCase() + ".js";
-		}
-		
-		if(template.contains("add.html.vm")){
-			return "html" + File.separator + className.toLowerCase() + "_add.html";
-		}
-		
-		if(template.contains("add.js.vm")){
-			return "js" + File.separator + className.toLowerCase() + "_add.js";
 		}
 		
 		return null;

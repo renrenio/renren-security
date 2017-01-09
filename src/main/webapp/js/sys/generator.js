@@ -9,7 +9,7 @@ $(function () {
 			{ label: '创建时间', name: 'createTime', width: 100 }
         ],
 		viewrecords: true,
-        height: 400,
+        height: 385,
         rowNum: 10,
 		rowList : [10,30,50,100,200],
         rownumbers: true, 
@@ -38,12 +38,14 @@ $(function () {
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
-		tableName: null
+		q:{
+			tableName: null
+		}
 	},
 	methods: {
 		query: function () {
 			$("#jqGrid").jqGrid('setGridParam',{ 
-                postData:{'tableName': vm.tableName},
+                postData:{'tableName': vm.q.tableName},
                 page:1 
             }).trigger("reloadGrid");
 		},

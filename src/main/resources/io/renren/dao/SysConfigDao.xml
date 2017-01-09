@@ -7,7 +7,7 @@
 	
 	<select id="queryList" parameterType="map" resultType="io.renren.entity.SysConfigEntity">
 		select * from sys_config where status = 1 
-		<if test="key != null and !&quot;&quot;.equals(key.trim())">
+		<if test="key != null and key.trim() != ''">
 			and `key` like concat('%',#{key},'%') 
 		</if>
 		<if test="offset != null and limit != null">
@@ -17,7 +17,7 @@
 	
 	<select id="queryTotal" parameterType="map" resultType="int">
 		select count(*) from sys_config where status = 1 
-		<if test="key != null and !&quot;&quot;.equals(key.trim())">
+		<if test="key != null and key.trim() != ''">
 			and `key` like concat('%',#{key},'%')
 		</if>
 	</select>

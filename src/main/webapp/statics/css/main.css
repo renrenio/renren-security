@@ -24,9 +24,8 @@ html { overflow-x:hidden; }
   display: none;
 }
 
-
 .grid-btn{
-	margin-bottom:10px;
+	margin-bottom:12px;
 }
 .grid-btn .btn{
 	margin-right:10px;
@@ -34,22 +33,22 @@ html { overflow-x:hidden; }
 .pointer{cursor: pointer;}
 
 .ml-10 { margin-left:0 !important; }
-	@media (min-width: 768px) {
-		.ml-10 { margin-left:10px !important; }
-		.col-sm-10 {width: 70%;padding-left: 0px;}
-		.col-sm-2 {width: 24%;}
-	}
-	tbody > tr > th {font-weight: normal; }
-	.panel .table { margin:0 0; }
-	.panel .pagination { margin:0; }
-	.panel-default>.panel-heading {background-color: #f5f5f5;}
-	.row{
-		border-top: 1px solid #ddd;
-		margin:0;
-		padding:20px 2px 0px 2px;
-	}
-	.col-xs-6{padding-left: 0px;padding-right: 0px;}
-	.form-horizontal .form-group {margin-left:0px;margin-right:0px;}
-	.form-horizontal{
-		width:550px;padding-top:20px;
-	}
+@media (min-width: 768px) {
+	.ml-10 { margin-left:10px !important; }
+	.col-sm-10 {width: 70%;padding-left: 0px;}
+	.col-sm-2 {width: 24%;}
+}
+tbody > tr > th {font-weight: normal; }
+.panel .table { margin:0 0; }
+.panel .pagination { margin:0; }
+.panel-default>.panel-heading {background-color: #f5f5f5;}
+.row{
+	border-top: 1px solid #ddd;
+	margin:0;
+	padding:20px 2px 0px 2px;
+}
+.col-xs-6{padding-left: 0px;padding-right: 0px;}
+.form-horizontal .form-group {margin-left:0px;margin-right:0px;}
+.form-horizontal{
+	width:550px;padding-top:20px;
+}

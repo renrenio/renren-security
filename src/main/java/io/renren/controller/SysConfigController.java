@@ -36,8 +36,9 @@ public class SysConfigController extends AbstractController {
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:config:list")
-	public R list(Integer page, Integer limit){
+	public R list(String key, Integer page, Integer limit){
 		Map<String, Object> map = new HashMap<>();
+		map.put("key", key);
 		map.put("offset", (page - 1) * limit);
 		map.put("limit", limit);
 		

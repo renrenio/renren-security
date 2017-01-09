@@ -25,7 +25,7 @@ $(function () {
 			{ label: '排序号', name: 'orderNum', width: 50}                   
         ],
 		viewrecords: true,
-        height: 400,
+        height: 385,
         rowNum: 10,
 		rowList : [10,30,50],
         rownumbers: true, 
@@ -51,19 +51,63 @@ $(function () {
     });
 });
 
+var setting = {
+	data: {
+		simpleData: {
+			enable: true,
+			idKey: "menuId",
+			pIdKey: "parentId",
+			rootPId: -1
+		},
+		key: {
+			url:"nourl"
+		}
+	}
+};
+var ztree;
+
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
-		
+		showList: true,
+		title: null,
+		menu:{
+			parentName:null,
+			parentId:0,
+			type:1,
+			orderNum:0
+		}
 	},
 	methods: {
+		getMenu: function(menuId){
+			//加载菜单树
+			$.get("../sys/menu/select", function(r){
+				ztree = $.fn.zTree.init($("#menuTree"), setting, r.menuList);
+				var node = ztree.getNodeByParam("menuId", vm.menu.parentId);
+				ztree.selectNode(node);
+				
+				vm.menu.parentName = node.name;
+			})
+		},
+		add: function(){
+			vm.showList = false;
+			vm.title = "新增";
+			vm.menu = {parentName:null,parentId:0,type:1,orderNum:0};
+			vm.getMenu();
+		},
 		update: function (event) {
 			var menuId = getSelectedRow();
 			if(menuId == null){
 				return ;
 			}
 			
-			location.href = "menu_add.html?menuId="+menuId;
+			$.get("../sys/menu/info/"+menuId, function(r){
+				vm.showList = false;
+                vm.title = "修改";
+                vm.menu = r.menu;
+            });
+			
+			vm.getMenu();
 		},
 		del: function (event) {
 			var menuIds = getSelectedRows();
@@ -79,7 +123,7 @@ var vm = new Vue({
 				    success: function(r){
 				    	if(r.code === 0){
 							alert('操作成功', function(index){
-								$("#jqGrid").trigger("reloadGrid");
+								vm.reload();
 							});
 						}else{
 							alert(r.msg);
@@ -87,6 +131,51 @@ var vm = new Vue({
 					}
 				});
 			});
+		},
+		saveOrUpdate: function (event) {
+			var url = vm.menu.menuId == null ? "../sys/menu/save" : "../sys/menu/update";
+			$.ajax({
+				type: "POST",
+			    url: url,
+			    data: JSON.stringify(vm.menu),
+			    success: function(r){
+			    	if(r.code === 0){
+						alert('操作成功', function(index){
+							vm.reload();
+						});
+					}else{
+						alert(r.msg);
+					}
+				}
+			});
+		},
+		menuTree: function(){
+			layer.open({
+				type: 1,
+				offset: '50px',
+				skin: 'layui-layer-molv',
+				title: "选择菜单",
+				area: ['300px', '450px'],
+				shade: 0,
+				shadeClose: false,
+				content: jQuery("#menuLayer"),
+				btn: ['确定', '取消'],
+				btn1: function (index) {
+					var node = ztree.getSelectedNodes();
+					//选择上级菜单
+					vm.menu.parentId = node[0].menuId;
+					vm.menu.parentName = node[0].name;
+					
+					layer.close(index);
+	            }
+			});
+		},
+		reload: function (event) {
+			vm.showList = true;
+			var page = $("#jqGrid").jqGrid('getGridParam','page');
+			$("#jqGrid").jqGrid('setGridParam',{ 
+                page:page
+            }).trigger("reloadGrid");
 		}
 	}
 });

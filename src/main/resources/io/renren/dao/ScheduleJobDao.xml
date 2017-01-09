@@ -8,6 +8,11 @@
 
 	<select id="queryList" resultType="io.renren.entity.ScheduleJobEntity" >
 		select * from schedule_job
+		<where>
+			<if test="beanName != null and beanName.trim() != ''">
+				bean_name like concat('%', #{beanName}, '%') 
+			</if>
+		</where>
 		<if test="offset != null and limit != null ">
 		limit #{offset}, #{limit}
 		</if>
@@ -15,6 +20,11 @@
 	
  	<select id="queryTotal" resultType="int">
 		select count(1) from schedule_job 
+		<where>
+			<if test="beanName != null and beanName.trim() != ''">
+				bean_name like concat('%', #{beanName}, '%') 
+			</if>
+		</where>
 	</select>
 	 
 	<insert id="save" parameterType="io.renren.entity.ScheduleJobEntity" useGeneratedKeys="true" keyProperty="jobId">

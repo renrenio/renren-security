@@ -8,7 +8,13 @@
 	</select>
 	
 	 <select id="queryList" resultType="io.renren.entity.SysRoleEntity">
-		select * from sys_role order by role_id asc 
+		select * from sys_role 
+		<where>
+			<if test="roleName != null and roleName.trim() != ''">
+				and `role_name` like concat('%',#{roleName},'%') 
+			</if>
+		</where>
+		order by role_id asc 
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
@@ -16,6 +22,11 @@
 	
 	<select id="queryTotal" resultType="int">
 		select count(*) from sys_role
+		<where>
+			<if test="roleName != null and roleName.trim() != ''">
+				and `role_name` like concat('%',#{roleName},'%') 
+			</if>
+		</where>
 	</select>
 	
 	<insert id="save" parameterType="io.renren.entity.SysRoleEntity" useGeneratedKeys="true" keyProperty="roleId">
