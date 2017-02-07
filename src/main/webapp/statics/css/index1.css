@@ -281,10 +281,11 @@
 .form-control {
     height: 30px;
 }
-@media (min-width: 1200px)
-.col-lg-12 {
-    width: 100%;
-    float: left;
+@media (min-width: 1200px){
+	.col-lg-12 {
+	    width: 100%;
+	    float: left;
+	}
 }
 
 body .layui-layout-admin .layui-larry-foot{
