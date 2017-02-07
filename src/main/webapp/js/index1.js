@@ -15,7 +15,6 @@ layui.config({
 	    $content.find('iframe').each(function() {
 	    	$(this).height($content.height());
 	    });
-	    tab_W = $('#larry-tab').width();
 	}).resize();
   
 $(function(){
