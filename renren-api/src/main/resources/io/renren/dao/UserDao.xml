@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.dao.UserDao">
+
+
+	<select id="queryObject" resultType="io.renren.entity.UserEntity">
+		select * from tb_user where user_id = #{value}
+	</select>
+
+	<select id="queryByMobile" resultType="io.renren.entity.UserEntity">
+		select * from tb_user where mobile = #{value}
+	</select>
+
+</mapper>

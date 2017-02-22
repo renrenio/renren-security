@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${comments}</title>
+#set($header='#parse("sys/header.html")')
+#set($save='#if($shiro.hasPermission("'+${pathName}+':save"))')
+#set($update='#if($shiro.hasPermission("'+${pathName}+':update"))')
+#set($delete='#if($shiro.hasPermission("'+${pathName}+':delete"))')
+#set($end='#end')
+$header
+</head>
+<body>
+<div id="rrapp" v-cloak>
+	<div v-show="showList">
+		<div class="grid-btn">
+			$save
+			<a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			$end
+			$update
+			<a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			$end
+			$delete
+			<a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			$end
+		</div>
+	    <table id="jqGrid"></table>
+	    <div id="jqGridPager"></div>
+    </div>
+    
+    <div v-show="!showList" class="panel panel-default">
+		<div class="panel-heading">{{title}}</div>
+		<form class="form-horizontal">
+		#foreach($column in $columns)
+		#if($column.columnName != $pk.columnName)
+			<div class="form-group">
+			   	<div class="col-sm-2 control-label">${column.comments}</div>
+			   	<div class="col-sm-10">
+			      <input type="text" class="form-control" v-model="${classname}.${column.attrname}" placeholder="${column.comments}"/>
+			    </div>
+			</div>
+		#end
+		#end
+			<div class="form-group">
+				<div class="col-sm-2 control-label"></div> 
+				<input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+				&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script src="${rc.contextPath}/js/generator/${pathName}.js?_${date.systemTime}"></script>
+</body>
+</html>

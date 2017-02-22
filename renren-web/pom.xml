@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+		<groupId>io.renren</groupId>
+		<artifactId>renren-security</artifactId>
+		<version>${renren-version}</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>renren-web</artifactId>
+	<packaging>war</packaging>
+    <description>管理后台</description>
+	
+	<dependencies>
+        <dependency>
+            <groupId>io.renren</groupId>
+            <artifactId>renren-common</artifactId>
+            <version>${renren-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.renren</groupId>
+            <artifactId>renren-shiro</artifactId>
+            <version>${renren-version}</version>
+        </dependency>
+		<dependency>
+            <groupId>io.renren</groupId>
+            <artifactId>renren-gen</artifactId>
+            <version>${renren-version}</version>
+        </dependency>
+		<dependency>
+            <groupId>io.renren</groupId>
+            <artifactId>renren-schedule</artifactId>
+            <version>${renren-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.renren</groupId>
+            <artifactId>renren-api</artifactId>
+            <version>${renren-version}</version>
+        </dependency>
+    </dependencies>
+	<build>
+		<finalName>renren-security</finalName>
+	</build>
+	
+</project>

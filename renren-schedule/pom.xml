@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+		<groupId>io.renren</groupId>
+		<artifactId>renren-security</artifactId>
+		<version>${renren-version}</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>renren-schedule</artifactId>
+	<packaging>jar</packaging>
+    <description>定时任务模块</description>
+
+	<properties>
+		<quartz-version>2.2.3</quartz-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.renren</groupId>
+			<artifactId>renren-common</artifactId>
+			<version>${renren-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartz-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>c3p0</artifactId>
+					<groupId>c3p0</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+</project>
