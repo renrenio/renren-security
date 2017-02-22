@@ -36,15 +36,15 @@
 
         <property name="schedulerName" value="RenrenScheduler" />
 
-        <!--必须的，QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动 -->
-        <property name="startupDelay" value="60" />
+        <!--延时启动 -->
+        <property name="startupDelay" value="30" />
 
         <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
 
         <!--可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了 -->
         <property name="overwriteExistingJobs" value="true" />
 
-        <!-- 设置自动启动 -->
+        <!-- 设置自动启动   默认为true -->
         <property name="autoStartup" value="true" />
 
     </bean>

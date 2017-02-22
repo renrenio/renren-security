@@ -58,7 +58,8 @@ public class ScheduleUtils {
             JobDetail jobDetail = JobBuilder.newJob(ScheduleJob.class).withIdentity(getJobKey(scheduleJob.getJobId())).build();
 
             //表达式调度构建器
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression());
+            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
+            		.withMisfireHandlingInstructionDoNothing();
 
             //按新的cronExpression表达式构建一个新的trigger
             CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(getTriggerKey(scheduleJob.getJobId())).withSchedule(scheduleBuilder).build();
@@ -85,7 +86,8 @@ public class ScheduleUtils {
             TriggerKey triggerKey = getTriggerKey(scheduleJob.getJobId());
 
             //表达式调度构建器
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression());
+            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
+            		.withMisfireHandlingInstructionDoNothing();
 
             CronTrigger trigger = getCronTrigger(scheduler, scheduleJob.getJobId());
             
