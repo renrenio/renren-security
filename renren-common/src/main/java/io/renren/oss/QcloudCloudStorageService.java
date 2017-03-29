@@ -1,16 +1,18 @@
 package io.renren.oss;
 
+import io.renren.utils.RRException;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.qcloud.cos.COSClient;
+import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.request.UploadFileRequest;
-import io.renren.utils.RRException;
-import org.apache.commons.io.FileUtils;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import com.qcloud.cos.sign.Credentials;
 
 /**
  * 腾讯云存储
@@ -29,36 +31,27 @@ public class QcloudCloudStorageService extends CloudStorageService{
     }
 
     private void init(){
-        client = new COSClient(config.getQcloudAppId(), config.getQcloudSecretId(),
+    	Credentials credentials = new Credentials(config.getQcloudAppId(), config.getQcloudSecretId(),
                 config.getQcloudSecretKey());
+    	
+    	//初始化客户端配置
+        ClientConfig clientConfig = new ClientConfig();
+        //设置bucket所在的区域，比如华南园区：gz 华北园区：tj 华东园区：sh
+        clientConfig.setRegion(config.getQcloudRegion());
+        
+    	client = new COSClient(clientConfig, credentials);
     }
 
     @Override
     public String upload(byte[] data, String path) {
-        return this.upload(new ByteArrayInputStream(data), path);
-    }
-
-    @Override
-    public String upload(InputStream inputStream, String path) {
-        String tmp = System.getProperty("java.io.tmpdir");
-        File file = new File(tmp + path);
-        try {
-            FileUtils.copyInputStreamToFile(inputStream, file);
-        } catch (IOException e) {
-            throw new RRException("上传文件失败", e);
-        }
-
         //腾讯云必需要以"/"开头
         if(!path.startsWith("/")) {
             path = "/" + path;
         }
-
+        
         //上传到腾讯云
-        UploadFileRequest request = new UploadFileRequest(config.getQcloudBucketName(), path, file.getPath());
+        UploadFileRequest request = new UploadFileRequest(config.getQcloudBucketName(), path, data);
         String response = client.uploadFile(request);
-
-        //删除临时文件
-        file.delete();
 
         JSONObject jsonObject = JSON.parseObject(response);
         if(jsonObject.getIntValue("code") != 0) {
@@ -66,6 +59,16 @@ public class QcloudCloudStorageService extends CloudStorageService{
         }
 
         return config.getQcloudDomain() + path;
+    }
+
+    @Override
+    public String upload(InputStream inputStream, String path) {
+    	try {
+            byte[] data = IOUtils.toByteArray(inputStream);
+            return this.upload(data, path);
+        } catch (IOException e) {
+            throw new RRException("上传文件失败", e);
+        }
     }
 
     @Override

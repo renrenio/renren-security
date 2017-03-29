@@ -76,6 +76,9 @@ public class CloudStorageConfig implements Serializable {
     //腾讯云BucketName
     @NotBlank(message="腾讯云BucketName不能为空", groups = QcloudGroup.class)
     private String qcloudBucketName;
+    //腾讯云COS所属地区
+    @NotBlank(message="所属地区不能为空", groups = QcloudGroup.class)
+    private String qcloudRegion;
 
     public Integer getType() {
         return type;
@@ -220,4 +223,12 @@ public class CloudStorageConfig implements Serializable {
     public void setQcloudBucketName(String qcloudBucketName) {
         this.qcloudBucketName = qcloudBucketName;
     }
+
+	public String getQcloudRegion() {
+		return qcloudRegion;
+	}
+
+	public void setQcloudRegion(String qcloudRegion) {
+		this.qcloudRegion = qcloudRegion;
+	}
 }
