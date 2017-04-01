@@ -1,18 +1,16 @@
 package io.renren.oss;
 
-import io.renren.utils.RRException;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.commons.io.IOUtils;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.request.UploadFileRequest;
 import com.qcloud.cos.sign.Credentials;
+import io.renren.utils.RRException;
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * 腾讯云存储
@@ -36,7 +34,7 @@ public class QcloudCloudStorageService extends CloudStorageService{
     	
     	//初始化客户端配置
         ClientConfig clientConfig = new ClientConfig();
-        //设置bucket所在的区域，比如华南园区：gz 华北园区：tj 华东园区：sh
+        //设置bucket所在的区域，华南：gz 华北：tj 华东：sh
         clientConfig.setRegion(config.getQcloudRegion());
         
     	client = new COSClient(clientConfig, credentials);

@@ -5,9 +5,9 @@ $(function () {
         colModel: [			
 #foreach($column in $columns)
 #if($column.columnName == $pk.columnName)
-			{ label: '${column.attrname}', name: '${column.attrname}', index: '$${column.columnName}', width: 50, key: true },
+			{ label: '${column.attrname}', name: '${column.attrname}', index: '${column.columnName}', width: 50, key: true },
 #else
-			{ label: '${column.comments}', name: '${column.attrname}', index: '$${column.columnName}', width: 80 }#if($velocityCount != $columns.size()), #end
+			{ label: '${column.comments}', name: '${column.attrname}', index: '${column.columnName}', width: 80 }#if($velocityCount != $columns.size()), #end
 			
 #end			
 #end

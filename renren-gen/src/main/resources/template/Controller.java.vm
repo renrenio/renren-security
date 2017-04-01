@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 import ${package}.entity.${className}Entity;
 import ${package}.service.${className}Service;
@@ -26,7 +25,7 @@ import ${package}.utils.R;
  * @email ${email}
  * @date ${datetime}
  */
-@Controller
+@RestController
 @RequestMapping("${pathName}")
 public class ${className}Controller {
 	@Autowired
@@ -35,7 +34,6 @@ public class ${className}Controller {
 	/**
 	 * 列表
 	 */
-	@ResponseBody
 	@RequestMapping("/list")
 	@RequiresPermissions("${pathName}:list")
 	public R list(@RequestParam Map<String, Object> params){
@@ -54,7 +52,6 @@ public class ${className}Controller {
 	/**
 	 * 信息
 	 */
-	@ResponseBody
 	@RequestMapping("/info/{${pk.attrname}}")
 	@RequiresPermissions("${pathName}:info")
 	public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
@@ -66,7 +63,6 @@ public class ${className}Controller {
 	/**
 	 * 保存
 	 */
-	@ResponseBody
 	@RequestMapping("/save")
 	@RequiresPermissions("${pathName}:save")
 	public R save(@RequestBody ${className}Entity ${classname}){
@@ -78,7 +74,6 @@ public class ${className}Controller {
 	/**
 	 * 修改
 	 */
-	@ResponseBody
 	@RequestMapping("/update")
 	@RequiresPermissions("${pathName}:update")
 	public R update(@RequestBody ${className}Entity ${classname}){
@@ -90,7 +85,6 @@ public class ${className}Controller {
 	/**
 	 * 删除
 	 */
-	@ResponseBody
 	@RequestMapping("/delete")
 	@RequiresPermissions("${pathName}:delete")
 	public R delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s){

@@ -71,7 +71,7 @@ public class SysConfigServiceImpl implements SysConfigService {
 		try {
 			return clazz.newInstance();
 		} catch (Exception e) {
-			throw new RRException("获取云存储配置信息失败");
+			throw new RRException("获取参数失败");
 		}
 	}
 }

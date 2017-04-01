@@ -26,6 +26,8 @@
 						<value>WriteMapNullValue</value>
 						<value>QuoteFieldNames</value>
 						<value>WriteDateUseDateFormat</value>
+						<!-- 禁用fastjson循环引用检测 -->
+						<value>DisableCircularReferenceDetect</value>
 					</list>
 				</property>
 			</bean>

@@ -76,7 +76,7 @@ public class Constant {
      */
     public enum CloudService {
         /**
-         * 阿里云
+         * 七牛云
          */
         QINIU(1),
         /**
