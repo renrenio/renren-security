@@ -1,11 +1,11 @@
 package io.renren.controller;
 
 import com.alibaba.fastjson.JSON;
-import io.renren.annotation.SysLog;
 import io.renren.service.SysGeneratorService;
 import io.renren.utils.PageUtils;
 import io.renren.utils.Query;
 import io.renren.utils.R;
+import io.renren.xss.XssHttpServletRequestWrapper;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -52,11 +53,13 @@ public class SysGeneratorController {
 	/**
 	 * 生成代码
 	 */
-	@SysLog("生成代码")
 	@RequestMapping("/code")
 	@RequiresPermissions("sys:generator:code")
-	public void code(String tables, HttpServletResponse response) throws IOException{
+	public void code(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String[] tableNames = new String[]{};
+		//获取表名，不进行xss过滤
+		HttpServletRequest orgRequest = XssHttpServletRequestWrapper.getOrgRequest(request);
+		String tables = orgRequest.getParameter("tables");
 		tableNames = JSON.parseArray(tables).toArray(tableNames);
 		
 		byte[] data = sysGeneratorService.generatorCode(tableNames);
