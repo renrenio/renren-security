@@ -66,7 +66,17 @@ var vm = new Vue({
             vm.getInfo(${pk.attrname})
 		},
 		saveOrUpdate: function (event) {
-			var url = vm.${classname}.${pk.attrname} == null ? "../${pathName}/save" : "../${pathName}/update";
+			 if(vm.title == "新增")
+		    {
+		       url = "../${pathName}/save";
+		    }
+		    else if(vm.title == "修改")
+		    {
+		       url = "../${pathName}/update";
+		    }else
+		    {
+		       url = "";
+		    }
 			$.ajax({
 				type: "POST",
 			    url: url,
