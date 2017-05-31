@@ -1,5 +1,7 @@
 package io.renren.shiro;
 
+import io.renren.dao.SysMenuDao;
+import io.renren.dao.SysUserDao;
 import io.renren.entity.SysMenuEntity;
 import io.renren.entity.SysUserEntity;
 import io.renren.service.SysMenuService;
@@ -35,9 +37,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UserRealm extends AuthorizingRealm {
     @Autowired
-    private SysUserService sysUserService;
+    private SysUserDao sysUserDao;
     @Autowired
-    private SysMenuService sysMenuService;
+    private SysMenuDao sysMenuDao;
     
     /**
      * 授权(验证权限时调用)
@@ -51,13 +53,13 @@ public class UserRealm extends AuthorizingRealm {
 		
 		//系统管理员，拥有最高权限
 		if(userId == 1){
-			List<SysMenuEntity> menuList = sysMenuService.queryList(new HashMap<String, Object>());
+			List<SysMenuEntity> menuList = sysMenuDao.queryList(new HashMap<String, Object>());
 			permsList = new ArrayList<>(menuList.size());
 			for(SysMenuEntity menu : menuList){
 				permsList.add(menu.getPerms());
 			}
 		}else{
-			permsList = sysUserService.queryAllPerms(userId);
+			permsList = sysUserDao.queryAllPerms(userId);
 		}
 
 		//用户权限列表
@@ -84,7 +86,7 @@ public class UserRealm extends AuthorizingRealm {
         String password = new String((char[]) token.getCredentials());
         
         //查询用户信息
-        SysUserEntity user = sysUserService.queryByUserName(username);
+        SysUserEntity user = sysUserDao.queryByUserName(username);
         
         //账号不存在
         if(user == null) {
