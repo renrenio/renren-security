@@ -20,7 +20,7 @@ public interface UserService {
 	
 	int queryTotal(Map<String, Object> map);
 	
-	void save(UserEntity user);
+	void save(String mobile, String password);
 	
 	void update(UserEntity user);
 	

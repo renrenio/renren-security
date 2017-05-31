@@ -1,13 +1,10 @@
 package io.renren.api;
 
-import io.renren.annotation.IgnoreAuth;
-import io.renren.entity.UserEntity;
 import io.renren.service.UserService;
 import io.renren.utils.R;
 import io.renren.validator.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,13 +23,12 @@ public class ApiRegisterController {
     /**
      * 注册
      */
-    @IgnoreAuth
     @PostMapping("register")
-    public R register(@RequestBody UserEntity user){
-        Assert.isBlank(user.getMobile(), "手机号不能为空");
-        Assert.isBlank(user.getPassword(), "密码不能为空");
+    public R register(String mobile, String password){
+        Assert.isBlank(mobile, "手机号不能为空");
+        Assert.isBlank(password, "密码不能为空");
 
-        userService.save(user);
+        userService.save(mobile, password);
 
         return R.ok();
     }

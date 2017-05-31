@@ -9,9 +9,9 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 
 
 @Service("userService")
@@ -35,8 +35,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void save(UserEntity user){
-		user.setPassword(DigestUtils.sha256Hex(user.getPassword()));
+	public void save(String mobile, String password){
+		UserEntity user = new UserEntity();
+		user.setMobile(mobile);
+		user.setUsername(mobile);
+		user.setPassword(DigestUtils.sha256Hex(password));
+		user.setCreateTime(new Date());
 		userDao.save(user);
 	}
 	
