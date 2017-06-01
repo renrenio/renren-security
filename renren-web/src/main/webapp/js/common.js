@@ -20,7 +20,6 @@ T.p = url;
 //全局配置
 $.ajaxSetup({
 	dataType: "json",
-	contentType: "application/json",
 	cache: false
 });
 

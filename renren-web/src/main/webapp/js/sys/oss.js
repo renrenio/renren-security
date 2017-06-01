@@ -88,6 +88,7 @@ var vm = new Vue({
 			$.ajax({
 				type: "POST",
 			    url: url,
+                contentType: "application/json",
 			    data: JSON.stringify(vm.config),
 			    success: function(r){
 			    	if(r.code === 0){
@@ -110,6 +111,7 @@ var vm = new Vue({
                 $.ajax({
                     type: "POST",
                     url: "../sys/oss/delete",
+                    contentType: "application/json",
                     data: JSON.stringify(ossIds),
                     success: function(r){
                         if(r.code === 0){

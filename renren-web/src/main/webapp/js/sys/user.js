@@ -91,6 +91,7 @@ var vm = new Vue({
 				$.ajax({
 					type: "POST",
 				    url: "../sys/user/delete",
+                    contentType: "application/json",
 				    data: JSON.stringify(userIds),
 				    success: function(r){
 						if(r.code == 0){
@@ -109,6 +110,7 @@ var vm = new Vue({
 			$.ajax({
 				type: "POST",
 			    url: url,
+                contentType: "application/json",
 			    data: JSON.stringify(vm.user),
 			    success: function(r){
 			    	if(r.code === 0){

@@ -12,6 +12,7 @@
 		<!-- 设置session过期时间为1小时(单位：毫秒)，默认为30分钟 -->
 		<property name="globalSessionTimeout" value="3600000"></property>
 		<property name="sessionValidationSchedulerEnabled" value="true"></property>
+		<property name="sessionIdUrlRewritingEnabled" value="false"></property>
 	</bean>
 	
 	<!-- Shiro默认会使用Servlet容器的Session,可通过sessionMode属性来指定使用Shiro原生Session -->  
