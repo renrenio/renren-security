@@ -46,7 +46,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
         //xss过滤
         json = xssEncode(json);
-        final ByteArrayInputStream bis = new ByteArrayInputStream(json.getBytes());
+        final ByteArrayInputStream bis = new ByteArrayInputStream(json.getBytes("utf-8"));
         return new ServletInputStream() {
             @Override
             public boolean isFinished() {
@@ -60,7 +60,6 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
             @Override
             public void setReadListener(ReadListener readListener) {
-
             }
 
             @Override
