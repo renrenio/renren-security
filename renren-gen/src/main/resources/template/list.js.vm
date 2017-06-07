@@ -70,6 +70,7 @@ var vm = new Vue({
 			$.ajax({
 				type: "POST",
 			    url: url,
+			    contentType: "application/json",
 			    data: JSON.stringify(vm.${classname}),
 			    success: function(r){
 			    	if(r.code === 0){
@@ -92,6 +93,7 @@ var vm = new Vue({
 				$.ajax({
 					type: "POST",
 				    url: "../${pathName}/delete",
+				    contentType: "application/json",
 				    data: JSON.stringify(${pk.attrname}s),
 				    success: function(r){
 						if(r.code == 0){
