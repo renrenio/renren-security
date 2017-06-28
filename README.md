@@ -107,5 +107,5 @@ renren-security
 - 账号密码：admin/admin
 
 
-**项目打赏** 
+
 ![捐赠](http://cdn.renren.io/donate.jpg "捐赠") 
