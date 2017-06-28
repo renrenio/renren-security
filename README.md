@@ -108,5 +108,4 @@ renren-security
 
 
 **项目打赏** 
-
-![捐赠](http://cdn.renren.io/donate.jpg "捐赠")
+![捐赠](http://cdn.renren.io/donate.jpg "捐赠") 
