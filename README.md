@@ -39,9 +39,7 @@ renren-security
 ├─renren-schedule 定时任务模块
 │
 ├─renren-shiro 权限模块
-│ 
-├─renren-shiro-dept 部门权限模块（待开发）
-│ 
+│  
 ├──renren-web 管理后台模块
 │  ├─js 系统业务js代码
 │  ├─statics 第三方库、插件等静态资源
@@ -111,5 +109,4 @@ renren-security
 
 **项目打赏** 
 
-如果您觉得作者的权限系统能帮助到您，您可以打赏作者一瓶汽水
-![输入图片说明](http://cdn.renren.io/img/10e0f63b327d4e7ab9113e7b9568381a "在这里输入图片标题")
+![捐赠](http://cdn.renren.io/donate.jpg "捐赠")
