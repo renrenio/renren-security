@@ -98,12 +98,11 @@ renren-security
 
  **本地部署**
 - 通过git下载源码
-- 创建数据库renren-security，数据库编码为UTF-8
+- 创建数据库renren_security，数据库编码为UTF-8
 - 执行doc/db.sql文件，初始化数据【按需导入表结构及数据】
 - 修改db.properties文件，更新MySQL账号和密码
 - Eclipse、IDEA执行【clean package tomcat7:run】命令，即可运行项目
-- 项目访问路径：http://localhost
-- 非Maven方式启动，则默认访问路径为：http://localhost:8080/renren-security
+- 项目访问路径：http://localhost:8080
 - 账号密码：admin/admin
 
 
