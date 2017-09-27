@@ -24,4 +24,8 @@ public class SysPageController {
 		return url + ".html";
 	}
 
+	@RequestMapping("/")
+	public String index(){
+		return "index.html";
+	}
 }
