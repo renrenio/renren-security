@@ -20,7 +20,7 @@ public class SysPageController {
 	}
 
 	@RequestMapping("{url}.html")
-	public String html(@PathVariable("url") String url){
+	public String url(@PathVariable("url") String url){
 		return url + ".html";
 	}
 
