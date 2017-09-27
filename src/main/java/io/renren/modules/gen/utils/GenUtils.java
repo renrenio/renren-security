@@ -206,7 +206,7 @@ public class GenUtils {
 		}
 
 		if(template.contains("menu.sql.vm")){
-			return className.toLowerCase() + "_menu.sql";
+			return className.toLowerCase() + ".sql";
 		}
 		
 		return null;
