@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>${comments}</title>
-#set($header='#parse("sys/header.html")')
+#set($header='#parse("header.html")')
 #set($save='#if($shiro.hasPermission("'+${pathName}+':save"))')
 #set($update='#if($shiro.hasPermission("'+${pathName}+':update"))')
 #set($delete='#if($shiro.hasPermission("'+${pathName}+':delete"))')
@@ -49,6 +49,6 @@ $header
 	</div>
 </div>
 
-<script src="${rc.contextPath}/js/generator/${pathName}.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/statics/js/modules/generator/${pathName}.js?_${date.systemTime}"></script>
 </body>
 </html>

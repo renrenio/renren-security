@@ -197,12 +197,12 @@ public class GenUtils {
 		}
 		
 		if(template.contains("list.html.vm")){
-			return "main" + File.separator + "webapp" + File.separator + "WEB-INF" + File.separator + "page"
-					+ File.separator + "generator" + File.separator + className.toLowerCase() + ".html";
+			return "main" + File.separator + "webapp" + File.separator + "WEB-INF" + File.separator + "views"
+					+ File.separator + "modules"+ File.separator + "generator" + File.separator + className.toLowerCase() + ".html";
 		}
 		
 		if(template.contains("list.js.vm")){
-			return "main" + File.separator + "webapp" + File.separator + "js" + File.separator + "generator" + File.separator + className.toLowerCase() + ".js";
+			return "main" + File.separator + "webapp" + File.separator + "statics" + File.separator + "js" + File.separator + "modules" + File.separator + "generator" + File.separator + className.toLowerCase() + ".js";
 		}
 
 		if(template.contains("menu.sql.vm")){
