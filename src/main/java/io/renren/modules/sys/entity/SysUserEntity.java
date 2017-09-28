@@ -64,11 +64,6 @@ public class SysUserEntity implements Serializable {
 	 * 角色ID列表
 	 */
 	private List<Long> roleIdList;
-	
-	/**
-	 * 创建者ID
-	 */
-	private Long createUserId;
 
 	/**
 	 * 创建时间
@@ -204,14 +199,6 @@ public class SysUserEntity implements Serializable {
 
 	public void setRoleIdList(List<Long> roleIdList) {
 		this.roleIdList = roleIdList;
-	}
-
-	public Long getCreateUserId() {
-		return createUserId;
-	}
-
-	public void setCreateUserId(Long createUserId) {
-		this.createUserId = createUserId;
 	}
 
 	public String getSalt() {
