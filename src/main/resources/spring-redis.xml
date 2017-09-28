@@ -10,7 +10,13 @@
         <property name="password" value="${redis.password}"/>
         <property name="database" value="${redis.database}"/>
         <property name="timeout" value="${redis.timeout}"/>
-        <property name="usePool" value="${redis.usepool}"/>
+        <property name="poolConfig" ref="poolConfig"/>
+    </bean>
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+        <property name="maxTotal" value="${redis.maxTotal}"/>
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
     </bean>
 
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
@@ -21,7 +27,7 @@
             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
         </property>
         <property name="valueSerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
         </property>
         <property name="hashValueSerializer">
             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />

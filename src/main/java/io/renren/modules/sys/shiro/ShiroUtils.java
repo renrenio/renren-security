@@ -1,9 +1,8 @@
-package io.renren.common.utils;
+package io.renren.modules.sys.shiro;
 
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.common.exception.RRException;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -22,7 +21,7 @@ public class ShiroUtils {
 	public final static int hashIterations = 16;
 
 	public static String sha256(String password, String salt) {
-		return new SimpleHash(hashAlgorithmName, password, new Sha256Hash(salt), hashIterations).toString();
+		return new SimpleHash(hashAlgorithmName, password, salt, hashIterations).toString();
 	}
 
 	public static Session getSession() {
@@ -65,6 +64,5 @@ public class ShiroUtils {
 		getSession().removeAttribute(key);
 		return kaptcha.toString();
 	}
-
 
 }

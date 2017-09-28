@@ -2,7 +2,7 @@ package io.renren.modules.sys.controller;
 
 
 import io.renren.common.annotation.SysLog;
-import io.renren.common.utils.ShiroUtils;
+import io.renren.modules.sys.shiro.ShiroUtils;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;

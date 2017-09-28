@@ -5,7 +5,7 @@ import io.renren.common.annotation.DataFilter;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.common.exception.RRException;
 import io.renren.common.utils.Constant;
-import io.renren.common.utils.ShiroUtils;
+import io.renren.modules.sys.shiro.ShiroUtils;
 import io.renren.modules.sys.service.SysDeptService;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;

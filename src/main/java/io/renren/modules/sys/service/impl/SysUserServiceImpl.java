@@ -2,7 +2,7 @@ package io.renren.modules.sys.service.impl;
 
 
 import io.renren.common.annotation.DataFilter;
-import io.renren.common.utils.ShiroUtils;
+import io.renren.modules.sys.shiro.ShiroUtils;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.dao.SysUserDao;
 import io.renren.modules.sys.service.SysUserRoleService;

@@ -4,8 +4,8 @@
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
-        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd        
-        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.2.xsd
         http://www.springframework.org/schema/tx 
      	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
@@ -13,8 +13,8 @@
 		http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<tx:annotation-driven />
-	<context:property-placeholder location="classpath:db.properties" />
-	
+	<context:property-placeholder location="classpath:db.properties,classpath:config.properties" />
+
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 		<property name="url">
