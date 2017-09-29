@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class RedisAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
     //是否开启redis缓存  true开启   false关闭
-    @Value("${redis.open: false}")
+    @Value("${renren.redis.open: false}")
     private boolean open;
 
     @Around("execution(* io.renren.common.utils.RedisUtils.*(..))")

@@ -1,4 +1,4 @@
-package io.renren.modules.sys.task;
+package io.renren.modules.job.task;
 
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.service.SysUserService;

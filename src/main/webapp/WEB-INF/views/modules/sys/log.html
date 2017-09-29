@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>系统日志</title>
-#parse("header.html")
+<#include "/header.html">
 </head>
 <body>
 <div id="rrapp" v-cloak>
@@ -19,6 +19,6 @@
     
 </div>
 
-<script src="${rc.contextPath}/statics/js/modules/sys/log.js?_${date.systemTime}"></script>
+<script src="${request.contextPath}/statics/js/modules/sys/log.js?_${.now?long}"></script>
 </body>
 </html>

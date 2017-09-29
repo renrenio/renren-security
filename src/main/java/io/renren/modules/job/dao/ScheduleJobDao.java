@@ -2,6 +2,7 @@ package io.renren.modules.job.dao;
 
 import io.renren.modules.sys.dao.BaseDao;
 import io.renren.modules.job.entity.ScheduleJobEntity;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import java.util.Map;
  * @email sunlightcs@gmail.com
  * @date 2016年12月1日 下午10:29:57
  */
+@Mapper
 public interface ScheduleJobDao extends BaseDao<ScheduleJobEntity> {
 	
 	/**

@@ -2,6 +2,7 @@ package io.renren.modules.sys.dao;
 
 
 import io.renren.modules.sys.entity.SysConfigEntity;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -11,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
  * @email sunlightcs@gmail.com
  * @date 2016年12月4日 下午6:46:16
  */
+@Mapper
 public interface SysConfigDao extends BaseDao<SysConfigEntity> {
 
 	/**

@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>文件上传</title>
-#parse("header.html")
-<script src="${rc.contextPath}/statics/libs/ajaxupload.js"></script>
+<#include "/header.html">
+<script src="${request.contextPath}/statics/libs/ajaxupload.js"></script>
 </head>
 <body>
 <div id="rrapp" v-cloak>
@@ -159,6 +159,6 @@
 	</div>
 </div>
 
-<script src="${rc.contextPath}/statics/js/modules/oss/oss.js?_${date.systemTime}"></script>
+<script src="${request.contextPath}/statics/js/modules/oss/oss.js?_${.now?long}"></script>
 </body>
 </html>

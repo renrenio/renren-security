@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>参数管理</title>
-#parse("header.html")
+<#include "/header.html">
 </head>
 <body>
 <div id="rrapp" v-cloak>
@@ -51,6 +51,6 @@
 	</div>
 </div>
 
-<script src="${rc.contextPath}/statics/js/modules/sys/config.js?_${date.systemTime}"></script>
+<script src="${request.contextPath}/statics/js/modules/sys/config.js?_${.now?long}"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>代码生成器</title>
-#parse("header.html")
+<#include "/header.html">
 </head>
 <body>
 <div id="rrapp">
@@ -17,6 +17,6 @@
     <div id="jqGridPager"></div>
 </div>
 
-<script src="${rc.contextPath}/statics/js/modules/gen/generator.js?_${date.systemTime}"></script>
+<script src="${request.contextPath}/statics/js/modules/gen/generator.js?_${.now?long}"></script>
 </body>
 </html>

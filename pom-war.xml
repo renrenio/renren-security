@@ -5,8 +5,8 @@
 	<groupId>io.renren</groupId>
 	<artifactId>renren-security</artifactId>
 	<version>3.0.0</version>
-	<packaging>jar</packaging>
-	<description>spring boot版</description>
+	<packaging>war</packaging>
+	<description>war包对应的pom，打war包，执行【mvn clean package -f pom-war.xml】</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -34,13 +34,6 @@
 		<qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
 		<aliyun.oss.version>2.5.0</aliyun.oss.version>
 		<qcloud.cos.version>4.4</qcloud.cos.version>
-
-		<!--wagon plugin 配置-->
-		<service-path>/work/renren</service-path>
-		<pack-name>${artifactId}-${version}.jar</pack-name>
-		<remote-addr>192.168.1.10:22</remote-addr>
-		<remote-username>root</remote-username>
-		<remote-passwd>123456</remote-passwd>
 	</properties>
 
 	<dependencies>
@@ -52,6 +45,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -174,13 +172,6 @@
 	</dependencies>
 
 	<build>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-				<version>2.8</version>
-			</extension>
-		</extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -197,52 +188,8 @@
 					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0</version>
-				<configuration>
-					<fromFile>target/${pack-name}</fromFile>
-					<url><![CDATA[scp://${remote-username}:${remote-passwd}@${remote-addr}${service-path}]]></url>
-					<commands>
-						<!-- Kill Old Process -->
-						<command>pkill -f ${pack-name}</command>
-						<command>rm -f ${service-path}/renren.log</command>
-						<!-- Restart jar package，write result into renren.log -->
-						<command><![CDATA[nohup java -jar ${service-path}/${pack-name} > ${service-path}/renren.log 2>&1 & ]]></command>
-						<command><![CDATA[netstat -nptl]]></command>
-						<command><![CDATA[ps -ef | grep java | grep -v grep]]></command>
-					</commands>
-					<!-- 运行命令 mvn clean package wagon:upload-single wagon:sshexec-->
-					<displayCommandOutputs>true</displayCommandOutputs>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.14</version>
-				<!--<executions>-->
-				<!--<execution>-->
-				<!--<phase>package</phase>-->
-				<!--<goals>-->
-				<!--<goal>build</goal>-->
-				<!--</goals>-->
-				<!--</execution>-->
-				<!--</executions>-->
-				<configuration>
-					<imageName>renren/security</imageName>
-					<dockerDirectory>${project.basedir}</dockerDirectory>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-						</resource>
-					</resources>
-				</configuration>
-				<!-- 运行命令 mvn clean package docker:build 打包并生成docker镜像 -->
-			</plugin>
 		</plugins>
+		<finalName>${artifactId}</finalName>
 	</build>
 
 	<repositories>

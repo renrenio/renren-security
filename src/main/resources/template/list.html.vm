@@ -2,11 +2,11 @@
 <html>
 <head>
 <title>${comments}</title>
-#set($header='#parse("header.html")')
-#set($save='#if($shiro.hasPermission("'+${pathName}+':save"))')
-#set($update='#if($shiro.hasPermission("'+${pathName}+':update"))')
-#set($delete='#if($shiro.hasPermission("'+${pathName}+':delete"))')
-#set($end='#end')
+#set($header='<#include "/header.html">')
+#set($save='<#if shiro.hasPermission("'+${pathName}+':save")>')
+#set($update='<#if shiro.hasPermission("'+${pathName}+':update")>')
+#set($delete='<#if shiro.hasPermission("'+${pathName}+':delete")>')
+#set($end='</#if>')
 $header
 </head>
 <body>
@@ -14,13 +14,13 @@ $header
 	<div v-show="showList">
 		<div class="grid-btn">
 			$save
-			<a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
 			$end
 			$update
-			<a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
 			$end
 			$delete
-			<a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
 			$end
 		</div>
 	    <table id="jqGrid"></table>
@@ -49,6 +49,6 @@ $header
 	</div>
 </div>
 
-<script src="${rc.contextPath}/statics/js/modules/generator/${pathName}.js?_${date.systemTime}"></script>
+<script src="${request.contextPath}/statics/js/modules/generator/${pathName}.js?_${.now?long}"></script>
 </body>
 </html>
