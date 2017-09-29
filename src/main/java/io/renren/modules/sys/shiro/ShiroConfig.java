@@ -1,6 +1,5 @@
 package io.renren.modules.sys.shiro;
 
-import freemarker.template.utility.XmlEscape;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -10,12 +9,9 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -28,16 +24,6 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-
-//    @Bean(name ="freemarkerConfig")
-//    public FreeMarkerConfigurer getFreemarkerConfig() {
-//        FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
-//
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("shiro", new ShiroTag());
-//        configurer.setFreemarkerVariables(map);
-//        return configurer;
-//    }
 
     @Bean("sessionManager")
     public SessionManager sessionManager(RedisShiroSessionDAO redisShiroSessionDAO, @Value("${renren.redis.open}") boolean redisOpen,
@@ -74,7 +60,6 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/statics/**", "anon");
-        filterMap.put("/swagger/**", "anon");
         filterMap.put("/login.html", "anon");
         filterMap.put("/sys/login", "anon");
         filterMap.put("/favicon.ico", "anon");

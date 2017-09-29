@@ -1,7 +1,6 @@
 package io.renren.modules.sys.dao;
 
 import io.renren.modules.sys.entity.SysRoleDeptEntity;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -12,7 +11,6 @@ import java.util.List;
  * @email sunlightcs@gmail.com
  * @date 2017年6月21日 23:33:46
  */
-@Mapper
 public interface SysRoleDeptDao extends BaseDao<SysRoleDeptEntity> {
 	
 	/**
