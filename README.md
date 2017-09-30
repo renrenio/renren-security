@@ -10,46 +10,50 @@
 - 灵活的权限控制，可控制到页面或按钮，满足绝大部分的权限需求
 - 完善的部门管理及数据权限，通过注解实现数据权限的控制
 - 完善的XSS防范及脚本过滤，彻底杜绝XSS攻击
+- 支持分布式部署，session存储在redis中
 - 友好的代码结构及注释，便于阅读及二次开发
 
 **项目结构** 
 ```
 renren-security
 ├─doc  项目SQL语句
-├─renren-common 公共模块
-│  ├─annotation 公共注解
-│  ├─oss 云存储服务
-│  ├─validator 后台校验
-│  └─db.properties 数据库配置文件
+├─common  公共
+├─modules 模块
+│  ├─gen 代码生成器
+│  ├─job 定时任务
+│  ├─oss 文件存储
+│  └─sys 系统管理(核心)
 │ 
-├─renren-api API模块（接口开发）
-│ 
-├─renren-gen 代码生成器模块
+├─resources 
+│  ├─mapper   MyBatis配置文件
 │  ├─template 代码生成器模板（可增加或修改相应模板）
-│  └─generator.properties 配置文件（配置包名、类型转换等）
+│  ├─db.properties  数据库配置文件
+│  └─generator.properties  代码生成器配置文件
 │ 
-├─renren-schedule 定时任务模块
+├─webapp 
+│  ├─statics   静态资源
+│  ├─swagger   swagger ui
+│  ├─db.properties   数据库配置文件
+│  └─WEB-INF/views   系统页面
+│     ├─modules      模块页面
+│     ├─index.html   AdminLTE主题风格（默认主题）
+│     └─index1.html  Layui主题风格
 │
-├─renren-shiro 权限模块
-│  
-├──renren-web 管理后台模块
-│  ├─js 系统业务js代码
-│  ├─statics 第三方库、插件等静态资源
-│  ├─index.html AdminLTE主题风格（默认主题）
-│  └─index1.html Layui主题风格
 
 ```
 
+<br><br>
 
 **如何交流、反馈、参与贡献？** 
 - 项目主页：http://www.renren.io/open/
-- 开发文档：http://www.renren.io/open/doc.html
-- oschina仓库：http://git.oschina.net/babaio/renren-security
+- oschina仓库：https://gitee.com/babaio/renren-security
 - github仓库：https://github.com/sunlightcs/renren-security
-- [编程入门教程](http://www.renren.io)：http://www.renren.io   
+- [人人开源](http://www.renren.io)：http://www.renren.io   
 - 官方QQ群：324780204、145799952
 - 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
 - 技术讨论、二次开发等咨询、问题和建议，请移步到QQ群324780204、145799952，我会在第一时间进行解答和回复！
+
+<br><br>
 
 **Layui主题风格：**
 ![输入图片说明](http://cdn.renren.io/img/2f6a43b9081e421ab8aa596155cd0ffc "在这里输入图片标题")
@@ -63,11 +67,7 @@ renren-security
 ![输入图片说明](http://cdn.renren.io/img/92cd56f397754292a1a182f662a7e883 "在这里输入图片标题")
 ![输入图片说明](http://cdn.renren.io/img/0b56efe56fd64ed18e33a9e6dbb6e88c "在这里输入图片标题")
 
-
-
-
-
-
+<br><br>
 
  **技术选型：** 
 - 核心框架：Spring Framework 4.3
@@ -75,10 +75,11 @@ renren-security
 - 视图框架：Spring MVC 4.3
 - 持久层框架：MyBatis 3.3
 - 定时器：Quartz 2.2
-- 数据库连接池：Druid 1.0
+- 数据库连接池：Druid 1.1
 - 日志管理：SLF4J 1.7、Log4j
 - 页面交互：Vue2.x
 
+<br><br>
 
  **软件需求** 
 - JDK1.7+
@@ -86,7 +87,7 @@ renren-security
 - Tomcat7.0+
 - Maven3.0+
 
-
+<br><br>
 
  **本地部署**
 - 通过git下载源码
@@ -97,6 +98,6 @@ renren-security
 - 项目访问路径：http://localhost:8080
 - 账号密码：admin/admin
 
-
+<br><br>
 
 ![捐赠](http://cdn.renren.io/donate.jpg "捐赠") 
