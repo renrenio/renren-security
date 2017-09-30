@@ -42,7 +42,39 @@ renren-security
 
 ```
 
-<br><br>
+
+<br>
+
+ **技术选型：** 
+- 核心框架：Spring Framework 4.3
+- 安全框架：Apache Shiro 1.3
+- 视图框架：Spring MVC 4.3
+- 持久层框架：MyBatis 3.3
+- 定时器：Quartz 2.2
+- 数据库连接池：Druid 1.1
+- 日志管理：SLF4J 1.7、Log4j
+- 页面交互：Vue2.x
+
+<br>
+
+ **软件需求** 
+- JDK1.7+
+- MySQL5.5+
+- Tomcat7.0+
+- Maven3.0+
+
+<br>
+
+ **本地部署**
+- 通过git下载源码
+- 创建数据库renren_security，数据库编码为UTF-8
+- 执行doc/db.sql文件，初始化数据【按需导入表结构及数据】
+- 修改db.properties文件，更新MySQL账号和密码
+- Eclipse、IDEA执行【clean package tomcat7:run】命令，即可运行项目
+- 项目访问路径：http://localhost:8080
+- 账号密码：admin/admin
+
+<br>
 
 **如何交流、反馈、参与贡献？** 
 - 项目主页：http://www.renren.io/open/
@@ -52,8 +84,6 @@ renren-security
 - 官方QQ群：324780204、145799952
 - 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
 - 技术讨论、二次开发等咨询、问题和建议，请移步到QQ群324780204、145799952，我会在第一时间进行解答和回复！
-
-<br><br>
 
 **Layui主题风格：**
 ![输入图片说明](http://cdn.renren.io/img/2f6a43b9081e421ab8aa596155cd0ffc "在这里输入图片标题")
@@ -69,34 +99,6 @@ renren-security
 
 <br><br>
 
- **技术选型：** 
-- 核心框架：Spring Framework 4.3
-- 安全框架：Apache Shiro 1.3
-- 视图框架：Spring MVC 4.3
-- 持久层框架：MyBatis 3.3
-- 定时器：Quartz 2.2
-- 数据库连接池：Druid 1.1
-- 日志管理：SLF4J 1.7、Log4j
-- 页面交互：Vue2.x
-
-<br><br>
-
- **软件需求** 
-- JDK1.7+
-- MySQL5.5+
-- Tomcat7.0+
-- Maven3.0+
-
-<br><br>
-
- **本地部署**
-- 通过git下载源码
-- 创建数据库renren_security，数据库编码为UTF-8
-- 执行doc/db.sql文件，初始化数据【按需导入表结构及数据】
-- 修改db.properties文件，更新MySQL账号和密码
-- Eclipse、IDEA执行【clean package tomcat7:run】命令，即可运行项目
-- 项目访问路径：http://localhost:8080
-- 账号密码：admin/admin
 
 <br><br>
 
