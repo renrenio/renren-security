@@ -76,6 +76,13 @@ renren-security
 
 <br>
 
+ **分布式部署**
+- 分布式部署，需要安装redis，并配置config.properties里的redis信息
+- 需要配置【renren.redis.open=true】，表示开启redis缓存
+- 需要配置【renren.shiro.redis=true】，表示把shiro session存到redis里
+
+<br>
+
 **如何交流、反馈、参与贡献？** 
 - 项目主页：http://www.renren.io/open/
 - oschina仓库：https://gitee.com/babaio/renren-security
@@ -84,6 +91,8 @@ renren-security
 - 官方QQ群：324780204、145799952
 - 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
 - 技术讨论、二次开发等咨询、问题和建议，请移步到QQ群324780204、145799952，我会在第一时间进行解答和回复！
+
+<br><br>
 
 **Layui主题风格：**
 ![输入图片说明](http://cdn.renren.io/img/2f6a43b9081e421ab8aa596155cd0ffc "在这里输入图片标题")
