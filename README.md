@@ -27,9 +27,10 @@ renren-security
 │  └─sys 系统管理(核心)
 │ 
 ├─resources 
-│  ├─mapper   MyBatis配置文件
+│  ├─mapper   SQL文件
 │  ├─template 代码生成器模板（可增加或修改相应模板）
 │  ├─db.properties  数据库配置文件
+│  ├─config.properties  其他配置文件
 │  └─generator.properties  代码生成器配置文件
 │ 
 ├─webapp 
