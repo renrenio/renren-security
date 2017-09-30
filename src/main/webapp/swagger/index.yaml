@@ -4,6 +4,8 @@ info:
   version: 3.0.0
   title: renren-security
 
+basePath: /renren-security
+
 schemes:
   - http
 

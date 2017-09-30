@@ -43,7 +43,6 @@ renren-security
 ├─webapp 
 │  ├─statics   静态资源
 │  ├─swagger   swagger ui
-│  ├─db.properties   数据库配置文件
 │  └─WEB-INF/views   系统页面
 │     ├─modules      模块页面
 │     ├─index.html   AdminLTE主题风格（默认主题）
@@ -80,9 +79,9 @@ renren-security
 - 执行doc/db.sql文件，初始化数据【按需导入表结构及数据】
 - 修改db.properties文件，更新MySQL账号和密码
 - Eclipse、IDEA执行【clean package tomcat7:run】命令，即可运行项目
-- 项目访问路径：http://localhost:8080
+- 项目访问路径：http://localhost:8080/renren-security
 - 账号密码：admin/admin
-- swagger文档路径：http://localhost:8080/swagger/index.html
+- swagger文档路径：http://localhost:8080/renren-security/swagger/index.html
 
 <br>
 

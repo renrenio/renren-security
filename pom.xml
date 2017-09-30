@@ -285,7 +285,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<path>/</path>
+					<path>/renren-security</path>
 					<charset>UTF-8</charset>
 					<port>8080</port>
 					<uriEncoding>UTF-8</uriEncoding>
