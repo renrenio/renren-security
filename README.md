@@ -1,7 +1,7 @@
 **项目说明** 
 - 采用Spring、MyBatis、Shiro框架，开发的一套权限系统，极低门槛，拿来即用。设计之初，就非常注重安全性，为企业系统保驾护航，让一切都变得如此简单。
 - 提供了代码生成器，只需编写30%左右代码，其余的代码交给系统自动生成，可快速完成开发任务
-- 提供了SpringBoot版，方便SpringBoot开发者，获取[SpringBoot版](../../tree/renren-security-boot)
+- 提供了SpringBoot版，方便SpringBoot开发者，获取【[SpringBoot版](../../tree/renren-security-boot)】
 
 <br>
 
@@ -12,6 +12,8 @@
 - 完善的XSS防范及脚本过滤，彻底杜绝XSS攻击
 - 支持分布式部署，session存储在redis中
 - 友好的代码结构及注释，便于阅读及二次开发
+
+<br>
 
 **项目结构** 
 ```
@@ -105,9 +107,6 @@ renren-security
 ![输入图片说明](http://cdn.renren.io/img/92cd56f397754292a1a182f662a7e883 "在这里输入图片标题")
 ![输入图片说明](http://cdn.renren.io/img/0b56efe56fd64ed18e33a9e6dbb6e88c "在这里输入图片标题")
 
-<br><br>
-
-
-<br><br>
+<br>
 
 ![捐赠](http://cdn.renren.io/donate.jpg "捐赠") 
