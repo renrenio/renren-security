@@ -93,6 +93,12 @@ renren-security
 
 <br>
 
+ **项目演示**
+- 演示地址：http://demo.open.renren.io/renren-security
+- 账号密码：admin/admin
+
+<br>
+
 **如何交流、反馈、参与贡献？** 
 - 项目主页：http://www.renren.io/open/
 - oschina仓库：https://gitee.com/babaio/renren-security
