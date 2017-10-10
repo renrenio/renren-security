@@ -1,7 +1,6 @@
 package io.renren.common.utils;
 
 import com.google.gson.Gson;
-import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
@@ -69,16 +68,6 @@ public class RedisUtils {
 
     public String get(String key) {
         return get(key, NOT_EXPIRE);
-    }
-
-    public Session getShiroSession(String key) {
-        return (Session)redisTemplate.opsForValue().get(key);
-    }
-
-    public void setShiroSession(String key, Session session){
-        redisTemplate.opsForValue().set(key, session);
-        //60分钟过期
-        redisTemplate.expire(key, 60, TimeUnit.MINUTES);
     }
 
     public void delete(String key) {
