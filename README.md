@@ -47,7 +47,6 @@ renren-security
 │     ├─modules      模块页面
 │     ├─index.html   AdminLTE主题风格（默认主题）
 │     └─index1.html  Layui主题风格
-│
 
 ```
 
