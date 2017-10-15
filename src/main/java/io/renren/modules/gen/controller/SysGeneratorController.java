@@ -1,6 +1,6 @@
 package io.renren.modules.gen.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
 import io.renren.common.utils.R;
@@ -56,12 +56,11 @@ public class SysGeneratorController {
 	@RequestMapping("/code")
 	@RequiresPermissions("sys:generator:code")
 	public void code(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String[] tableNames = new String[]{};
 		//获取表名，不进行xss过滤
 		HttpServletRequest orgRequest = XssHttpServletRequestWrapper.getOrgRequest(request);
 		String tables = orgRequest.getParameter("tables");
-		tableNames = JSON.parseArray(tables).toArray(tableNames);
-		
+
+		String[] tableNames = new Gson().fromJson(tables, String[].class);
 		byte[] data = sysGeneratorService.generatorCode(tableNames);
 		
 		response.reset();  
