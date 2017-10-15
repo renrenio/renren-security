@@ -1,0 +1,8 @@
+version: '2'
+services:
+  renren-security:
+    image: renren/security
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.profiles.active=dev

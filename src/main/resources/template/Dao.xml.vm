@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${package}.dao.${className}Dao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="${package}.entity.${className}Entity" id="${classname}Map">
+#foreach($column in $columns)
+        <result property="${column.attrname}" column="${column.columnName}"/>
+#end
+    </resultMap>
+
+	<select id="queryObject" resultType="${package}.entity.${className}Entity">
+		select * from ${tableName} where ${pk.columnName} = #{value}
+	</select>
+
+	<select id="queryList" resultType="${package}.entity.${className}Entity">
+		select * from ${tableName}
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ${pk.columnName} desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from ${tableName} 
+	</select>
+	 
+	<insert id="save" parameterType="${package}.entity.${className}Entity"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
+		insert into ${tableName}
+		(
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
+			`$column.columnName`#if($velocityCount != $columns.size()), #end
+
+#end			
+#end
+		)
+		values
+		(
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
+			#{$column.attrname}#if($velocityCount != $columns.size()), #end
+
+#end			
+#end
+		)
+	</insert>
+	 
+	<update id="update" parameterType="${package}.entity.${className}Entity">
+		update ${tableName} 
+		<set>
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName)
+			<if test="$column.attrname != null">`$column.columnName` = #{$column.attrname}#if($velocityCount != $columns.size()), #end</if>
+#end
+#end
+		</set>
+		where ${pk.columnName} = #{${pk.attrname}}
+	</update>
+	
+	<delete id="delete">
+		delete from ${tableName} where ${pk.columnName} = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from ${tableName} where ${pk.columnName} in 
+		<foreach item="${pk.attrname}" collection="array" open="(" separator="," close=")">
+			#{${pk.attrname}}
+		</foreach>
+	</delete>
+
+</mapper>
