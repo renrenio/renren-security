@@ -20,6 +20,6 @@ public class RedisTest {
         redisUtils.set("domain", "renren.io");
         String domain = redisUtils.get("domain");
 
-        System.out.println(ToStringBuilder.reflectionToString(user));
+        System.out.println(domain);
     }
 }
