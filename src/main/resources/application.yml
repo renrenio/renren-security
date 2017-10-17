@@ -16,11 +16,6 @@ spring:
     jackson:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss
-    freemarker:
-        suffix: .html
-        request-context-attribute: request
-        settings:
-            number_format: 0.##
     http:
         multipart:
             max-file-size: 100MB
