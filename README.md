@@ -52,9 +52,10 @@ renren-security
 <br>
 
  **war包部署**
-- 打war包，执行【mvn clean package -f pom-war.xml】，则会生成renren-security.war
-- 需要Tomcat8.0以上版本，Tomcat8.0以下的版本，不支持SpringBoot项目
-- 把renren-security.war放到Tomcat8.0的webapps下，启动Tomcat8.0即可访问
+- 部署在Tomcat里，需要使用Tomcat8.0以上版本
+- 在项目的根目录下，执行【mvn clean package -f pom-war.xml】
+- 把生成的renren-security.war，放到Tomcat的webapps里面，并启动Tomcat
+- 项目访问路径：http://localhost:8080/renren-security
 
 <br>
 
