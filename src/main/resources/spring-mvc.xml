@@ -57,6 +57,12 @@
 				<entry key="shiro" value-ref="shiroTag" />
 			</map>
 		</property>
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="numberFormat">0.##</prop>
+			</props>
+		</property>
 	</bean>
 	
 	<!-- JSP视图解析器  -->
