@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.7.RELEASE</version>
+		<version>1.5.8.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -36,7 +36,7 @@
 
 		<!--wagon plugin 配置-->
 		<service-path>/work/renren</service-path>
-		<pack-name>${artifactId}-${version}.jar</pack-name>
+		<pack-name>${project.artifactId}.jar</pack-name>
 		<remote-addr>192.168.1.10:22</remote-addr>
 		<remote-username>root</remote-username>
 		<remote-passwd>123456</remote-passwd>
@@ -67,11 +67,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -173,7 +168,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}</finalName>
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
@@ -217,7 +211,6 @@
 					<displayCommandOutputs>true</displayCommandOutputs>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
@@ -244,6 +237,21 @@
 				<!-- 运行命令 mvn clean package docker:build 打包并生成docker镜像 -->
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/webapp</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+		<finalName>${project.artifactId}</finalName>
 	</build>
 
 	<repositories>

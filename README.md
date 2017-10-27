@@ -51,14 +51,6 @@ renren-security
 
 <br>
 
- **war包部署**
-- 部署在Tomcat里，需要使用Tomcat8.0以上版本
-- 在项目的根目录下，执行【mvn clean package -f pom-war.xml】
-- 把生成的renren-security.war，放到Tomcat的webapps里面，并启动Tomcat
-- 项目访问路径：http://localhost:8080/renren-security
-
-<br>
-
  **分布式部署**
 - 分布式部署，需要安装redis，并配置application.yml里的redis信息
 - 需要配置【renren.redis.open=true】，表示开启redis缓存
