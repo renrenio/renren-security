@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/mvc
+     	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+     	http://www.springframework.org/schema/context
+     	http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<context:component-scan base-package="io.renren" />
+	<context:annotation-config />
+	<mvc:default-servlet-handler />
+	<mvc:resources
+			mapping="/webjars/**"
+			location="classpath:/META-INF/resources/webjars/" />
+
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="io.renren.resolver.LoginUserHandlerMethodArgumentResolver">
+				<property name="userService" ref="userService"></property>
+			</bean>
+		</mvc:argument-resolvers>
+		<mvc:message-converters register-defaults="true">
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json</value>
+					</list>
+				</property>
+				<property name="features">
+					<list>
+						<value>WriteMapNullValue</value>
+						<value>QuoteFieldNames</value>
+						<value>WriteDateUseDateFormat</value>
+						<!-- 禁用fastjson循环引用检测 -->
+						<value>DisableCircularReferenceDetect</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!--<bean name="authorizationInterceptor" class="io.renren.interceptor.AuthorizationInterceptor"/>-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<ref bean="authorizationInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+</beans>

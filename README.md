@@ -1,8 +1,6 @@
 **项目说明** 
 - 采用Spring、MyBatis、Shiro框架，开发的一套权限系统，极低门槛，拿来即用。设计之初，就非常注重安全性，为企业系统保驾护航，让一切都变得如此简单。
 - 提供了代码生成器，只需编写30%左右代码，其余的代码交给系统自动生成，可快速完成开发任务
-- 提供了SpringBoot版，方便SpringBoot开发者，获取【[SpringBoot版](../../tree/renren-security-boot)】
-- 提供了没有部门管理版，获取【[没有部门管理版](../../tree/renren-security-boot-nodept)】
 <br>
 
 **具有如下特点** 
@@ -75,12 +73,12 @@ renren-security
  **本地部署**
 - 通过git下载源码
 - 创建数据库renren_security，数据库编码为UTF-8
-- 执行doc/db.sql文件，初始化数据【按需导入表结构及数据】
+- 执行db/mysql.sql文件，初始化数据【按需导入表结构及数据】
 - 修改db.properties文件，更新MySQL账号和密码
 - Eclipse、IDEA执行【clean package tomcat7:run】命令，即可运行项目
-- 项目访问路径：http://localhost:8080/renren-security
+- 项目访问路径：http://localhost:8080/renren-admin
 - 账号密码：admin/admin
-- swagger文档路径：http://localhost:8080/renren-security/swagger/index.html
+- swagger文档路径：http://localhost:8080/renren-admin/swagger/index.html
 
 <br>
 
@@ -100,7 +98,7 @@ renren-security
 **如何交流、反馈、参与贡献？** 
 - 项目主页：http://www.renren.io/open/
 - oschina仓库：https://gitee.com/babaio/renren-security
-- github仓库：https://github.com/sunlightcs/renren-security
+- github仓库：https://github.com/renrenio/renren-security
 - [人人开源](http://www.renren.io)：http://www.renren.io   
 - 官方QQ群：324780204、145799952
 - 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
