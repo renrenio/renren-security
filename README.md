@@ -23,6 +23,34 @@
 **项目结构** 
 ```
 renren-security
+├─renren-common     公共模块
+│ 
+├─renren-admin      管理后台
+│    ├─db  数据库SQL脚本
+│    │ 
+│    ├─modules  模块
+│    │    ├─job 定时任务
+│    │    ├─oss 文件存储
+│    │    └─sys 系统管理(核心)
+│    │ 
+│    ├─resources 
+│    │  ├─mapper   SQL文件
+│    │  ├─db.properties  数据库配置文件
+│    │  ├─config.properties  其他配置文件
+│    │  └─generator.properties  代码生成器配置文件
+│    │   
+│    └─webapp  
+│         ├─statics   静态资源
+│         ├─swagger   swagger ui
+│         └─WEB-INF/views   系统页面
+│              ├─modules      模块页面
+│              ├─index.html   AdminLTE主题风格（默认主题）
+│              └─index1.html  Layui主题风格
+│ 
+├─renren-api        API服务
+│ 
+├─renren-generator  代码生成器
+
 ├─doc  项目SQL语句
 ├─common  公共
 ├─modules 模块

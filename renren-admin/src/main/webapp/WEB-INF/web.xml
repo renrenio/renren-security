@@ -10,7 +10,6 @@
 			classpath:spring-mvc.xml
 			classpath:spring-jdbc.xml
 			classpath:spring-redis.xml
-			classpath:spring-scheduler.xml
 		</param-value>
 	</context-param>
 	
