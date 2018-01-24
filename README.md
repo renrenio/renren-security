@@ -34,15 +34,15 @@ renren-security
 │    │    └─sys 系统管理(核心)
 │    │ 
 │    ├─resources 
-│    │  ├─mapper   SQL文件
+│    │  ├─mapper   MyBatis文件
 │    │  ├─db.properties  数据库配置文件
 │    │  ├─config.properties  其他配置文件
-│    │  └─generator.properties  代码生成器配置文件
+│    │  └─log4j.properties   log4j配置文件
 │    │   
 │    └─webapp  
 │         ├─statics   静态资源
 │         ├─swagger   swagger ui
-│         └─WEB-INF/views   系统页面
+│         └─WEB-INF/views     系统页面
 │              ├─modules      模块页面
 │              ├─index.html   AdminLTE主题风格（默认主题）
 │              └─index1.html  Layui主题风格
@@ -50,30 +50,12 @@ renren-security
 ├─renren-api        API服务
 │ 
 ├─renren-generator  代码生成器
-
-├─doc  项目SQL语句
-├─common  公共
-├─modules 模块
-│  ├─gen 代码生成器
-│  ├─job 定时任务
-│  ├─oss 文件存储
-│  └─sys 系统管理(核心)
-│ 
-├─resources 
-│  ├─mapper   SQL文件
-│  ├─template 代码生成器模板（可增加或修改相应模板）
-│  ├─db.properties  数据库配置文件
-│  ├─config.properties  其他配置文件
-│  └─generator.properties  代码生成器配置文件
-│ 
-├─webapp 
-│  ├─statics   静态资源
-│  ├─swagger   swagger ui
-│  └─WEB-INF/views   系统页面
-│     ├─modules      模块页面
-│     ├─index.html   AdminLTE主题风格（默认主题）
-│     └─index1.html  Layui主题风格
-
+│        └─resources 
+│           ├─mapper   MyBatis文件
+│           ├─template 代码生成器模板（可增加或修改相应模板）
+│           ├─db.properties  数据库配置文件
+│           └─log4j.properties   log4j配置文件
+│
 ```
 
 <br>
@@ -83,7 +65,7 @@ renren-security
 - 安全框架：Apache Shiro 1.3
 - 视图框架：Spring MVC 4.3
 - 持久层框架：MyBatis 3.3
-- 定时器：Quartz 2.2
+- 定时器：Quartz 2.3
 - 数据库连接池：Druid 1.1
 - 日志管理：SLF4J 1.7、Log4j
 - 页面交互：Vue2.x
@@ -91,7 +73,7 @@ renren-security
 <br>
 
  **软件需求** 
-- JDK1.7+
+- JDK1.8
 - MySQL5.5+
 - Tomcat7.0+
 - Maven3.0+
