@@ -3,6 +3,7 @@ package io.renren.controller;
 
 import io.renren.annotation.Login;
 import io.renren.common.utils.R;
+import io.renren.common.validator.ValidatorUtils;
 import io.renren.form.LoginForm;
 import io.renren.service.TokenService;
 import io.renren.service.UserService;
@@ -34,6 +35,9 @@ public class ApiLoginController {
     @PostMapping("login")
     @ApiOperation("登录")
     public R login(@RequestBody LoginForm form){
+        //表单校验
+        ValidatorUtils.validateEntity(form);
+
         //用户登录
         Map<String, Object> map = userService.login(form);
 

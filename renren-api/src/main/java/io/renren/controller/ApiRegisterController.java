@@ -2,6 +2,7 @@ package io.renren.controller;
 
 
 import io.renren.common.utils.R;
+import io.renren.common.validator.ValidatorUtils;
 import io.renren.entity.UserEntity;
 import io.renren.form.RegisterForm;
 import io.renren.service.UserService;
@@ -32,6 +33,9 @@ public class ApiRegisterController {
     @PostMapping("register")
     @ApiOperation("注册")
     public R register(@RequestBody RegisterForm form){
+        //表单校验
+        ValidatorUtils.validateEntity(form);
+
         UserEntity user = new UserEntity();
         user.setMobile(form.getMobile());
         user.setUsername(form.getMobile());
