@@ -1,50 +1,51 @@
 package io.renren.controller;
 
 
+import io.renren.annotation.Login;
 import io.renren.common.utils.R;
-import io.renren.common.validator.Assert;
+import io.renren.form.LoginForm;
 import io.renren.service.TokenService;
 import io.renren.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Map;
 
 /**
- * APP登录授权
+ * 登录接口
  *
  * @author chenshun
  * @email sunlightcs@gmail.com
  * @date 2017-03-23 15:31
  */
 @RestController
-@RequestMapping("/app")
-@Api("APP登录接口")
+@RequestMapping("/api")
+@Api(tags="登录接口")
 public class ApiLoginController {
     @Autowired
     private UserService userService;
     @Autowired
     private TokenService tokenService;
 
-    /**
-     * 登录
-     */
+
     @PostMapping("login")
     @ApiOperation("登录")
-    public R login(String mobile, String password){
-        Assert.isBlank(mobile, "手机号不能为空");
-        Assert.isBlank(password, "密码不能为空");
-
+    public R login(@RequestBody LoginForm form){
         //用户登录
-        long userId = userService.login(mobile, password);
-
-        Map<String, Object> map = tokenService.createToken(userId);
+        Map<String, Object> map = userService.login(form);
 
         return R.ok(map);
+    }
+
+    @Login
+    @PostMapping("logout")
+    @ApiOperation("退出")
+    public R logout(@ApiIgnore @RequestAttribute("userId") long userId){
+        tokenService.expireToken(userId);
+        return R.ok();
     }
 
 }

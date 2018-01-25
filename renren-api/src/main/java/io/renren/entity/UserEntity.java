@@ -16,6 +16,7 @@
 
 package io.renren.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
@@ -34,17 +35,28 @@ import java.util.Date;
 @TableName("tb_user")
 public class UserEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	//用户ID
+
+	/**
+	 * 用户ID
+	 */
 	@TableId
 	private Long userId;
-	//用户名
+	/**
+	 * 用户名
+	 */
 	private String username;
-	//手机号
+	/**
+	 * 手机号
+	 */
 	private String mobile;
-	//密码
-	transient private String password;
-	//创建时间
+	/**
+	 * 密码
+	 */
+	@JSONField(serialize=false)
+	private String password;
+	/**
+	 * 创建时间
+	 */
 	private Date createTime;
 
 	/**

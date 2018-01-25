@@ -43,7 +43,6 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<!--<bean name="authorizationInterceptor" class="io.renren.interceptor.AuthorizationInterceptor"/>-->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />

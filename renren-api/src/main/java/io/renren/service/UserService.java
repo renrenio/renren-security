@@ -19,6 +19,9 @@ package io.renren.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import io.renren.entity.UserEntity;
+import io.renren.form.LoginForm;
+
+import java.util.Map;
 
 /**
  * 用户
@@ -33,9 +36,8 @@ public interface UserService extends IService<UserEntity> {
 
 	/**
 	 * 用户登录
-	 * @param mobile    手机号
-	 * @param password  密码
-	 * @return          返回用户ID
+	 * @param form    登录表单
+	 * @return        返回登录信息
 	 */
-	long login(String mobile, String password);
+	Map<String, Object> login(LoginForm form);
 }

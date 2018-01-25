@@ -11,30 +11,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
- * APP测试接口
+ * 测试接口
  *
  * @author chenshun
  * @email sunlightcs@gmail.com
  * @date 2017-03-23 15:47
  */
 @RestController
-@RequestMapping("/app")
-@Api("APP测试接口")
+@RequestMapping("/api")
+@Api(tags="测试接口")
 public class ApiTestController {
 
     @Login
     @GetMapping("userInfo")
-    @ApiOperation("获取用户信息")
-    public R userInfo(@LoginUser UserEntity user){
+    @ApiOperation(value="获取用户信息", response=UserEntity.class)
+    public R userInfo(@ApiIgnore @LoginUser UserEntity user){
         return R.ok().put("user", user);
     }
 
     @Login
     @GetMapping("userId")
     @ApiOperation("获取用户ID")
-    public R userInfo(@RequestAttribute("userId") Integer userId){
+    public R userInfo(@ApiIgnore @RequestAttribute("userId") Integer userId){
         return R.ok().put("userId", userId);
     }
 

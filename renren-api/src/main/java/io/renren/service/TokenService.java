@@ -19,8 +19,6 @@ package io.renren.service;
 import com.baomidou.mybatisplus.service.IService;
 import io.renren.entity.TokenEntity;
 
-import java.util.Map;
-
 /**
  * 用户Token
  * 
@@ -35,8 +33,14 @@ public interface TokenService extends IService<TokenEntity> {
 	/**
 	 * 生成token
 	 * @param userId  用户ID
-	 * @return        返回token相关信息
+	 * @return        返回token信息
 	 */
-	Map<String, Object> createToken(long userId);
+	TokenEntity createToken(long userId);
+
+	/**
+	 * 设置token过期
+	 * @param userId 用户ID
+	 */
+	void expireToken(long userId);
 
 }

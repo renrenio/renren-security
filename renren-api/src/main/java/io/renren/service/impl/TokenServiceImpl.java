@@ -24,14 +24,14 @@ import io.renren.service.TokenService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 
 @Service("tokenService")
 public class TokenServiceImpl extends ServiceImpl<TokenDao, TokenEntity> implements TokenService {
-	//12小时后过期
+	/**
+	 * 12小时后过期
+	 */
 	private final static int EXPIRE = 3600 * 12;
 
 	@Override
@@ -40,39 +40,38 @@ public class TokenServiceImpl extends ServiceImpl<TokenDao, TokenEntity> impleme
 	}
 
 	@Override
-	public Map<String, Object> createToken(long userId) {
-		//生成一个token
-		String token = UUID.randomUUID().toString();
+	public TokenEntity createToken(long userId) {
 		//当前时间
 		Date now = new Date();
-
 		//过期时间
 		Date expireTime = new Date(now.getTime() + EXPIRE * 1000);
 
-		//判断是否生成过token
-		TokenEntity tokenEntity = this.selectById(userId);
-		if(tokenEntity == null){
-			tokenEntity = new TokenEntity();
-			tokenEntity.setUserId(userId);
-			tokenEntity.setToken(token);
-			tokenEntity.setUpdateTime(now);
-			tokenEntity.setExpireTime(expireTime);
+		//生成token
+		String token = generateToken();
 
-			//保存token
-			this.insert(tokenEntity);
-		}else{
-			tokenEntity.setToken(token);
-			tokenEntity.setUpdateTime(now);
-			tokenEntity.setExpireTime(expireTime);
+		//保存或更新用户token
+		TokenEntity tokenEntity = new TokenEntity();
+		tokenEntity.setUserId(userId);
+		tokenEntity.setToken(token);
+		tokenEntity.setUpdateTime(now);
+		tokenEntity.setExpireTime(expireTime);
+		this.insertOrUpdate(tokenEntity);
 
-			//更新token
-			this.updateById(tokenEntity);
-		}
+		return tokenEntity;
+	}
 
-		Map<String, Object> map = new HashMap<>();
-		map.put("token", token);
-		map.put("expire", EXPIRE);
+	@Override
+	public void expireToken(long userId){
+		Date now = new Date();
 
-		return map;
+		TokenEntity tokenEntity = new TokenEntity();
+		tokenEntity.setUserId(userId);
+		tokenEntity.setUpdateTime(now);
+		tokenEntity.setExpireTime(now);
+		this.insertOrUpdate(tokenEntity);
+	}
+
+	private String generateToken(){
+		return UUID.randomUUID().toString().replace("-", "");
 	}
 }
