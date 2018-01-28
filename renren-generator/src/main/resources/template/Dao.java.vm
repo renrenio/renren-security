@@ -1,6 +1,6 @@
-package ${package}.dao;
+package ${package}.${moduleName}.dao;
 
-import ${package}.entity.${className}Entity;
+import ${package}.${moduleName}.entity.${className}Entity;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**

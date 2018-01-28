@@ -26,12 +26,11 @@ import org.springframework.stereotype.Component;
 
 /**
  * 测试定时任务(演示Demo，可删除)
- * 
+ *
  * testTask为spring bean的名称
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年11月30日 下午1:34:24
+ *
+ * @author Mark sunlightcs@gmail.com
+ * @since 1.2.0 2016-11-28
  */
 @Component("testTask")
 public class TestTask {

@@ -16,7 +16,6 @@
 
 package io.renren.modules.job.service;
 
-
 import com.baomidou.mybatisplus.service.IService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.job.entity.ScheduleJobLogEntity;
@@ -25,10 +24,9 @@ import java.util.Map;
 
 /**
  * 定时任务日志
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年12月1日 下午10:34:48
+ *
+ * @author Mark sunlightcs@gmail.com
+ * @since 1.2.0 2016-11-28
  */
 public interface ScheduleJobLogService extends IService<ScheduleJobLogEntity> {
 

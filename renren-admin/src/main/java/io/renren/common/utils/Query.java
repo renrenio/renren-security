@@ -26,17 +26,22 @@ import java.util.Map;
 /**
  * 查询参数
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-03-14 23:15
+ * @author Mark sunlightcs@gmail.com
+ * @since 2.0.0 2017-03-14
  */
 public class Query<T> extends LinkedHashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
-    //mybatis-plus分页参数
+    /**
+     * mybatis-plus分页参数
+     */
     private Page<T> page;
-    //当前页码
+    /**
+     * 当前页码
+     */
     private int currPage = 1;
-    //每页条数
+    /**
+     * 每页条数
+     */
     private int limit = 10;
 
     public Query(Map<String, Object> params){

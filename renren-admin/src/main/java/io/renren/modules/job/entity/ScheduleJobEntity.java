@@ -24,11 +24,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 定时器
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年11月28日 下午12:54:44
+ * 定时任务
+ *
+ * @author Mark sunlightcs@gmail.com
+ * @since 1.2.0 2016-11-28
  */
 @TableName("schedule_job")
 public class ScheduleJobEntity implements Serializable {

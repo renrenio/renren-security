@@ -21,10 +21,9 @@ import io.renren.modules.job.entity.ScheduleJobLogEntity;
 
 /**
  * 定时任务日志
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年12月1日 下午10:30:02
+ *
+ * @author Mark sunlightcs@gmail.com
+ * @since 1.2.0 2016-11-28
  */
 public interface ScheduleJobLogDao extends BaseMapper<ScheduleJobLogEntity> {
 	

@@ -19,9 +19,8 @@ package io.renren.common.utils;
 /**
  * Redis所有Keys
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-07-18 19:51
+ * @author Mark sunlightcs@gmail.com
+ * @since 3.0.0 2017-07-18
  */
 public class RedisKeys {
 

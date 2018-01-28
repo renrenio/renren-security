@@ -55,7 +55,7 @@ public class SwaggerConfig{
             .title("人人开源")
             .description("renren-admin文档")
             .termsOfServiceUrl("http://www.renren.io")
-            .version("1.0")
+            .version("3.1.0")
             .build();
     }
 

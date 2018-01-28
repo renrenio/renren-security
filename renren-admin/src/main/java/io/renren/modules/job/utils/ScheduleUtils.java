@@ -16,7 +16,6 @@
 
 package io.renren.modules.job.utils;
 
-
 import io.renren.common.exception.RRException;
 import io.renren.common.utils.Constant;
 import io.renren.modules.job.entity.ScheduleJobEntity;
@@ -24,10 +23,9 @@ import org.quartz.*;
 
 /**
  * 定时任务工具类
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年11月30日 下午12:44:59
+ *
+ * @author Mark sunlightcs@gmail.com
+ * @since 1.2.0 2016-11-28
  */
 public class ScheduleUtils {
     private final static String JOB_NAME = "TASK_";

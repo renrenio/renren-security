@@ -1,6 +1,6 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: baseURL + '${pathName}/list',
+        url: baseURL + '${moduleName}/${pathName}/list',
         datatype: "json",
         colModel: [			
 #foreach($column in $columns)
@@ -66,11 +66,11 @@ var vm = new Vue({
             vm.getInfo(${pk.attrname})
 		},
 		saveOrUpdate: function (event) {
-			var url = vm.${classname}.${pk.attrname} == null ? "${pathName}/save" : "${pathName}/update";
+			var url = vm.${classname}.${pk.attrname} == null ? "${moduleName}/${pathName}/save" : "${moduleName}/${pathName}/update";
 			$.ajax({
 				type: "POST",
 			    url: baseURL + url,
-			    contentType: "application/json",
+                contentType: "application/json",
 			    data: JSON.stringify(vm.${classname}),
 			    success: function(r){
 			    	if(r.code === 0){
@@ -92,8 +92,8 @@ var vm = new Vue({
 			confirm('确定要删除选中的记录？', function(){
 				$.ajax({
 					type: "POST",
-				    url: baseURL + "${pathName}/delete",
-				    contentType: "application/json",
+				    url: baseURL + "${moduleName}/${pathName}/delete",
+                    contentType: "application/json",
 				    data: JSON.stringify(${pk.attrname}s),
 				    success: function(r){
 						if(r.code == 0){
@@ -108,7 +108,7 @@ var vm = new Vue({
 			});
 		},
 		getInfo: function(${pk.attrname}){
-			$.get(baseURL + "${pathName}/info/"+${pk.attrname}, function(r){
+			$.get(baseURL + "${moduleName}/${pathName}/info/"+${pk.attrname}, function(r){
                 vm.${classname} = r.${classname};
             });
 		},

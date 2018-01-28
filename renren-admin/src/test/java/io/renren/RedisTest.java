@@ -1,25 +1,27 @@
 package io.renren;
 
 import io.renren.common.utils.RedisUtils;
+import io.renren.modules.sys.entity.SysUserEntity;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring-mvc.xml","classpath:spring-jdbc.xml",
-        "classpath:spring-redis.xml","classpath:spring-scheduler.xml",})
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class RedisTest {
     @Autowired
     private RedisUtils redisUtils;
 
     @Test
-    public void test(){
-        //测试redis，需要设置renren.redis.open=true
-        redisUtils.set("domain", "renren.io");
-        String domain = redisUtils.get("domain");
+    public void contextLoads() {
+        SysUserEntity user = new SysUserEntity();
+        user.setEmail("123456@qq.com");
+        redisUtils.set("user", user);
 
-        System.out.println(domain);
+        System.out.println(ToStringBuilder.reflectionToString(redisUtils.get("user", SysUserEntity.class)));
     }
+
 }

@@ -30,10 +30,9 @@ import java.util.Map;
 
 /**
  * 定时任务
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年11月28日 下午2:16:40
+ *
+ * @author Mark sunlightcs@gmail.com
+ * @since 1.2.0 2016-11-28
  */
 @RestController
 @RequestMapping("/sys/schedule")

@@ -1,16 +1,16 @@
-package ${package}.service.impl;
+package ${package}.${moduleName}.service.impl;
 
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import io.renren.common.utils.PageUtils;
-import io.renren.common.utils.Query;
-import ${package}.dao.${className}Dao;
-import ${package}.entity.${className}Entity;
-import ${package}.service.${className}Service;
+import ${mainPath}.common.utils.PageUtils;
+import ${mainPath}.common.utils.Query;
 
+import ${package}.${moduleName}.dao.${className}Dao;
+import ${package}.${moduleName}.entity.${className}Entity;
+import ${package}.${moduleName}.service.${className}Service;
 
 
 @Service("${classname}Service")
@@ -25,5 +25,5 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${clas
 
         return new PageUtils(page);
     }
-	
+
 }

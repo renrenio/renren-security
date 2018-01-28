@@ -61,15 +61,17 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
 		String roleName = (String)params.get("roleName");
 
 		Page<SysRoleEntity> page = this.selectPage(
-				new Query<SysRoleEntity>(params).getPage(),
-				new EntityWrapper<SysRoleEntity>()
-					.like(StringUtils.isNotBlank(roleName),"role_name", roleName)
-					.addFilterIfNeed(params.get(Constant.SQL_FILTER) != null, (String)params.get(Constant.SQL_FILTER))
+			new Query<SysRoleEntity>(params).getPage(),
+			new EntityWrapper<SysRoleEntity>()
+				.like(StringUtils.isNotBlank(roleName),"role_name", roleName)
+				.addFilterIfNeed(params.get(Constant.SQL_FILTER) != null, (String)params.get(Constant.SQL_FILTER))
 		);
 
 		for(SysRoleEntity sysRoleEntity : page.getRecords()){
 			SysDeptEntity sysDeptEntity = sysDeptService.selectById(sysRoleEntity.getDeptId());
-			sysRoleEntity.setDeptName(sysDeptEntity.getName());
+			if(sysDeptEntity != null){
+				sysRoleEntity.setDeptName(sysDeptEntity.getName());
+			}
 		}
 
 		return new PageUtils(page);

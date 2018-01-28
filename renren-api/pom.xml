@@ -2,7 +2,7 @@
 	<parent>
 		<groupId>io.renren</groupId>
 		<artifactId>renren-security</artifactId>
-		<version>3.0.0</version>
+		<version>3.1.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>renren-api</artifactId>
@@ -10,27 +10,15 @@
 	<description>renren-api</description>
 
 	<properties>
-		<log4j-version>1.2.17</log4j-version>
 		<swagger.version>2.7.0</swagger.version>
-		<jackson.version>2.8.11</jackson.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>io.renren</groupId>
 			<artifactId>renren-common</artifactId>
-			<version>3.0.0</version>
+			<version>3.1.0</version>
 		</dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j-version}</version>
-        </dependency>
-		<dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j-version}</version>
-        </dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -41,41 +29,14 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${swagger.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${java-version}</source>
-					<target>${java-version}</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<!-- 跳过单元测试 -->
 			<plugin>
@@ -83,17 +44,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<skipTests>true</skipTests>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<path>/renren-api</path>
-					<charset>UTF-8</charset>
-					<port>8081</port>
-					<uriEncoding>UTF-8</uriEncoding>
 				</configuration>
 			</plugin>
 		</plugins>
