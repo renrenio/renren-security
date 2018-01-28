@@ -73,7 +73,7 @@ renren-security
  **软件需求** 
 - JDK1.8
 - MySQL5.5+
-- Tomcat7.0+
+- Tomcat8.0+
 - Maven3.0+
 
 <br>
