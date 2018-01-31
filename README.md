@@ -83,7 +83,7 @@ renren-security
 - 创建数据库renren_security，数据库编码为UTF-8
 - 执行db/mysql.sql文件，初始化数据【按需导入表结构及数据】
 - 修改application-dev.yml文件，更新MySQL账号和密码
-
+- 在renren-security目录下，执行mvn clean install
 <br>
 
 - Eclipse、IDEA运行AdminApplication.java，则可启动项目【renren-admin】
