@@ -118,8 +118,8 @@ renren-security
 <br>
 
 **如何交流、反馈、参与贡献？** 
-- 项目主页：http://www.renren.io/open/
-- oschina仓库：https://gitee.com/renrenio/renren-security
+- 官方社区：http://www.renren.io
+- gitee仓库：https://gitee.com/renrenio/renren-security
 - github仓库：https://github.com/renrenio/renren-security
 - [人人开源](http://www.renren.io)：http://www.renren.io   
 - 官方QQ群：324780204、145799952
