@@ -5,12 +5,12 @@ spring:
         druid:
             first:  #数据源1
                 url: jdbc:mysql://localhost:3306/renren_security?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-                username: renren
-                password: 123456
+                username: root
+                password: ABCabc@123.
             second:  #数据源2
-                url: jdbc:mysql://10.10.168.18:3306/renren_security?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-                username: renren
-                password: 123456
+                url: jdbc:mysql://localhost:3306/renren_security?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: root
+                password: ABCabc@123.
             initial-size: 10
             max-active: 100
             min-idle: 10

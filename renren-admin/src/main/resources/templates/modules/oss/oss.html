@@ -23,6 +23,9 @@
 			<div class="form-group">
 				<div class="col-sm-2 control-label">存储类型</div>
 				<label class="radio-inline">
+					<input type="radio" name="type" v-model="config.type" value="0"/> 服务器
+				</label>
+				<label class="radio-inline">
 					<input type="radio" name="type" v-model="config.type" value="1"/> 七牛
 				</label>
 				<label class="radio-inline">
