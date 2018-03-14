@@ -18,7 +18,7 @@ layui.config({
 	}).resize();
   
 	$(function(){
-	    $('#larry-nav-side').click(function(){
+	    $('#larry-nav-side').on("click", function(){
 	        if($(this).attr('lay-filter')!== undefined){
 	            $(this).children('ul').find('li').each(function(){
 	                var $this = $(this);
