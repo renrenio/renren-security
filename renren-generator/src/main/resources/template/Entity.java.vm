@@ -2,12 +2,16 @@ package ${package}.${moduleName}.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 #if(${hasBigDecimal})
 import java.math.BigDecimal;
 #end
 import java.io.Serializable;
 import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * ${comments}
@@ -16,6 +20,7 @@ import java.util.Date;
  * @email ${email}
  * @date ${datetime}
  */
+@ApiModel("${comments}")
 @TableName("${tableName}")
 public class ${className}Entity implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -40,6 +45,7 @@ private $column.attrType $column.attrname;
 	/**
 	 * 获取：${column.comments}
 	 */
+    @ApiModelProperty("${column.comments}")
 	public $column.attrType get${column.attrName}() {
 		return $column.attrname;
 	}

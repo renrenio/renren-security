@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import java.time.format.DateTimeFormatter;
  * @Description: SpringMVC整合LocalDateTime用到jackson
  * @date 2018-03-06 11:01
  */
+@Configuration
 public class JacksonConfig {
 
     @Bean(name = "mapperObject")
