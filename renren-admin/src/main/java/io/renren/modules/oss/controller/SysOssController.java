@@ -141,7 +141,6 @@ public class SysOssController {
 	@RequiresPermissions("sys:oss:all")
 	public R delete(@RequestBody Long[] ids){
 		sysOssService.deleteBatchIds(Arrays.asList(ids));
-
 		return R.ok();
 	}
 

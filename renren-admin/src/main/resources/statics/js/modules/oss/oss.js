@@ -4,8 +4,9 @@ $(function () {
         datatype: "json",
         colModel: [			
 			{ label: 'id', name: 'id', width: 20, key: true },
-            { label: 'URL地址', name: 'url', width: 160 },
-			{ label: '创建时间', name: 'createDate', width: 40 }
+            { label: '图片', name: 'url', width: 10 ,index: 'dsource_alarm',align: "center", sortable: false, editable: false, formatter: alarmFormatter  },
+            { label: 'URL地址', name: 'url', width: 150 },
+			{ label: '创建时间', name: 'createDate', width: 40}
         ],
 		viewrecords: true,
         height: 385,
@@ -32,7 +33,12 @@ $(function () {
         	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
         }
     });
+    function alarmFormatter(cellvalue, options, rowdata)
+    {
 
+        return '<img style="width: 30px; height: 25px;" src=/renren-admin'+ cellvalue + '/>';
+
+    }
     new AjaxUpload('#upload', {
         action: baseURL + "sys/oss/upload",
         name: 'file',

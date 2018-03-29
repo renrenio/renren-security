@@ -6,9 +6,19 @@ server:
         min-spare-threads: 30
     port: 8080
     context-path: /renren-admin
-
+#文件上传文件夹
+upload:
+    base:
+        dir: #D:/ziyuan/
+captcha:
+    error:
+        number: 5
 # mysql
 spring:
+    mvc:
+        static-path-pattern: /**
+    resources:
+        static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${upload.base.dir}
     # 环境 dev|test|prod
     profiles:
         active: dev
@@ -35,6 +45,7 @@ spring:
     freemarker:
       suffix: .html
       request-context-attribute: request
+
 # Mybatis配置
 #mybatis:
 #    mapperLocations: classpath:mapper/**/*.xml

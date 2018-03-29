@@ -39,11 +39,12 @@
         <input type="password" class="form-control" v-model="password" placeholder="密码">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
+      <!-- /renren-admin/sys/errornumber -->
+      <div class="form-group has-feedback" v-show="show">
         <input type="text" class="form-control" v-model="captcha" @keyup.enter="login" placeholder="验证码">
         <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
+      <div class="form-group has-feedback" v-show="show">
         <img alt="如果看不清楚，请单击图片刷新！" class="pointer" :src="src" @click="refreshCode">
         &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" @click="refreshCode">点击刷新</a>
       </div>
@@ -81,7 +82,8 @@ var vm = new Vue({
 		captcha: '',
 		error: false,
 		errorMsg: '',
-		src: 'captcha.jpg'
+		src: 'captcha.jpg',
+        show: false
 	},
 	beforeCreate: function(){
 		if(self != top){
@@ -91,6 +93,7 @@ var vm = new Vue({
 	methods: {
 		refreshCode: function(){
 			this.src = "captcha.jpg?t=" + $.now();
+			vm.showc();
 		},
 		login: function (event) {
 			var data = "username="+vm.username+"&password="+vm.password+"&captcha="+vm.captcha;
@@ -105,14 +108,57 @@ var vm = new Vue({
 					}else{
 						vm.error = true;
 						vm.errorMsg = result.msg;
-						
 						vm.refreshCode();
 					}
 				}
 			});
-		}
+		},
+        showc: function(){
+            $.ajax({
+                type: "get",
+                url: "sys/captcha",
+                data: {},
+                dataType: "json",
+                success: function(data){
+                    vm.show = data.code==0?false:true;
+                }
+
+            });
+        }
+
 	}
 });
+vm.showc();
 </script>
+
+<!--
+
+<div class="login">
+    <div class="message">len-脚手架</div>
+    <div id="darkbannerwrap"></div>
+
+    <form method="post" action="/login" class="layui-form" >
+        <input name="username" placeholder="用户名" autocomplete="off"  type="text" lay-verify="username" class="layui-input" >
+        <hr class="hr15">
+        <input name="password" lay-verify="password" placeholder="密码" autocomplete="off"  type="password" class="layui-input">
+        <hr class="hr15">
+        <div  class="layui-inline">
+            <label class="layui-form-label" style="width:40px;padding: 9px 0px;">验证码:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="code" style="width:150px;height:35px;" autocomplete="off" lay-verify="code"   class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <img src="" id="code">
+            </div>
+
+        </div>
+        <hr class="hr15">
+        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        <hr class="hr20" >
+    </form>
+</div>
+-->
+
+
 </body>
 </html>
