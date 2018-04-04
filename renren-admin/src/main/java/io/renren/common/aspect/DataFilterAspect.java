@@ -87,9 +87,8 @@ public class DataFilterAspect {
             tableAlias +=  ".";
         }
 
-        //用户部门ID列表
+        //部门ID列表
         Set<Long> deptIdList = new HashSet<>();
-        deptIdList.add(user.getDeptId());
 
         //用户角色对应的部门ID列表
         List<Long> roleIdList = sysUserRoleService.queryRoleIdList(user.getUserId());
@@ -106,12 +105,19 @@ public class DataFilterAspect {
 
         StringBuilder sqlFilter = new StringBuilder();
         sqlFilter.append(" (");
-        sqlFilter.append(tableAlias).append("dept_id in(").append(StringUtils.join(deptIdList, ",")).append(")");
+
+        if(deptIdList.size() > 0){
+            sqlFilter.append(tableAlias).append(dataFilter.deptId()).append(" in(").append(StringUtils.join(deptIdList, ",")).append(")");
+        }
 
         //没有本部门数据权限，也能查询本人数据
         if(dataFilter.user()){
-            sqlFilter.append(" or ").append(tableAlias).append("user_id=").append(user.getUserId());
+            if(deptIdList.size() > 0){
+                sqlFilter.append(" or ");
+            }
+            sqlFilter.append(tableAlias).append(dataFilter.userId()).append("=").append(user.getUserId());
         }
+
         sqlFilter.append(")");
 
         return sqlFilter.toString();
