@@ -4,8 +4,8 @@ $(function () {
         datatype: "json",
         colModel: [			
 			{ label: 'ID', name: 'id', width: 30, key: true },
-			{ label: '参数名', name: 'key', sortable: false, width: 60 },
-			{ label: '参数值', name: 'value', width: 100 },
+			{ label: '参数名', name: 'paramKey', sortable: false, width: 60 },
+			{ label: '参数值', name: 'paramValue', width: 100 },
 			{ label: '备注', name: 'remark', width: 80 }
         ],
 		viewrecords: true,
@@ -39,7 +39,7 @@ var vm = new Vue({
 	el:'#rrapp',
 	data:{
 		q:{
-			key: null
+            paramKey: null
 		},
 		showList: true,
 		title: null,
@@ -112,7 +112,7 @@ var vm = new Vue({
 			vm.showList = true;
 			var page = $("#jqGrid").jqGrid('getGridParam','page');
 			$("#jqGrid").jqGrid('setGridParam',{ 
-                postData:{'key': vm.q.key},
+                postData:{'paramKey': vm.q.paramKey},
                 page:page
             }).trigger("reloadGrid");
 		}

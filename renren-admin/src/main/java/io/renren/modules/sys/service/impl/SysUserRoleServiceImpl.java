@@ -42,7 +42,7 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleDao, SysUserR
 		//先删除用户与角色关系
 		this.deleteByMap(new MapUtils().put("user_id", userId));
 
-		if(roleIdList.size() == 0){
+		if(roleIdList == null || roleIdList.size() == 0){
 			return ;
 		}
 		

@@ -3,31 +3,6 @@
 
 <mapper namespace="io.renren.modules.sys.dao.SysUserRoleDao">
 
-	<select id="queryList" resultType="io.renren.modules.sys.entity.SysUserRoleEntity">
-		select * from sys_user_role 
-		<where>
-			<if test="userId != null">
-				user_id = #{userId}
-			</if>
-		</where>
-	</select>
- 
-	<insert id="save">
-		insert into sys_user_role
-		(
-			`user_id`, 
-			`role_id`
-		)
-		values
-		<foreach collection="roleIdList" item="item" index="index" separator="," >
-		(
-			#{userId}, 
-			#{item}
-		)
-		</foreach>
-	</insert>
-
-	
 	<select id="queryRoleIdList" resultType="long">
 		select role_id from sys_user_role where user_id = #{value}
 	</select>

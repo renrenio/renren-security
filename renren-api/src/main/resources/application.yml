@@ -12,10 +12,6 @@ spring:
     # 环境 dev|test|prod
     profiles:
         active: dev
-    # jackson时间格式化
-    jackson:
-        time-zone: GMT+8
-        date-format: yyyy-MM-dd HH:mm:ss
     http:
         multipart:
             max-file-size: 100MB
@@ -41,7 +37,7 @@ renren:
 
 #mybatis
 mybatis-plus:
-  mapper-locations: classpath:mapper/**/*.xml
+  mapper-locations: classpath*:mapper/**/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: io.renren.entity
   global-config:
@@ -68,6 +64,9 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
     call-setters-on-nulls: true
-#logging
+
 logging:
-  level.root: debug
+  level: debug
+  level.io.renren: debug
+  path: logs/
+  file: api.log

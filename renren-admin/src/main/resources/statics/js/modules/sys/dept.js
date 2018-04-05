@@ -148,7 +148,7 @@ function getDeptId () {
     var selected = $('#deptTable').bootstrapTreeTable('getSelections');
     if (selected.length == 0) {
         alert("请选择一条记录");
-        return false;
+        return null;
     } else {
         return selected[0].id;
     }

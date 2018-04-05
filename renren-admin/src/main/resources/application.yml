@@ -12,10 +12,6 @@ spring:
     # 环境 dev|test|prod
     profiles:
         active: dev
-    # jackson时间格式化
-    jackson:
-        time-zone: GMT+8
-        date-format: yyyy-MM-dd HH:mm:ss
     http:
         multipart:
             max-file-size: 100MB
@@ -23,7 +19,7 @@ spring:
             enabled: true
     redis:
         database: 0
-        host: localhost
+        host: 192.168.10.10
         port: 6379
         password:      # 密码（默认为空）
         timeout: 6000  # 连接超时时长（毫秒）
@@ -35,10 +31,6 @@ spring:
     freemarker:
       suffix: .html
       request-context-attribute: request
-# Mybatis配置
-#mybatis:
-#    mapperLocations: classpath:mapper/**/*.xml
-#    configLocation: classpath:mybatis.xml
 
 
 renren:
@@ -49,7 +41,7 @@ renren:
 
 #mybatis
 mybatis-plus:
-  mapper-locations: classpath:mapper/**/*.xml
+  mapper-locations: classpath*:mapper/**/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: io.renren.modules.*.entity
   global-config:
@@ -63,8 +55,8 @@ mybatis-plus:
     refresh-mapper: true
     #数据库大写下划线转换
     #capital-mode: true
-    #序列接口实现类配置
-    #key-generator: com.baomidou.springboot.xxx
+    # Sequence序列接口实现类配置
+    #key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
     #逻辑删除配置
     logic-delete-value: -1
     logic-not-delete-value: 0

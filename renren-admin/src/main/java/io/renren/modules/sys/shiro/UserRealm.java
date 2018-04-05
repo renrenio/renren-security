@@ -97,18 +97,23 @@ public class UserRealm extends AuthorizingRealm {
 			AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
 
-        //查询用户信息
+		//查询用户信息
 		SysUserEntity user = new SysUserEntity();
 		user.setUsername(token.getUsername());
 		user = sysUserDao.selectOne(user);
-        
-        //账号不存在
-        if(user == null) {
-            throw new UnknownAccountException("账号或密码不正确");
-        }
 
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
-        return info;
+		//账号不存在
+		if(user == null) {
+			throw new UnknownAccountException("账号或密码不正确");
+		}
+
+		//账号锁定
+		if(user.getStatus() == 0){
+			throw new LockedAccountException("账号已被锁定,请联系管理员");
+		}
+
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
+		return info;
 	}
 
 	@Override

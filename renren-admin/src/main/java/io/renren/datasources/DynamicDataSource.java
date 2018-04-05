@@ -3,7 +3,6 @@ package io.renren.datasources;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -15,9 +14,9 @@ import java.util.Map;
 public class DynamicDataSource extends AbstractRoutingDataSource {
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
 
-    public DynamicDataSource(DataSource defaultTargetDataSource, Map<String, DataSource> targetDataSources) {
+    public DynamicDataSource(DataSource defaultTargetDataSource, Map<Object, Object> targetDataSources) {
         super.setDefaultTargetDataSource(defaultTargetDataSource);
-        super.setTargetDataSources(new HashMap<>(targetDataSources));
+        super.setTargetDataSources(targetDataSources);
         super.afterPropertiesSet();
     }
 

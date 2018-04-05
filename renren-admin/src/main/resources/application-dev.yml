@@ -8,9 +8,9 @@ spring:
                 username: renren
                 password: 123456
             second:  #数据源2
-                url: jdbc:mysql://10.10.168.18:3306/renren_security?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                url: jdbc:mysql://139.224.118.191:3306/renren_security?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: renren
-                password: 123456
+                password: Mark@69013275
             initial-size: 10
             max-active: 100
             min-idle: 10
@@ -19,7 +19,7 @@ spring:
             max-pool-prepared-statement-per-connection-size: 20
             time-between-eviction-runs-millis: 60000
             min-evictable-idle-time-millis: 300000
-            validation-query: SELECT 1 FROM DUAL
+            #validation-query: SELECT 1 FROM DUAL
             test-while-idle: true
             test-on-borrow: false
             test-on-return: false
@@ -32,7 +32,7 @@ spring:
                 stat:
                     log-slow-sql: true
                     slow-sql-millis: 1000
-                    merge-sql: true
+                    merge-sql: false
                 wall:
                     config:
                         multi-statement-allow: true

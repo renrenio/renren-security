@@ -20,6 +20,7 @@ package io.renren.modules.sys.entity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
@@ -75,6 +76,7 @@ public class SysRoleEntity implements Serializable {
 	/**
 	 * 创建时间
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
 
 	/**

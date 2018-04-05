@@ -93,8 +93,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void update(SysRoleEntity role) {
-		this.updateById(role);
-		
+		this.updateAllColumnById(role);
+
 		//更新角色与菜单关系
 		sysRoleMenuService.saveOrUpdate(role.getRoleId(), role.getMenuIdList());
 
