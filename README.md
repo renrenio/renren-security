@@ -119,6 +119,7 @@ renren-security
 <br>
 
 **如何交流、反馈、参与贡献？** 
+- 开发文档：http://www.renren.io/guide/security
 - 官方社区：http://www.renren.io/community
 - gitee仓库：https://gitee.com/renrenio/renren-security
 - github仓库：https://github.com/renrenio/renren-security
