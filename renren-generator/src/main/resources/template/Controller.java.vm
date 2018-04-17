@@ -71,8 +71,9 @@ public class ${className}Controller {
     @RequestMapping("/update")
     @RequiresPermissions("${moduleName}:${pathName}:update")
     public R update(@RequestBody ${className}Entity ${classname}){
-			${classname}Service.updateById(${classname});
-
+		ValidatorUtils.validateEntity(prizeInfo);
+        ${classname}Service.updateAllColumnById(${classname});//全部更新
+        
         return R.ok();
     }
 
