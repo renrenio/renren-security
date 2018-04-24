@@ -3,6 +3,7 @@ package ${package}.${moduleName}.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import io.renren.common.validator.ValidatorUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,7 +50,7 @@ public class ${className}Controller {
     @RequestMapping("/info/{${pk.attrname}}")
     @RequiresPermissions("${moduleName}:${pathName}:info")
     public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
-			${className}Entity ${classname} = ${classname}Service.selectById(${pk.attrname});
+        ${className}Entity ${classname} = ${classname}Service.selectById(${pk.attrname});
 
         return R.ok().put("${classname}", ${classname});
     }
@@ -60,7 +61,7 @@ public class ${className}Controller {
     @RequestMapping("/save")
     @RequiresPermissions("${moduleName}:${pathName}:save")
     public R save(@RequestBody ${className}Entity ${classname}){
-			${classname}Service.insert(${classname});
+        ${classname}Service.insert(${classname});
 
         return R.ok();
     }
@@ -71,8 +72,9 @@ public class ${className}Controller {
     @RequestMapping("/update")
     @RequiresPermissions("${moduleName}:${pathName}:update")
     public R update(@RequestBody ${className}Entity ${classname}){
-			${classname}Service.updateById(${classname});
-
+        ValidatorUtils.validateEntity(${classname});
+        ${classname}Service.updateAllColumnById(${classname});//全部更新
+        
         return R.ok();
     }
 
@@ -82,7 +84,7 @@ public class ${className}Controller {
     @RequestMapping("/delete")
     @RequiresPermissions("${moduleName}:${pathName}:delete")
     public R delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s){
-			${classname}Service.deleteBatchIds(Arrays.asList(${pk.attrname}s));
+        ${classname}Service.deleteBatchIds(Arrays.asList(${pk.attrname}s));
 
         return R.ok();
     }
