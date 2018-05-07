@@ -16,10 +16,10 @@
 
 package io.renren.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -53,7 +53,7 @@ public class UserEntity implements Serializable {
 	/**
 	 * 密码
 	 */
-	@JSONField(serialize=false)
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	/**
 	 * 创建时间
