@@ -1,6 +1,5 @@
 package io.renren.controller;
 
-import com.alibaba.fastjson.JSON;
 import io.renren.service.SysGeneratorService;
 import io.renren.utils.PageUtils;
 import io.renren.utils.Query;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -51,12 +49,8 @@ public class SysGeneratorController {
 	 * 生成代码
 	 */
 	@RequestMapping("/code")
-	public void code(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String[] tableNames = new String[]{};
-		String tables = request.getParameter("tables");
-		tableNames = JSON.parseArray(tables).toArray(tableNames);
-		
-		byte[] data = sysGeneratorService.generatorCode(tableNames);
+	public void code(String tables, HttpServletResponse response) throws IOException{
+		byte[] data = sysGeneratorService.generatorCode(tables.split(","));
 		
 		response.reset();  
         response.setHeader("Content-Disposition", "attachment; filename=\"renren.zip\"");  
