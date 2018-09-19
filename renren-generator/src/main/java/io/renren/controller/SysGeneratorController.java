@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,12 +34,7 @@ public class SysGeneratorController {
 	@ResponseBody
 	@RequestMapping("/list")
 	public R list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-		Query query = new Query(params);
-		List<Map<String, Object>> list = sysGeneratorService.queryList(query);
-		int total = sysGeneratorService.queryTotal(query);
-		
-		PageUtils pageUtil = new PageUtils(list, total, query.getLimit(), query.getPage());
+		PageUtils pageUtil = sysGeneratorService.queryList(new Query(params));
 		
 		return R.ok().put("page", pageUtil);
 	}

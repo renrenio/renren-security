@@ -1,7 +1,11 @@
 package io.renren.service;
 
-import io.renren.dao.SysGeneratorDao;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import io.renren.dao.GeneratorDao;
 import io.renren.utils.GenUtils;
+import io.renren.utils.PageUtils;
+import io.renren.utils.Query;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,22 +25,21 @@ import java.util.zip.ZipOutputStream;
 @Service
 public class SysGeneratorService {
 	@Autowired
-	private SysGeneratorDao sysGeneratorDao;
+	private GeneratorDao generatorDao;
 
-	public List<Map<String, Object>> queryList(Map<String, Object> map) {
-		return sysGeneratorDao.queryList(map);
-	}
+	public PageUtils queryList(Query query) {
+		Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
+		List<Map<String, Object>> list = generatorDao.queryList(query);
 
-	public int queryTotal(Map<String, Object> map) {
-		return sysGeneratorDao.queryTotal(map);
+		return new PageUtils(list, (int)page.getTotal(), query.getLimit(), query.getPage());
 	}
 
 	public Map<String, String> queryTable(String tableName) {
-		return sysGeneratorDao.queryTable(tableName);
+		return generatorDao.queryTable(tableName);
 	}
 
 	public List<Map<String, String>> queryColumns(String tableName) {
-		return sysGeneratorDao.queryColumns(tableName);
+		return generatorDao.queryColumns(tableName);
 	}
 
 	public byte[] generatorCode(String[] tableNames) {
