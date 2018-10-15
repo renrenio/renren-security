@@ -25,7 +25,7 @@ $.ajaxSetup({
 });
 
 function hasPermission(permission) {
-    if (window.parent.permissions.indexOf(permission) > -1) {
+    if (window.top.permissions.indexOf(permission) > -1) {
         return true;
     } else {
         return false;
