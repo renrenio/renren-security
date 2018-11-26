@@ -25,6 +25,11 @@
 			<artifactId>renren-common</artifactId>
 			<version>3.2.0</version>
 		</dependency>
+		<!-- 集群环境，需要打开注释 -->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.session</groupId>-->
+			<!--<artifactId>spring-session-data-redis</artifactId>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>

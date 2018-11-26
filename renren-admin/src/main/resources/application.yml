@@ -35,12 +35,11 @@ spring:
     suffix: .html
     request-context-attribute: request
 
-
 renren:
+  cluster: false  #集群配置  true集群环境   false单机环境，还需打开pom.xml里的spring-session-data-redis注释
+  globalSessionTimeout: 3600   #单机环境，session过期时间为60分钟
   redis:
-    open: false  # 是否开启redis缓存  true开启   false关闭
-  shiro:
-    redis: false # true表示shiro session存到redis里，需要开启redis，才会生效【分布式场景】
+    open: false  #是否开启redis缓存  true开启   false关闭
 
 #mybatis
 mybatis-plus:

@@ -101,7 +101,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		if(StringUtils.isBlank(user.getPassword())){
 			user.setPassword(null);
 		}else{
-			user.setPassword(ShiroUtils.sha256(user.getPassword(), user.getSalt()));
+			SysUserEntity userEntity = this.selectById(user.getUserId());
+			user.setPassword(ShiroUtils.sha256(user.getPassword(), userEntity.getSalt()));
 		}
 		this.updateById(user);
 		
