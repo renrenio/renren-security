@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package io.renren.controller;
 
 
@@ -18,9 +26,7 @@ import java.util.Map;
 /**
  * 登录接口
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-03-23 15:31
+ * @author Mark sunlightcs@gmail.com
  */
 @RestController
 @RequestMapping("/api")

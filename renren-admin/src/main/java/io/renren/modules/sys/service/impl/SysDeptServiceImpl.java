@@ -1,25 +1,15 @@
 /**
- * Copyright 2018 人人开源 http://www.renren.io
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
  */
 
 package io.renren.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.renren.common.annotation.DataFilter;
-import io.renren.common.utils.Constant;
 import io.renren.modules.sys.dao.SysDeptDao;
 import io.renren.modules.sys.entity.SysDeptEntity;
 import io.renren.modules.sys.service.SysDeptService;
@@ -34,19 +24,9 @@ import java.util.Map;
 public class SysDeptServiceImpl extends ServiceImpl<SysDeptDao, SysDeptEntity> implements SysDeptService {
 	
 	@Override
-	@DataFilter(subDept = true, user = false)
+	@DataFilter(subDept = true, user = false, tableAlias = "t1")
 	public List<SysDeptEntity> queryList(Map<String, Object> params){
-		List<SysDeptEntity> deptList =
-			this.selectList(new EntityWrapper<SysDeptEntity>()
-			.addFilterIfNeed(params.get(Constant.SQL_FILTER) != null, (String)params.get(Constant.SQL_FILTER)));
-
-		for(SysDeptEntity sysDeptEntity : deptList){
-			SysDeptEntity parentDeptEntity =  this.selectById(sysDeptEntity.getParentId());
-			if(parentDeptEntity != null){
-				sysDeptEntity.setParentName(parentDeptEntity.getName());
-			}
-		}
-		return deptList;
+		return baseMapper.queryList(params);
 	}
 
 	@Override

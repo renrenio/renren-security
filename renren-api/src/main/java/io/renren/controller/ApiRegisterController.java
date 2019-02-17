@@ -1,5 +1,12 @@
-package io.renren.controller;
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
 
+package io.renren.controller;
 
 import io.renren.common.utils.R;
 import io.renren.common.validator.ValidatorUtils;
@@ -19,9 +26,8 @@ import java.util.Date;
 
 /**
  * 注册接口
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-03-26 17:27
+ *
+ * @author Mark sunlightcs@gmail.com
  */
 @RestController
 @RequestMapping("/api")
@@ -41,7 +47,7 @@ public class ApiRegisterController {
         user.setUsername(form.getMobile());
         user.setPassword(DigestUtils.sha256Hex(form.getPassword()));
         user.setCreateTime(new Date());
-        userService.insert(user);
+        userService.save(user);
 
         return R.ok();
     }

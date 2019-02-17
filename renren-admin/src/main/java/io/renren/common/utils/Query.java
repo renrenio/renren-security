@@ -1,90 +1,70 @@
 /**
- * Copyright 2018 人人开源 http://www.renren.io
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
  */
 
 package io.renren.common.utils;
 
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.renren.common.xss.SQLFilter;
 import org.apache.commons.lang.StringUtils;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  * 查询参数
  *
  * @author Mark sunlightcs@gmail.com
- * @since 2.0.0 2017-03-14
  */
-public class Query<T> extends LinkedHashMap<String, Object> {
-	private static final long serialVersionUID = 1L;
-    /**
-     * mybatis-plus分页参数
-     */
-    private Page<T> page;
-    /**
-     * 当前页码
-     */
-    private int currPage = 1;
-    /**
-     * 每页条数
-     */
-    private int limit = 10;
+public class Query<T> {
 
-    public Query(Map<String, Object> params){
-        this.putAll(params);
+    public IPage<T> getPage(Map<String, Object> params) {
+        return this.getPage(params, null, false);
+    }
+
+    public IPage<T> getPage(Map<String, Object> params, String defaultOrderField, boolean isAsc) {
+        //分页参数
+        long curPage = 1;
+        long limit = 10;
+
+        if(params.get(Constant.PAGE) != null){
+            curPage = Long.parseLong((String)params.get(Constant.PAGE));
+        }
+        if(params.get(Constant.LIMIT) != null){
+            limit = Long.parseLong((String)params.get(Constant.LIMIT));
+        }
+
+        //分页对象
+        Page<T> page = new Page<>(curPage, limit);
 
         //分页参数
-        if(params.get("page") != null){
-            currPage = Integer.parseInt((String)params.get("page"));
-        }
-        if(params.get("limit") != null){
-            limit = Integer.parseInt((String)params.get("limit"));
-        }
+        params.put(Constant.PAGE, page);
 
-        this.put("offset", (currPage - 1) * limit);
-        this.put("page", currPage);
-        this.put("limit", limit);
-
+        //排序字段
         //防止SQL注入（因为sidx、order是通过拼接SQL实现排序的，会有SQL注入风险）
-        String sidx = SQLFilter.sqlInject((String)params.get("sidx"));
-        String order = SQLFilter.sqlInject((String)params.get("order"));
-        this.put("sidx", sidx);
-        this.put("order", order);
+        String orderField = SQLFilter.sqlInject((String)params.get(Constant.ORDER_FIELD));
+        String order = (String)params.get(Constant.ORDER);
 
-        //mybatis-plus分页
-        this.page = new Page<>(currPage, limit);
-
-        //排序
-        if(StringUtils.isNotBlank(sidx) && StringUtils.isNotBlank(order)){
-            this.page.setOrderByField(sidx);
-            this.page.setAsc("ASC".equalsIgnoreCase(order));
+        //前端字段排序
+        if(StringUtils.isNotEmpty(orderField) && StringUtils.isNotEmpty(order)){
+            if(Constant.ASC.equalsIgnoreCase(order)) {
+                return page.setAsc(orderField);
+            }else {
+                return page.setDesc(orderField);
+            }
         }
 
-    }
+        //默认排序
+        if(isAsc) {
+            page.setAsc(defaultOrderField);
+        }else {
+            page.setDesc(defaultOrderField);
+        }
 
-    public Page<T> getPage() {
         return page;
-    }
-
-    public int getCurrPage() {
-        return currPage;
-    }
-
-    public int getLimit() {
-        return limit;
     }
 }

@@ -2,7 +2,7 @@
 	<parent>
 		<groupId>io.renren</groupId>
 		<artifactId>renren-security</artifactId>
-		<version>3.2.0</version>
+		<version>4.0.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>renren-admin</artifactId>
@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>io.renren</groupId>
 			<artifactId>renren-common</artifactId>
-			<version>3.2.0</version>
+			<version>4.0.0</version>
 		</dependency>
 		<!-- 集群环境，需要打开注释 -->
 		<!--<dependency>-->
@@ -95,7 +95,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>io.renren</groupId>
+            <artifactId>renren-dynamic-datasource</artifactId>
+            <version>4.0.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>

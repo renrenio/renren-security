@@ -1,24 +1,17 @@
 /**
- * Copyright 2018 人人开源 http://www.renren.io
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
  */
 
 package io.renren.modules.job.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -28,8 +21,8 @@ import java.util.Date;
  * 定时任务
  *
  * @author Mark sunlightcs@gmail.com
- * @since 1.2.0 2016-11-28
  */
+@Data
 @TableName("schedule_job")
 public class ScheduleJobEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -50,12 +43,6 @@ public class ScheduleJobEntity implements Serializable {
 	 */
 	@NotBlank(message="bean名称不能为空")
 	private String beanName;
-	
-	/**
-	 * 方法名
-	 */
-	@NotBlank(message="方法名称不能为空")
-	private String methodName;
 	
 	/**
 	 * 参数
@@ -84,99 +71,4 @@ public class ScheduleJobEntity implements Serializable {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;
 
-	/**
-	 * 设置：任务id
-	 * @param jobId 任务id
-	 */
-	public void setJobId(Long jobId) {
-		this.jobId = jobId;
-	}
-
-	/**
-	 * 获取：任务id
-	 * @return Long
-	 */
-	public Long getJobId() {
-		return jobId;
-	}
-	
-	public String getBeanName() {
-		return beanName;
-	}
-
-	public void setBeanName(String beanName) {
-		this.beanName = beanName;
-	}
-
-	public String getMethodName() {
-		return methodName;
-	}
-
-	public void setMethodName(String methodName) {
-		this.methodName = methodName;
-	}
-
-	public String getParams() {
-		return params;
-	}
-
-	public void setParams(String params) {
-		this.params = params;
-	}
-
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	/**
-	 * 设置：任务状态
-	 * @param status 任务状态
-	 */
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	/**
-	 * 获取：任务状态
-	 * @return String
-	 */
-	public Integer getStatus() {
-		return status;
-	}
-	
-	/**
-	 * 设置：cron表达式
-	 * @param cronExpression cron表达式
-	 */
-	public void setCronExpression(String cronExpression) {
-		this.cronExpression = cronExpression;
-	}
-
-	/**
-	 * 获取：cron表达式
-	 * @return String
-	 */
-	public String getCronExpression() {
-		return cronExpression;
-	}
-	
-	/**
-	 * 设置：创建时间
-	 * @param createTime 创建时间
-	 */
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	/**
-	 * 获取：创建时间
-	 * @return Date
-	 */
-	public Date getCreateTime() {
-		return createTime;
-	}
 }

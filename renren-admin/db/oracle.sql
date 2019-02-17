@@ -122,7 +122,6 @@ CREATE TABLE sys_oss (
 CREATE TABLE schedule_job (
   job_id NUMBER(20, 0) NOT NULL,
   bean_name varchar2(200),
-  method_name varchar2(100),
   params varchar2(2000),
   cron_expression varchar2(100),
   status NUMBER(2, 0) NOT NULL,
@@ -136,7 +135,6 @@ CREATE TABLE schedule_job_log (
   log_id NUMBER(20, 0) NOT NULL,
   job_id NUMBER(20, 0) NOT NULL,
   bean_name varchar2(200),
-  method_name varchar2(100),
   params varchar2(2000),
   status NUMBER(2, 0) NOT NULL,
   error varchar2(2000),
@@ -207,8 +205,7 @@ INSERT INTO sys_dict(id, name, type, code, value, order_num, remark, del_flag) V
 
 
 INSERT INTO sys_config (id, param_key, param_value, status, remark) VALUES (1, 'CLOUD_STORAGE_CONFIG_KEY', '{"aliyunAccessKeyId":"","aliyunAccessKeySecret":"","aliyunBucketName":"","aliyunDomain":"","aliyunEndPoint":"","aliyunPrefix":"","qcloudBucketName":"","qcloudDomain":"","qcloudPrefix":"","qcloudSecretId":"","qcloudSecretKey":"","qiniuAccessKey":"NrgMfABZxWLo5B-YYSjoE8-AZ1EISdi1Z3ubLOeZ","qiniuBucketName":"mall","qiniuDomain":"http://7xlij2.com1.z0.glb.clouddn.com","qiniuPrefix":"upload","qiniuSecretKey":"uIwJHevMRWU0VLxFvgy0tAcOdGqasdtVlJkdy6vV","type":1}', '0', '云存储配置信息');
-INSERT INTO schedule_job (job_id, bean_name, method_name, params, cron_expression, status, remark, create_time) VALUES (1, 'testTask', 'test', 'renren', '0 0/30 * * * ?', '0', '有参数测试', CURRENT_DATE);
-INSERT INTO schedule_job (job_id, bean_name, method_name, params, cron_expression, status, remark, create_time) VALUES (2, 'testTask', 'test2', NULL, '0 0/30 * * * ?', '1', '无参数测试', CURRENT_DATE);
+INSERT INTO schedule_job (job_id, bean_name, params, cron_expression, status, remark, create_time) VALUES (1, 'testTask', 'renren', '0 0/30 * * * ?', '0', '参数测试', CURRENT_DATE);
 
 
 --  quartz自带表结构

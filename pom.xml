@@ -3,22 +3,23 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.renren</groupId>
     <artifactId>renren-security</artifactId>
-    <version>3.2.0</version>
+    <version>4.0.0</version>
     <packaging>pom</packaging>
 
     <name>renren-security</name>
-    <url>http://www.renren.io</url>
+    <url>https://www.renren.io</url>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.5.RELEASE</version>
+		<version>2.1.2.RELEASE</version>
 	</parent>
 
     <modules>
         <module>renren-common</module>
         <module>renren-admin</module>
         <module>renren-api</module>
+		<module>renren-dynamic-datasource</module>
         <module>renren-generator</module>
     </modules>
 
@@ -28,9 +29,8 @@
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
         <jedis.version>2.9.0</jedis.version>
-        <druid.version>1.1.10</druid.version>
-        <mybatisplus.version>2.1.9</mybatisplus.version>
-		<mybatisplus.spring.boot.version>1.0.5</mybatisplus.spring.boot.version>
+        <druid.version>1.1.13</druid.version>
+        <mybatisplus.version>3.0.7.1</mybatisplus.version>
         <mysql.version>5.1.38</mysql.version>
         <mssql.version>4.0</mssql.version>
         <oracle.version>11.2.0.3</oracle.version>
@@ -40,6 +40,8 @@
         <commons.codec.version>1.10</commons.codec.version>
         <fastjson.version>1.2.45</fastjson.version>
         <joda.time.version>2.9.9</joda.time.version>
+        <lombok.version>1.18.4</lombok.version>
+        <swagger.version>2.7.0</swagger.version>
     </properties>
 
     <dependencies>
@@ -110,14 +112,15 @@
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatisplus.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-generator</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatisplus-spring-boot-starter</artifactId>
-			<version>${mybatisplus.spring.boot.version}</version>
-		</dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -147,6 +150,21 @@
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>${joda.time.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
     </dependencies>
 

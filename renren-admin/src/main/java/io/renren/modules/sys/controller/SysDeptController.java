@@ -1,17 +1,9 @@
 /**
- * Copyright 2018 人人开源 http://www.renren.io
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
  */
 
 package io.renren.modules.sys.controller;
@@ -33,10 +25,8 @@ import java.util.List;
 
 /**
  * 部门管理
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-06-20 15:23:47
+ *
+ * @author Mark sunlightcs@gmail.com
  */
 @RestController
 @RequestMapping("/sys/dept")
@@ -108,7 +98,7 @@ public class SysDeptController extends AbstractController {
 	@RequestMapping("/info/{deptId}")
 	@RequiresPermissions("sys:dept:info")
 	public R info(@PathVariable("deptId") Long deptId){
-		SysDeptEntity dept = sysDeptService.selectById(deptId);
+		SysDeptEntity dept = sysDeptService.getById(deptId);
 		
 		return R.ok().put("dept", dept);
 	}
@@ -119,7 +109,7 @@ public class SysDeptController extends AbstractController {
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:dept:save")
 	public R save(@RequestBody SysDeptEntity dept){
-		sysDeptService.insert(dept);
+		sysDeptService.save(dept);
 		
 		return R.ok();
 	}
@@ -147,7 +137,7 @@ public class SysDeptController extends AbstractController {
 			return R.error("请先删除子部门");
 		}
 
-		sysDeptService.deleteById(deptId);
+		sysDeptService.removeById(deptId);
 		
 		return R.ok();
 	}

@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package io.renren.utils;
 
 import java.text.SimpleDateFormat;
@@ -5,10 +13,8 @@ import java.util.Date;
 
 /**
  * 日期处理
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年12月21日 下午12:53:33
+ *
+ * @author Mark sunlightcs@gmail.com
  */
 public class DateUtils {
 	/** 时间格式(yyyy-MM-dd) */

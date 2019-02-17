@@ -112,6 +112,14 @@ var vm = new Vue({
             //获取角色信息
             this.getRoleList();
         },
+        permissions: function () {
+            var userId = getSelectedRow();
+            if(userId == null){
+                return ;
+            }
+
+            window.location.href=baseURL+"sys/permissions/index/"+userId;
+        },
         del: function () {
             var userIds = getSelectedRows();
             if(userIds == null){

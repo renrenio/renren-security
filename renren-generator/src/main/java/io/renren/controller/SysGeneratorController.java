@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package io.renren.controller;
 
 import io.renren.service.SysGeneratorService;
@@ -17,10 +25,8 @@ import java.util.Map;
 
 /**
  * 代码生成器
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年12月19日 下午9:12:58
+ *
+ * @author Mark sunlightcs@gmail.com
  */
 @Controller
 @RequestMapping("/sys/generator")

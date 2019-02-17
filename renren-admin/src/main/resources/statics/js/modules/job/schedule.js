@@ -5,7 +5,6 @@ $(function () {
         colModel: [			
 			{ label: '任务ID', name: 'jobId', width: 60, key: true },
 			{ label: 'bean名称', name: 'beanName', width: 100 },
-			{ label: '方法名称', name: 'methodName', width: 100 },
 			{ label: '参数', name: 'params', width: 100 },
 			{ label: 'cron表达式 ', name: 'cronExpression', width: 100 },
 			{ label: '备注 ', name: 'remark', width: 100 },

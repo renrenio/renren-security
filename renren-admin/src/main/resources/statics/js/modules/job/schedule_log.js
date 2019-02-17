@@ -6,7 +6,6 @@ $(function () {
             { label: '日志ID', name: 'logId', width: 50, key: true },
 			{ label: '任务ID', name: 'jobId', width: 50},
 			{ label: 'bean名称', name: 'beanName', width: 60 },
-			{ label: '方法名称', name: 'methodName', width: 60 },
 			{ label: '参数', name: 'params', width: 60 },
 			{ label: '状态', name: 'status', width: 50, formatter: function(value, options, row){
 				return value === 0 ? 

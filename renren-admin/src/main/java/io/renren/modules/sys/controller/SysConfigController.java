@@ -1,17 +1,9 @@
 /**
- * Copyright 2018 人人开源 http://www.renren.io
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
  */
 
 package io.renren.modules.sys.controller;
@@ -31,10 +23,8 @@ import java.util.Map;
 
 /**
  * 系统配置信息
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年12月4日 下午6:55:53
+ *
+ * @author Mark sunlightcs@gmail.com
  */
 @RestController
 @RequestMapping("/sys/config")
@@ -59,8 +49,9 @@ public class SysConfigController extends AbstractController {
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("sys:config:info")
+	@ResponseBody
 	public R info(@PathVariable("id") Long id){
-		SysConfigEntity config = sysConfigService.selectById(id);
+		SysConfigEntity config = sysConfigService.getById(id);
 		
 		return R.ok().put("config", config);
 	}
@@ -74,7 +65,7 @@ public class SysConfigController extends AbstractController {
 	public R save(@RequestBody SysConfigEntity config){
 		ValidatorUtils.validateEntity(config);
 
-		sysConfigService.save(config);
+		sysConfigService.saveConfig(config);
 		
 		return R.ok();
 	}

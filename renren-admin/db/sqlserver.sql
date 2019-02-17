@@ -200,7 +200,6 @@ SET IDENTITY_INSERT sys_menu OFF;
 CREATE TABLE schedule_job (
   job_id bigint NOT NULL IDENTITY(1,1),
   bean_name varchar(200),
-  method_name varchar(100),
   params varchar(2000),
   cron_expression varchar(100),
   status tinyint,
@@ -214,7 +213,6 @@ CREATE TABLE schedule_job_log (
   log_id bigint NOT NULL IDENTITY(1,1),
   job_id bigint NOT NULL,
   bean_name varchar(200),
-  method_name varchar(100),
   params varchar(2000),
   status tinyint NOT NULL,
   error varchar(2000),
@@ -224,8 +222,7 @@ CREATE TABLE schedule_job_log (
   INDEX job_id (job_id)
 );
 
-INSERT INTO schedule_job (bean_name, method_name, params, cron_expression, status, remark, create_time) VALUES ('testTask', 'test', 'renren', '0 0/30 * * * ?', '0', '有参数测试', '2016-12-01 23:16:46');
-INSERT INTO schedule_job (bean_name, method_name, params, cron_expression, status, remark, create_time) VALUES ('testTask', 'test2', NULL, '0 0/30 * * * ?', '1', '无参数测试', '2016-12-03 14:55:56');
+INSERT INTO schedule_job (bean_name, params, cron_expression, status, remark, create_time) VALUES ('testTask', 'renren', '0 0/30 * * * ?', '0', '参数测试', '2016-12-01 23:16:46');
 
 
 

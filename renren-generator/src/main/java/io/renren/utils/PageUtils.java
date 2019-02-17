@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package io.renren.utils;
 
 import java.io.Serializable;
@@ -5,10 +13,8 @@ import java.util.List;
 
 /**
  * 分页工具类
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年11月4日 下午12:59:00
+ *
+ * @author Mark sunlightcs@gmail.com
  */
 public class PageUtils implements Serializable {
 	private static final long serialVersionUID = 1L;
