@@ -41,20 +41,17 @@ public class DynamicDataSourceTestService {
         user.setUserId(id);
         user.setMobile("13500000001");
         sysUserDao.updateById(user);
-
-        //测试事物
-        //int i = 1/0;
     }
 
-//    @DataSource("slave2")
-//    @Transactional
-//    public void updateUserBySlave2(Long id){
-//        SysUserEntity user = new SysUserEntity();
-//        user.setId(id);
-//        user.setMobile("13500000002");
-//        sysUserDao.updateById(user);
-//
-//        //测试事物
-//        int i = 1/0;
-//    }
+    @DataSource("slave2")
+    @Transactional
+    public void updateUserBySlave2(Long id){
+        SysUserEntity user = new SysUserEntity();
+        user.setUserId(id);
+        user.setMobile("13500000002");
+        sysUserDao.updateById(user);
+
+        //测试事物
+        int i = 1/0;
+    }
 }

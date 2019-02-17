@@ -32,7 +32,7 @@ public class DynamicDataSourceTest {
 
         dynamicDataSourceTestService.updateUser(id);
         dynamicDataSourceTestService.updateUserBySlave1(id);
-        //dynamicDataSourceTestService.updateUserBySlave2(id);
+        dynamicDataSourceTestService.updateUserBySlave2(id);
     }
 
 }
