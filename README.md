@@ -80,6 +80,7 @@ renren-security
 
  **本地部署**
 - 通过git下载源码
+- idea、eclipse需安装lombok插件，不然会提示找不到entity的get set方法
 - 创建数据库renren_security，数据库编码为UTF-8
 - 执行db/mysql.sql文件，初始化数据【按需导入表结构及数据】
 - 修改application-dev.yml文件，更新MySQL账号和密码
