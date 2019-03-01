@@ -1,9 +1,18 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package io.renren.interceptor;
 
-import io.renren.annotation.IgnoreAuth;
+
+import io.renren.annotation.Login;
+import io.renren.common.exception.RRException;
 import io.renren.entity.TokenEntity;
 import io.renren.service.TokenService;
-import io.renren.utils.RRException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,33 +24,35 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 权限(Token)验证
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-03-23 15:38
+ *
+ * @author Mark sunlightcs@gmail.com
  */
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private TokenService tokenService;
 
-    public static final String LOGIN_USER_KEY = "LOGIN_USER_KEY";
+    public static final String USER_KEY = "userId";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        IgnoreAuth annotation;
+        Login annotation;
         if(handler instanceof HandlerMethod) {
-            annotation = ((HandlerMethod) handler).getMethodAnnotation(IgnoreAuth.class);
+            annotation = ((HandlerMethod) handler).getMethodAnnotation(Login.class);
         }else{
             return true;
         }
 
-        //如果有@IgnoreAuth注解，则不验证token
-        if(annotation != null){
+        if(annotation == null){
             return true;
         }
 
-        //获取token
-        String token = request.getParameter("token");
+        //从header中获取token
+        String token = request.getHeader("token");
+        //如果header中不存在token，则从参数中获取token
+        if(StringUtils.isBlank(token)){
+            token = request.getParameter("token");
+        }
 
         //token为空
         if(StringUtils.isBlank(token)){
@@ -55,7 +66,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         }
 
         //设置userId到request里，后续根据userId，获取用户信息
-        request.setAttribute(LOGIN_USER_KEY, tokenEntity.getUserId());
+        request.setAttribute(USER_KEY, tokenEntity.getUserId());
 
         return true;
     }

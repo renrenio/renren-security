@@ -1,35 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
+	<parent>
 		<groupId>io.renren</groupId>
 		<artifactId>renren-security</artifactId>
-		<version>${renren-version}</version>
+		<version>4.0.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>renren-common</artifactId>
 	<packaging>jar</packaging>
-    <description>公共模块</description>
+	<description>renren-common</description>
 
-	<properties>
-		<qiniu-version>[7.2.0, 7.2.99]</qiniu-version>
-		<aliyun-oss-version>2.5.0</aliyun-oss-version>
-		<qcloud-cos-version>3.3</qcloud-cos-version>
-	</properties>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+	</build>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.qiniu</groupId>
-			<artifactId>qiniu-java-sdk</artifactId>
-			<version>${qiniu-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.aliyun.oss</groupId>
-			<artifactId>aliyun-sdk-oss</artifactId>
-			<version>${aliyun-oss-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.qcloud</groupId>
-			<artifactId>cos_api</artifactId>
-			<version>${qcloud-cos-version}</version>
-		</dependency>
-	</dependencies>
 </project>

@@ -1,40 +1,32 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package io.renren.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import io.renren.entity.UserEntity;
+import io.renren.form.LoginForm;
 
-import java.util.List;
 import java.util.Map;
 
 /**
  * 用户
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-03-23 15:22:06
+ *
+ * @author Mark sunlightcs@gmail.com
  */
-public interface UserService {
-
-	UserEntity queryObject(Long userId);
-	
-	List<UserEntity> queryList(Map<String, Object> map);
-	
-	int queryTotal(Map<String, Object> map);
-	
-	void save(UserEntity user);
-	
-	void update(UserEntity user);
-	
-	void delete(Long userId);
-	
-	void deleteBatch(Long[] userIds);
+public interface UserService extends IService<UserEntity> {
 
 	UserEntity queryByMobile(String mobile);
 
 	/**
 	 * 用户登录
-	 * @param mobile    手机号
-	 * @param password  密码
-	 * @return          返回用户ID
+	 * @param form    登录表单
+	 * @return        返回登录信息
 	 */
-	long login(String mobile, String password);
+	Map<String, Object> login(LoginForm form);
 }

@@ -1,75 +1,59 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package io.renren.service.impl;
 
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.renren.common.exception.RRException;
+import io.renren.common.validator.Assert;
 import io.renren.dao.UserDao;
+import io.renren.entity.TokenEntity;
 import io.renren.entity.UserEntity;
+import io.renren.form.LoginForm;
+import io.renren.service.TokenService;
 import io.renren.service.UserService;
-import io.renren.utils.RRException;
-import io.renren.validator.Assert;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
-
-
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements UserService {
 	@Autowired
-	private UserDao userDao;
-	
-	@Override
-	public UserEntity queryObject(Long userId){
-		return userDao.queryObject(userId);
-	}
-	
-	@Override
-	public List<UserEntity> queryList(Map<String, Object> map){
-		return userDao.queryList(map);
-	}
-	
-	@Override
-	public int queryTotal(Map<String, Object> map){
-		return userDao.queryTotal(map);
-	}
-	
-	@Override
-	public void save(UserEntity user){
-		user.setPassword(DigestUtils.sha256Hex(user.getPassword()));
-		userDao.save(user);
-	}
-	
-	@Override
-	public void update(UserEntity user){
-		userDao.update(user);
-	}
-	
-	@Override
-	public void delete(Long userId){
-		userDao.delete(userId);
-	}
-	
-	@Override
-	public void deleteBatch(Long[] userIds){
-		userDao.deleteBatch(userIds);
-	}
+	private TokenService tokenService;
 
 	@Override
 	public UserEntity queryByMobile(String mobile) {
-		return userDao.queryByMobile(mobile);
+		return baseMapper.selectOne(new QueryWrapper<UserEntity>().eq("mobile", mobile));
 	}
 
 	@Override
-	public long login(String mobile, String password) {
-		UserEntity user = queryByMobile(mobile);
+	public Map<String, Object> login(LoginForm form) {
+		UserEntity user = queryByMobile(form.getMobile());
 		Assert.isNull(user, "手机号或密码错误");
 
 		//密码错误
-		if(!user.getPassword().equals(DigestUtils.sha256Hex(password))){
+		if(!user.getPassword().equals(DigestUtils.sha256Hex(form.getPassword()))){
 			throw new RRException("手机号或密码错误");
 		}
 
-		return user.getUserId();
+		//获取登录token
+		TokenEntity tokenEntity = tokenService.createToken(user.getUserId());
+
+		Map<String, Object> map = new HashMap<>(2);
+		map.put("token", tokenEntity.getToken());
+		map.put("expire", tokenEntity.getExpireTime().getTime() - System.currentTimeMillis());
+
+		return map;
 	}
+
 }

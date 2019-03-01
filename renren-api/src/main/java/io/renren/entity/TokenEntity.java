@@ -1,4 +1,17 @@
+/**
+ * Copyright (c) 2016-2019 人人开源 All rights reserved.
+ *
+ * https://www.renren.io
+ *
+ * 版权所有，侵权必究！
+ */
+
 package io.renren.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -7,69 +20,27 @@ import java.util.Date;
 
 /**
  * 用户Token
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-03-23 15:22:07
+ *
+ * @author Mark sunlightcs@gmail.com
  */
+@Data
+@TableName("tb_token")
 public class TokenEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	//用户ID
-	private Long userId;
-	//token
-	private String token;
-	//过期时间
-	private Date expireTime;
-	//更新时间
-	private Date updateTime;
 
 	/**
-	 * 设置：用户ID
+	 * 用户ID
 	 */
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+	@TableId(type= IdType.INPUT)
+	private Long userId;
+	private String token;
 	/**
-	 * 获取：用户ID
+	 * 过期时间
 	 */
-	public Long getUserId() {
-		return userId;
-	}
+	private Date expireTime;
 	/**
-	 * 设置：token
+	 * 更新时间
 	 */
-	public void setToken(String token) {
-		this.token = token;
-	}
-	/**
-	 * 获取：token
-	 */
-	public String getToken() {
-		return token;
-	}
-	/**
-	 * 设置：过期时间
-	 */
-	public void setExpireTime(Date expireTime) {
-		this.expireTime = expireTime;
-	}
-	/**
-	 * 获取：过期时间
-	 */
-	public Date getExpireTime() {
-		return expireTime;
-	}
-	/**
-	 * 设置：更新时间
-	 */
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-	/**
-	 * 获取：更新时间
-	 */
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+	private Date updateTime;
+
 }
