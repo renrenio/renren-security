@@ -111,6 +111,10 @@ public class DataFilterAspect {
 
         sqlFilter.append(")");
 
+        if(sqlFilter.toString().trim().equals("()")){
+            return null;
+        }
+
         return sqlFilter.toString();
     }
 }
