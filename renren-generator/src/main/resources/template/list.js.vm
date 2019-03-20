@@ -66,21 +66,26 @@ var vm = new Vue({
             vm.getInfo(${pk.attrname})
 		},
 		saveOrUpdate: function (event) {
-			var url = vm.${classname}.${pk.attrname} == null ? "${moduleName}/${pathName}/save" : "${moduleName}/${pathName}/update";
-			$.ajax({
-				type: "POST",
-			    url: baseURL + url,
-                contentType: "application/json",
-			    data: JSON.stringify(vm.${classname}),
-			    success: function(r){
-			    	if(r.code === 0){
-						alert('操作成功', function(index){
-							vm.reload();
-						});
-					}else{
-						alert(r.msg);
-					}
-				}
+		    $('#btnSaveOrUpdate').button('loading').delay(1000).queue(function() {
+                var url = vm.${classname}.${pk.attrname} == null ? "${moduleName}/${pathName}/save" : "${moduleName}/${pathName}/update";
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + url,
+                    contentType: "application/json",
+                    data: JSON.stringify(vm.${classname}),
+                    success: function(r){
+                        if(r.code === 0){
+                             layer.msg("操作成功", {icon: 1});
+                             vm.reload();
+                             $('#btnSaveOrUpdate').button('reset');
+                             $('#btnSaveOrUpdate').dequeue();
+                        }else{
+                            layer.alert(r.msg);
+                            $('#btnSaveOrUpdate').button('reset');
+                            $('#btnSaveOrUpdate').dequeue();
+                        }
+                    }
+                });
 			});
 		},
 		del: function (event) {
@@ -88,24 +93,29 @@ var vm = new Vue({
 			if(${pk.attrname}s == null){
 				return ;
 			}
-			
-			confirm('确定要删除选中的记录？', function(){
-				$.ajax({
-					type: "POST",
-				    url: baseURL + "${moduleName}/${pathName}/delete",
-                    contentType: "application/json",
-				    data: JSON.stringify(${pk.attrname}s),
-				    success: function(r){
-						if(r.code == 0){
-							alert('操作成功', function(index){
-								$("#jqGrid").trigger("reloadGrid");
-							});
-						}else{
-							alert(r.msg);
-						}
-					}
-				});
-			});
+			var lock = false;
+            layer.confirm('确定要删除选中的记录？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+               if(!lock) {
+                    lock = true;
+		            $.ajax({
+                        type: "POST",
+                        url: baseURL + "${moduleName}/${pathName}/delete",
+                        contentType: "application/json",
+                        data: JSON.stringify(${pk.attrname}s),
+                        success: function(r){
+                            if(r.code == 0){
+                                layer.msg("操作成功", {icon: 1});
+                                $("#jqGrid").trigger("reloadGrid");
+                            }else{
+                                layer.alert(r.msg);
+                            }
+                        }
+				    });
+			    }
+             }, function(){
+             });
 		},
 		getInfo: function(${pk.attrname}){
 			$.get(baseURL + "${moduleName}/${pathName}/info/"+${pk.attrname}, function(r){
