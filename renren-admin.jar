@@ -1,25 +1,15 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
+    
+version: '2'
+services:
+  renren-admin:
+    image: renren/admin
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.profiles.active=dev
+  renren-api:
+    image: renren/api
+    ports:
+      - "8081:8081"
+    environment:
+      - spring.profiles.active=dev
