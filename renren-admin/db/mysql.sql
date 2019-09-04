@@ -9,7 +9,7 @@ CREATE TABLE `sys_menu` (
   `icon` varchar(50) COMMENT '菜单图标',
   `order_num` int COMMENT '排序',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单管理';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='菜单管理';
 
 -- 部门
 CREATE TABLE `sys_dept` (
@@ -19,7 +19,7 @@ CREATE TABLE `sys_dept` (
   `order_num` int COMMENT '排序',
   `del_flag` tinyint DEFAULT 0 COMMENT '是否删除  -1：已删除  0：正常',
   PRIMARY KEY (`dept_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='部门管理';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='部门管理';
 
 -- 系统用户
 CREATE TABLE `sys_user` (
@@ -34,7 +34,7 @@ CREATE TABLE `sys_user` (
   `create_time` datetime COMMENT '创建时间',
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统用户';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='系统用户';
 
 -- 角色
 CREATE TABLE `sys_role` (
@@ -44,7 +44,7 @@ CREATE TABLE `sys_role` (
   `dept_id` bigint(20) COMMENT '部门ID',
   `create_time` datetime COMMENT '创建时间',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='角色';
 
 -- 用户与角色对应关系
 CREATE TABLE `sys_user_role` (
@@ -52,7 +52,7 @@ CREATE TABLE `sys_user_role` (
   `user_id` bigint COMMENT '用户ID',
   `role_id` bigint COMMENT '角色ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户与角色对应关系';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='用户与角色对应关系';
 
 -- 角色与菜单对应关系
 CREATE TABLE `sys_role_menu` (
@@ -60,7 +60,7 @@ CREATE TABLE `sys_role_menu` (
   `role_id` bigint COMMENT '角色ID',
   `menu_id` bigint COMMENT '菜单ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='角色与菜单对应关系';
 
 -- 角色与部门对应关系
 CREATE TABLE `sys_role_dept` (
@@ -68,7 +68,7 @@ CREATE TABLE `sys_role_dept` (
   `role_id` bigint COMMENT '角色ID',
   `dept_id` bigint COMMENT '部门ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色与部门对应关系';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='角色与部门对应关系';
 
 
 -- 系统配置信息
@@ -80,7 +80,7 @@ CREATE TABLE `sys_config` (
   `remark` varchar(500) COMMENT '备注',
   PRIMARY KEY (`id`),
   UNIQUE INDEX (`param_key`)
-) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8 COMMENT='系统配置信息表';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='系统配置信息表';
 
 -- 数据字典
 CREATE TABLE `sys_dict` (
@@ -94,7 +94,7 @@ CREATE TABLE `sys_dict` (
   `del_flag` tinyint DEFAULT 0 COMMENT '删除标记  -1：已删除  0：正常',
   PRIMARY KEY (`id`),
   UNIQUE KEY(`type`,`code`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COMMENT='数据字典表';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='数据字典表';
 
 -- 系统日志
 CREATE TABLE `sys_log` (
@@ -107,7 +107,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(64) COMMENT 'IP地址',
   `create_date` datetime COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8 COMMENT='系统日志';
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8mb4 COMMENT='系统日志';
 
 -- 初始数据
 INSERT INTO `sys_user` (`user_id`, `username`, `password`, `salt`, `email`, `mobile`, `status`, `dept_id`, `create_time`) VALUES ('1', 'admin', 'e1153123d7d180ceeb820d577ff119876678732a68eef4e6ffc0b1f06a01f91b', 'YzcmCZNvbXocrsz9dm8e', 'root@renren.io', '13612345678', '1', '1', '2016-11-11 11:11:11');
