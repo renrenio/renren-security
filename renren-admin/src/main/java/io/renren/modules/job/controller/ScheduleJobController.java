@@ -62,7 +62,7 @@ public class ScheduleJobController {
 	public R save(@RequestBody ScheduleJobEntity scheduleJob){
 		ValidatorUtils.validateEntity(scheduleJob);
 		
-		scheduleJobService.save(scheduleJob);
+		scheduleJobService.saveJob(scheduleJob);
 		
 		return R.ok();
 	}
