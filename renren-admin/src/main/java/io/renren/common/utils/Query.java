@@ -9,6 +9,7 @@
 package io.renren.common.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.renren.common.xss.SQLFilter;
 import org.apache.commons.lang.StringUtils;
@@ -52,17 +53,22 @@ public class Query<T> {
         //前端字段排序
         if(StringUtils.isNotEmpty(orderField) && StringUtils.isNotEmpty(order)){
             if(Constant.ASC.equalsIgnoreCase(order)) {
-                return page.setAsc(orderField);
+                return  page.addOrder(OrderItem.asc(orderField));
             }else {
-                return page.setDesc(orderField);
+                return page.addOrder(OrderItem.desc(orderField));
             }
+        }
+
+        //没有排序字段，则不排序
+        if(StringUtils.isBlank(defaultOrderField)){
+            return page;
         }
 
         //默认排序
         if(isAsc) {
-            page.setAsc(defaultOrderField);
+            page.addOrder(OrderItem.asc(defaultOrderField));
         }else {
-            page.setDesc(defaultOrderField);
+            page.addOrder(OrderItem.desc(defaultOrderField));
         }
 
         return page;

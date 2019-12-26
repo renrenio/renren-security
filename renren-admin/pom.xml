@@ -13,7 +13,7 @@
 		<quartz.version>2.3.0</quartz.version>
 		<shiro.version>1.4.0</shiro.version>
 		<kaptcha.version>0.0.9</kaptcha.version>
-		<qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
+		<qiniu.version>7.2.23</qiniu.version>
 		<aliyun.oss.version>2.5.0</aliyun.oss.version>
 		<qcloud.cos.version>4.4</qcloud.cos.version>
 		<swagger.version>2.7.0</swagger.version>
