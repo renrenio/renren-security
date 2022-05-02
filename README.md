@@ -1,3 +1,6 @@
+#### 为了更好的服务国内用户，renren-security仓库已迁移到Gitee，新的仓库地址 【[https://gitee.com/renrenio/renren-security](https://gitee.com/renrenio/renren-security)】，以后会在 https://gitee.com/renrenio/renren-security 里面进行更新维护，感谢支持！ :smiley: 
+<br> 
+
 **项目说明** 
 - 采用SpringBoot、MyBatis、Shiro框架，开发的一套权限系统，极低门槛，拿来即用。设计之初，就非常注重安全性，为企业系统保驾护航，让一切都变得如此简单。
 - 提供了代码生成器，只需编写30%左右代码，其余的代码交给系统自动生成，可快速完成开发任务
