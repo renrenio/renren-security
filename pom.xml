@@ -31,7 +31,7 @@
         <jedis.version>2.9.0</jedis.version>
         <druid.version>1.1.13</druid.version>
         <mybatisplus.version>3.1.2</mybatisplus.version>
-        <mysql.version>8.0.16</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <mssql.version>4.0</mssql.version>
         <oracle.version>11.2.0.3</oracle.version>
         <commons.lang.version>2.6</commons.lang.version>
