@@ -21,7 +21,7 @@
         <java.version>1.8</java.version>
         <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
         <pagehelper.spring.boot.version>1.2.5</pagehelper.spring.boot.version>
-        <mysql.version>8.0.16</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <druid.version>1.0.28</druid.version>
         <commons.lang.version>2.6</commons.lang.version>
         <commons.io.version>2.5</commons.io.version>
