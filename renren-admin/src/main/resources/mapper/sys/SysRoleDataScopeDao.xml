@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.sys.dao.SysRoleDataScopeDao">
+
+    <select id="getDeptIdList" resultType="long">
+        select dept_id from sys_role_data_scope where role_id = #{value}
+    </select>
+
+    <select id="getDataScopeList" resultType="long">
+        select t2.dept_id from sys_role_user t1, sys_role_data_scope t2
+          where t1.user_id = #{value} and t1.role_id = t2.role_id
+    </select>
+
+    <delete id="deleteByRoleIds">
+        delete from sys_role_data_scope where role_id in
+        <foreach item="roleId" collection="array" open="(" separator="," close=")">
+            #{roleId}
+        </foreach>
+    </delete>
+
+</mapper>

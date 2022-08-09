@@ -1,0 +1,34 @@
+package ${package}.modules.${moduleName}.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import ${package}.common.service.impl.CrudServiceImpl;
+import ${package}.modules.${moduleName}.dao.${className}Dao;
+import ${package}.modules.${moduleName}.dto.${className}DTO;
+import ${package}.modules.${moduleName}.entity.${className}Entity;
+import ${package}.modules.${moduleName}.service.${className}Service;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+/**
+ * ${comments}
+ *
+ * @author ${author} ${email}
+ * @since ${version} ${date}
+ */
+@Service
+public class ${className}ServiceImpl extends CrudServiceImpl<${className}Dao, ${className}Entity, ${className}DTO> implements ${className}Service {
+
+    @Override
+    public QueryWrapper<${className}Entity> getWrapper(Map<String, Object> params){
+        String id = (String)params.get("id");
+
+        QueryWrapper<${className}Entity> wrapper = new QueryWrapper<>();
+        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
+
+        return wrapper;
+    }
+
+
+}

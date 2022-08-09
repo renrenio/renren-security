@@ -1,0 +1,15 @@
+package ${package}.modules.${moduleName}.service;
+
+import ${package}.common.service.CrudService;
+import ${package}.modules.${moduleName}.dto.${className}DTO;
+import ${package}.modules.${moduleName}.entity.${className}Entity;
+
+/**
+ * ${comments}
+ *
+ * @author ${author} ${email}
+ * @since ${version} ${date}
+ */
+public interface ${className}Service extends CrudService<${className}Entity, ${className}DTO> {
+
+}

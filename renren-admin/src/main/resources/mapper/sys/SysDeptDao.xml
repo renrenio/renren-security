@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.sys.dao.SysDeptDao">
+
+	<select id="getList" resultType="io.renren.modules.sys.entity.SysDeptEntity">
+		select t1.*,(select t2.name from sys_dept t2 where t2.id=t1.pid)parentName from sys_dept t1
+		<where>
+			<if test="deptIdList != null">
+				t1.id in
+				<foreach item="id" collection="deptIdList" open="(" separator="," close=")">
+					#{id}
+				</foreach>
+			</if>
+		</where>
+		order by t1.sort asc
+	</select>
+
+	<select id="getById" resultType="io.renren.modules.sys.entity.SysDeptEntity">
+		select t1.*,(select t2.name from sys_dept t2 where t2.id=t1.pid)parentName from sys_dept t1
+		where t1.id = #{value}
+	</select>
+
+	<select id="getIdAndPidList" resultType="io.renren.modules.sys.entity.SysDeptEntity">
+		select t1.id, t1.pid from sys_dept t1
+	</select>
+
+	<select id="getSubDeptIdList" resultType="long">
+		select id from sys_dept where pids like #{id}
+	</select>
+
+</mapper>

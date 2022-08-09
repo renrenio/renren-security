@@ -1,0 +1,27 @@
+package ${package}.modules.${moduleName}.entity;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.util.Date;
+
+/**
+ * ${comments}
+ *
+ * @author ${author} ${email}
+ * @since ${version} ${date}
+ */
+@Data
+@TableName("${tableName}")
+public class ${className}Entity {
+
+#foreach ($column in $columns)
+    /**
+     * $column.comments
+     */
+	private $column.attrType $column.attrname;
+#end
+}

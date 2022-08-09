@@ -1,0 +1,116 @@
+package ${package}.modules.${moduleName}.controller;
+
+import ${package}.common.annotation.LogOperation;
+import ${package}.common.constant.Constant;
+import ${package}.common.page.PageData;
+import ${package}.common.utils.ExcelUtils;
+import ${package}.common.utils.Result;
+import ${package}.common.validator.AssertUtils;
+import ${package}.common.validator.ValidatorUtils;
+import ${package}.common.validator.group.AddGroup;
+import ${package}.common.validator.group.DefaultGroup;
+import ${package}.common.validator.group.UpdateGroup;
+import ${package}.modules.${moduleName}.dto.${className}DTO;
+import ${package}.modules.${moduleName}.excel.${className}Excel;
+import ${package}.modules.${moduleName}.service.${className}Service;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * ${comments}
+ *
+ * @author ${author} ${email}
+ * @since ${version} ${date}
+ */
+@RestController
+@RequestMapping("${moduleName}/${pathName}")
+@Api(tags="${comments}")
+public class ${className}Controller {
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    @GetMapping("page")
+    @ApiOperation("分页")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType="int") ,
+        @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query",required = true, dataType="int") ,
+        @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType="String") ,
+        @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType="String")
+    })
+    @RequiresPermissions("${moduleName}:${pathName}:page")
+    public Result<PageData<${className}DTO>> page(@ApiIgnore @RequestParam Map<String, Object> params){
+        PageData<${className}DTO> page = ${classname}Service.page(params);
+
+        return new Result<PageData<${className}DTO>>().ok(page);
+    }
+
+    @GetMapping("{id}")
+    @ApiOperation("信息")
+    @RequiresPermissions("${moduleName}:${pathName}:info")
+    public Result<${className}DTO> get(@PathVariable("id") Long id){
+        ${className}DTO data = ${classname}Service.get(id);
+
+        return new Result<${className}DTO>().ok(data);
+    }
+
+    @PostMapping
+    @ApiOperation("保存")
+    @LogOperation("保存")
+    @RequiresPermissions("${moduleName}:${pathName}:save")
+    public Result save(@RequestBody ${className}DTO dto){
+        //效验数据
+        ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
+
+        ${classname}Service.save(dto);
+
+        return new Result();
+    }
+
+    @PutMapping
+    @ApiOperation("修改")
+    @LogOperation("修改")
+    @RequiresPermissions("${moduleName}:${pathName}:update")
+    public Result update(@RequestBody ${className}DTO dto){
+        //效验数据
+        ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
+
+        ${classname}Service.update(dto);
+
+        return new Result();
+    }
+
+    @DeleteMapping
+    @ApiOperation("删除")
+    @LogOperation("删除")
+    @RequiresPermissions("${moduleName}:${pathName}:delete")
+    public Result delete(@RequestBody Long[] ids){
+        //效验数据
+        AssertUtils.isArrayEmpty(ids, "id");
+
+        ${classname}Service.delete(ids);
+
+        return new Result();
+    }
+
+    @GetMapping("export")
+    @ApiOperation("导出")
+    @LogOperation("导出")
+    @RequiresPermissions("${moduleName}:${pathName}:export")
+    public void export(@ApiIgnore @RequestParam Map<String, Object> params, HttpServletResponse response) throws Exception {
+        List<${className}DTO> list = ${classname}Service.list(params);
+
+        ExcelUtils.exportExcelToTarget(response, null, list, ${className}Excel.class);
+    }
+
+}

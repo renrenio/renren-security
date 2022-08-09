@@ -1,0 +1,24 @@
+package ${package}.modules.${moduleName}.excel;
+
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import lombok.Data;
+
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.util.Date;
+
+/**
+ * ${comments}
+ *
+ * @author ${author} ${email}
+ * @since ${version} ${date}
+ */
+@Data
+public class ${className}Excel {
+#foreach ($column in $columns)
+    @Excel(name = "$!column.comments")
+    private $column.attrType $column.attrname;
+#end
+
+}
