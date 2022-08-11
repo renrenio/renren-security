@@ -176,7 +176,11 @@ public class GenUtils {
 	 */
 	public static Configuration getConfig(){
 		try {
-			return new PropertiesConfiguration("generator.properties");
+			//return new PropertiesConfiguration("generator.properties");//此方法没有指定编码，对中文不支持
+			PropertiesConfiguration propertiesConfiguration = new PropertiesConfiguration();
+			propertiesConfiguration.setEncoding("UTF-8");
+			propertiesConfiguration.load("generator.properties");
+			return propertiesConfiguration;
 		} catch (ConfigurationException e) {
 			throw new RenException("获取配置文件失败，", e);
 		}
