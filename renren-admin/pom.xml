@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>io.renren</groupId>
@@ -11,7 +12,7 @@
 
 	<properties>
 		<quartz.version>2.3.2</quartz.version>
-		<shiro.version>1.9.0</shiro.version>
+		<shiro.version>1.9.1</shiro.version>
 		<captcha.version>1.6.2</captcha.version>
 		<easypoi.version>4.1.0</easypoi.version>
 		<qiniu.version>7.2.27</qiniu.version>
