@@ -38,7 +38,7 @@
         <commons.fileupload.version>1.4</commons.fileupload.version>
         <commons.io.version>2.11.0</commons.io.version>
         <commons.codec.version>1.15</commons.codec.version>
-        <guava.version>20.0</guava.version>
+        <guava.version>30.0-jre</guava.version>
         <joda.time.version>2.10.14</joda.time.version>
         <hutool.version>5.7.22</hutool.version>
         <gson.version>2.9.0</gson.version>
