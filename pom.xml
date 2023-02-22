@@ -35,7 +35,7 @@
         <sqlserver.version>4.0</sqlserver.version>
         <oracle.version>11.2.0.3</oracle.version>
         <commons.lang.version>3.12.0</commons.lang.version>
-        <commons.fileupload.version>1.4</commons.fileupload.version>
+        <commons.fileupload.version>1.5</commons.fileupload.version>
         <commons.io.version>2.11.0</commons.io.version>
         <commons.codec.version>1.15</commons.codec.version>
         <guava.version>20.0</guava.version>
